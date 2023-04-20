@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="en">
+        <head>
+        <title>Ayn Rand - VR Museum</title>
+        <link rel="icon" type="image/png" href="favicon.ico"/>
+        <meta name="description" content="3D Application">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+
+        <script type="text/javascript" src="js/aframe-v1.1.0.min.js"></script>
+        <script type="text/javascript" src="js/aframe-environment-component.min.js"></script>
+        <script type="text/javascript" src="js/aframe-extras.6.1.1.min.js"></script>
+
+
+
+        <script type="text/javascript" src="js/aframe-teleport-controls.min.js"></script>
+        <script type="text/javascript" src="js/aframe-thumb-controls-component.min.js"></script>
+        <script type="text/javascript" src="js/instanced-mesh.js"></script>
+        <script type="text/javascript" src="js/aframe-cubemap-component.min.js"></script>
+
+        <script type="text/javascript" src="js/Geometry.js"></script>
+        <script type="text/javascript" src="js/camera-cube-env.js"></script>
+        <script type="text/javascript" src="js/webxr.js"></script>
+        <script type="text/javascript" src="js/aframe-physics-system.min.js"></script>
+        <script type="text/javascript" src="js/aframe-extras.controls.min.js"></script>
+        <script type="text/javascript" src="js/aframe-extras.loaders.min.js"></script>
+        <script type="text/javascript" src="js/aframe-extras.misc.min.js"></script>
+        <script type="text/javascript" src="js/aframe-extras.pathfinding.min.js"></script>
+        <script type="text/javascript" src="js/aframe-extras.primitives.min.js"></script>
+        <script type="text/javascript" src="js/aframe-event-set-component.min.js"></script>
+        <script type="text/javascript" src="js/aframe-animation-toggle-component.js"></script>
+        <script type="text/javascript" src="js/depth-material.js"></script>
+        <script type="text/javascript" src="js/highlight.js"></script>
+        <script type="text/javascript" src="js/play-on-click.js"></script>
+        <script type="text/javascript" src="js/play-on-hover.js"></script>
+        <script type="text/javascript" src="js/aframe-proxemic-component.min.js"></script>
+        <script type="text/javascript" src="js/aframe-look-at-component.min.js"></script>
+
+<!--
+
+
+
+
+<script type="text/javascript" src="js/joystick.js"></script>
+
+<script type="text/javascript" src="js/aframe-preloader-component.min.js"></script>
+
+<script type="text/javascript" src="js/init.js"></script>
+-->
+
+
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+    <body onload="init();">
+        <a-scene  loading-screen="dotsColor: black; backgroundColor: white"   shadow="type: pcfsoft; autoUpdate: true;" renderer="antialias: true; colorManagement: true; physicallyCorrectLights: false;">
+
+          <!-- Assets -->
+          <a-assets>
+                         <!-- exterior -->
+             <a-asset-item id="tree" src="./assets/tree1.glb" response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
+
+             <a-asset-item id="rock" src="./assets/rock1.glb" response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
+
+              <a-asset-item id="grass.001" src="./assets/grass1.glb"></a-asset-item>
+
+              <img id="water-sand" src="./resources/sand.jpg">
+              <img id="foliage" src="./resources/foliage.png">
+              <img id="infopanel-background" src="./media/infopanel-down.png">
+              <img id="groundTexture" src="./resources/grass.jpg">
+
+              <!--./assets/skybg/negy.jpg-->
+              <img id="carpet" src="./resources/carpet.jpg">
+              <img id="close" src="./resources/close.png">
+              <img id="shadowfloorplane" src="./resources/shadow.png">
+
+              <!-- exhibition -->
+              <img id="0.1.png"  src="./exhibition/0/0.1.png">
+              <img id="1.1.png"  src="./exhibition/1/1.1.png">
+              <img id="1.3.1.png"  src="./exhibition/1/1.3.1.png">
+              <video muted preload="auto" id="2.2.1.mp4" src="./exhibition/2/2.2.1.mp4" ></video>
+              <img id="2.3.1.jpg"  src="./exhibition/2/2.3.1.jpg">
+              <img id="2.4.1.jpg"  src="./exhibition/2/2.4.1.jpg">
+              <img id="2.5.1.jpg"  src="./exhibition/2/2.5.1.jpg">
+              <img id="2.6.1.jpg"  src="./exhibition/2/2.6.1.jpg">
+              <img id="2.7.1.jpg"  src="./exhibition/2/2.7.1.jpg">
+              <img id="3.2.1.jpg"  src="./exhibition/3/3.2.1.jpg">
+              <img id="3.3.1.jpg"  src="./exhibition/3/3.3.1.jpg">
+              <img id="3.5.1.jpg"  src="./exhibition/3/3.5.1.jpg">
+              <img id="3.6.1.jpg"  src="./exhibition/3/3.6.1.jpg">
+              <img id="3.7.1.jpg"  src="./exhibition/3/3.7.1.jpg">
+              <img id="3.8.1.jpg"  src="./exhibition/3/3.8.1.jpg">
+              <img id="3.9.1.jpg"  src="./exhibition/3/3.9.1.jpg">
+              <video muted preload="auto" id="4.2.1.mp4" src="./exhibition/4/4.2.1.mp4" ></video>
+              <img id="4.3.1.jpg"  src="./exhibition/4/4.3.1.jpg">
+              <img id="4.4.1.jpg"  src="./exhibition/4/4.4.1.jpg">
+              <img id="4.4.2.jpg"  src="./exhibition/4/4.4.2.jpg">
+              <img id="4.5.1.jpg"  src="./exhibition/4/4.5.1.jpg">
+              <img id="4.6.1.jpg"  src="./exhibition/4/4.6.1.jpg">
+              <img id="4.7.1.jpg"  src="./exhibition/4/4.7.1.jpg">
+              <img id="4.8.1.jpg"  src="./exhibition/4/4.8.1.jpg">
+              <video muted preload="auto" id="5.2.1.mp4" src="./exhibition/5/5.2.1.mp4" ></video>
+              <img id="5.3.1.jpg"  src="./exhibition/5/5.3.1.jpg">
+              <img id="5.5.1.jpg"  src="./exhibition/5/5.5.1.jpg">
+              <img id="5.6.1.jpg"  src="./exhibition/5/5.6.1.jpg">
+              <img id="5.7.1.jpg"  src="./exhibition/5/5.7.1.jpg">
+              <img id="5.7.2.jpg"  src="./exhibition/5/5.7.2.jpg">
+              <img id="5.7.3.jpg"  src="./exhibition/5/5.7.3.jpg">
+              <img id="5.7.4.jpg"  src="./exhibition/5/5.7.4.jpg">
+              <img id="5.7.5.jpg"  src="./exhibition/5/5.7.5.jpg">
+              <img id="6.11.jpg"  src="./exhibition/6/6.11.jpg">
+              <img id="6.13.jpg"  src="./exhibition/6/6.13.jpg">
+              <img id="6.2.1.jpg"  src="./exhibition/6/6.2.1.jpg">
+              <img id="6.3.1.jpg"  src="./exhibition/6/6.3.1.jpg">
+              <img id="6.4.1.jpg"  src="./exhibition/6/6.4.1.jpg">
+              <img id="6.5.1.jpg"  src="./exhibition/6/6.5.1.jpg">
+              <img id="6.6.1.jpg"  src="./exhibition/6/6.6.1.jpg">
+              <img id="6.7.1.jpg"  src="./exhibition/6/6.7.1.jpg">
+              <img id="6.8.1.jpg"  src="./exhibition/6/6.8.1.jpg">
+              <img id="6.9.1.jpg"  src="./exhibition/6/6.9.1.jpg">
+              <img id="7.1.1.jpg"  src="./exhibition/6/7.1.1.jpg">
+              <img id="6.extra.1.jpg"  src="./exhibition/6/6.extra.1.jpg">
+              <img id="6.extra.2.jpg"  src="./exhibition/6/6.extra.2.jpg">
+              <img id="6.extra.3.jpg"  src="./exhibition/6/6.extra.3.jpg">
+
+
+      <a-asset-item id="base_desk" src="./assets/base_desk.glb"></a-asset-item>
+      <a-asset-item id="desk" src="./assets/desk.glb"></a-asset-item>
+      <a-asset-item id="floor" src="./assets/floor.glb"></a-asset-item>
+      <a-asset-item id="garden" src="./assets/garden.glb"></a-asset-item>
+      <a-asset-item id="guarda_dir" src="./assets/guarda_dir.glb"></a-asset-item>
+      <a-asset-item id="guarda_esq" src="./assets/guarda_esq.glb"></a-asset-item>
+      <a-asset-item id="nav-mesh" src="./assets/nav-mesh.glb"></a-asset-item>
+      <a-asset-item id="porta_dir" src="./assets/porta_dir.gltf"></a-asset-item>
+      <a-asset-item id="porta_esq" src="./assets/porta_esq.gltf"></a-asset-item>
+      <a-asset-item id="rampa" src="./assets/rampa.gltf"></a-asset-item>
+      <a-asset-item id="roof" src="./assets/roof.glb"></a-asset-item>
+      <a-asset-item id="walls" src="./assets/walls.glb"></a-asset-item>
+      <a-asset-item id="walls.001" src="./assets/walls.001.gltf"></a-asset-item>
+      <a-asset-item id="walls.002" src="./assets/walls.002.gltf"></a-asset-item>
+      <a-asset-item id="sofa" src="./assets/sofa.glb"></a-asset-item>
+      <a-asset-item id="plant2" src="./assets/plant2.glb"></a-asset-item>
+      <a-asset-item id="tv" src="./assets/tv.glb"></a-asset-item>
+      <a-asset-item id="lamp" src="./assets/lamp.glb"></a-asset-item>
+      <a-asset-item id="expositor" src="./assets/expositor.glb"></a-asset-item>
+
+          </a-assets>
+
+            <!-- Entities -->
+            <a-entity cubemap="folder: assets/skybg/"></a-entity>
+            <!--<a-plane src="#groundTexture" shadow="cast:  false;  receive:  true" depth-material rotation="-90 0 0" width="25" roughness="1" height="25"  repeat="50 50"></a-plane>            -->
+            <!--<a-entity  position="0 -0.01 0" environment="active:true;preset:default;lighting:distant;ground:hills;playArea: 1.5; groundYScale: 6.51;"></a-entity>-->
+            <a-plane src="#groundTexture" position="-0.67057 0 -6.95586" shadow="cast:  false;  receive:  true" depth-material rotation="-90 0 0" width="70" roughness="1" height="70"  repeat="15 15"></a-plane>
+
+          <!-- porta 2-->
+
+
+          <!-- exhibition -->
+          <!-- 0 -->
+          <a-entity id="0.1.png" geometry="primitive: plane; width: 3.27; height: 1" scale="1 1 1" visible="true" position="-3.682572841644287 1.3 -5.996516227722168" rotation="0 0 0"
+          material="src: #0.1.png;transparent: true; shader: standard;"  shadow="cast:  false;  receive:  true" depth-material></a-entity>
+          <!-- 1 -->
+          <a-entity id="1.1.png" geometry="primitive: plane; width: 2.5; height: 2.5" scale="1 1 1" visible="true" position="-1.18 2.229 -9.35" rotation="0 0 0"
+          material="src: #1.1.png;transparent: true; shader: standard;"  shadow="cast:  false;  receive:  true" depth-material></a-entity>
+          <a-entity id="0.1b.png" geometry="primitive: plane; width: 3.27; height: 1" scale="0.3 0.3 0.3" visible="true" position="-0.478 1.597 -9.346" rotation="0 0 0"
+          material="src: #0.1.png;transparent: true; shader: standard;"  shadow="cast:  false;  receive:  true" depth-material></a-entity>
+
+          <a-text id="#1.3.title" class="title"  font="fonts/Brandon_bld-msdf.json" font-image="fonts/Brandonbld.png" negate="false"
+              position="2.404 2.581 -9.34" rotation="0 0 0"
+              width="1"
+              value="A Writer’s Studio"
+              align="left" color="#000000" anchor="left" baseline="top" height="0.02" wrap-count="12.23"></a-text>
+          <a-text id="#1.3.text" class="description" baseline="top" width="1" wrap-count="65" font="fonts/Brandon_reg-msdf.json" font-image="fonts/Brandonreg.png" negate="false"
+              position="2.397 2.396 -9.34" rotation="0 0 0"
+              value="Ayn Rand (1905 - 82) was a 20th century Russian-American novelist who published four novels that have developed a worldwide audience. As a novelist-philosopher, her Romantic Realist works and original philosophical system, Objectivism, are known and discussed. And today there is increasing interest in the physical circumstances in which she produced these works: her 'writer studio.'\n\nAyn Rand wrote her four novels, as well as other fiction and nonfiction on a desk purchased for her in Los Angeles in 1929 by her husband, Frank O’Connor. The desk occupied more than a dozen apartments and a house in two cities, Los Angeles and New York, between 1929 and 1982. On this desk she wrote her four novels plus other fiction and nonfiction works.\n\nAs a literary artist, Ayn Rand considered herself a Romantic Realist. She believed that art should depict what is metaphysically important in life. In her paraphrase of Aristotle's Poetics, art is concerned not with human history reported journalistically, but human life recreated and portrayed as it could be and ought to be. This was Ayn Rand’s artisti credo.\n\nA Writer’s Studio examines Rand’s literary art from the perspective of the physical circumstances of her life while she was creating it. The exhibit incorporates artifacts from the Ayn Rand Archives, including ones selected from her personal papers and effects. The focus is Ayn Rand’s four published novels. The objects on display concretize her youthful decision to leave Soviet Russia and to establish herself in America--and to achieve “what ought to be” both in her art and in her life."
+              align="left" color="black"></a-text>
+
+          <a-entity id="1.3.1.png" geometry="primitive: plane; width: 2.65; height: 2.37" scale="0.95 0.95 0.95" visible="true" position="0.98 2.26 -13.82" rotation="0 0 0"
+          material="src: #1.3.1.png;transparent: true; shader: standard;"  shadow="cast:  false;  receive:  false" depth-material></a-entity>
+
+          <a-entity id="1.3.2" geometry="primitive: plane; width: 0.8; height: 1" scale="1 1 1" visible="true"   position="-0.3 2.25 -12.73" rotation="0 90 0"
+          material="color:#86DAFF; shader: standard;"  shadow="cast:  false;  receive:  false" ></a-entity>
+          <a-text id="#1.3.2.title" class="title"  font="fonts/Brandon_bld-msdf.json" font-image="fonts/Brandonbld.png" negate="false"
+              position="-0.29 2.698 -12.36" rotation="0 90 0"
+              width="1"
+              value="Four Novels"
+              align="left" color="#000000" anchor="left" baseline="top" height="0.02" wrap-count="20"></a-text>
+          <a-text id="#1.3.2.text" class="description" baseline="top" width="0.73" wrap-count="32.37" font="fonts/Brandon_reg-msdf.json" font-image="fonts/Brandonreg.png" negate="false"
+              position="-0.29 2.577 -12.38" rotation="0 90 0"
+              value="Early in her writing career, Ayn Rand’s publishers assumed the responsibility for designing book covers, examples of which are displayed here. However, by the 1970s, Rand’s reputation was well established; and she was able to participate in the art direction of a series of new covers for her fiction and nonfiction works. These later covers, incorporating original paintings into fields of white, were executed by painter, Robert Heindel, an contemporary artist whose depictions of ballet dancers, athletes and scientists, aligned with Rand’s view of the ideal human figure."
+              align="left" color="black"></a-text>
+
+
+          <!-- 2 -->
+
+          <a-text id="#2.1.title" class="title"  font="fonts/Brandon_bld-msdf.json" font-image="fonts/Brandonbld.png" negate="false"
+              position="5.845 2.95 -9.517" rotation="0 180 0"
+              width="2"
+              value="Soviet Russia"
+              align="left" color="#000000" anchor="left" baseline="top" height="0.02" wrap-count="35"></a-text>
+              <a-text id="#2.1b.title" class="title"  font="fonts/Brandon_bld-msdf.json" font-image="fonts/Brandonbld.png" negate="false"
+                  position="5.86 2.8 -9.517" rotation="0 180 0"
+                  width="2"
+                  value="Early Writings"
+                  align="left" color="#000000" anchor="left" baseline="top" height="0.02" wrap-count="20"></a-text>
+          <a-text id="#2.1.text" class="description" baseline="top" width="0.5" wrap-count="30" font="fonts/Brandon_reg-msdf.json" font-image="fonts/Brandonreg.png" negate="false"
+              position="5.58 2.479 -9.517" rotation="0 180 0"
+              value="After completing her studies at the University of Leningrad in 1924, Ayn Rand enrolled at the State Technicum for Screen Arts, a film school established by Lenin for the development of Soviet cinema. Her objective was to study screenwriting, and in preparation she also began writing film reviews and short essays on Hollywood, some of which were published. She briefly thought about becoming a Soviet screenwriter, subtly incorporating her individualist ethical and political ideas into her scripts. But this early experiment with literary misdirection failed. The collectivist nature of Russian politics and culture was monolithic.  And she realized her prospects for survival in Soviet Russia were nonexistent: “I would have been probably dead within one year,” she later concluded."
+              align="left" color="black"></a-text>
+
+          <a-entity class="clickable" id="#2.2.1.mp4" geometry="primitive: plane; width: 1.6; height: 0.9" scale="1 1 1" visible="true" position="3.3 2.46 -9.517" rotation="0 180 0"
+          material="shader: flat;src: #2.2.1.mp4"  shadow="cast:  false;  receive:  false" play-on-click></a-entity>
+          <a-entity id="#tv_2.2.1.mp4" gltf-model="#tv" scale="1 1 1" position="3.3 2.46 -9.517" rotation="90 0 0" visible="true" shadow="cast: true"></a-entity>
+
+          <a-text id="#2.2.1.title" font="fonts/Brandon_reg-msdf.json" font-image="fonts/Brandonreg.png" negate="false"
+              position="2.636 1.887 -9.517" rotation="0 180 0"
+              width="0.3"
+              value="Leningrad, U.S.S.R."
+              align="center" color="#000000" anchor="center" baseline="top" height="0.02" wrap-count="20"></a-text>
+
+          <a-text id="#2.2.1.text" class="description" baseline="top" width="0.3" wrap-count="30" font="fonts/Brandon_light-msdf.json" font-image="fonts/Brandonlight.png" negate="false"
+              position="2.739 1.842 -9.517" rotation="0 180 0"
+              value="c. 1920s\nThis montage of film shots from Leningrad includes a long shot of the Square of the Uprising, which was taken from Ayn Rand’s family apartment building, which housed her father’s commercial pharmacy. The business was nationalized during the Bolshevik Revolution.\n\nCourtesy U.S. Department of Defense, Armed Forces Information and Education.\n\n1966"
+              align="left" color="black"></a-text>
+
+          <a-entity class="clickable" bar id="#2.3.1.jpg" geometry="primitive: plane; width: 0.80; height: 1" scale="0.8 0.8 0.8" visible="true" position="6.19 2.25 -9.95" rotation="0 -90 0"
+          material="src: #2.3.1.jpg;transparent: true; shader: standard;emissive:#000000;emissiveIntensity:0"  shadow="cast:  false;  receive:  false" depth-material
+          animation__mouseenterscale="property: scale; to: 1 1 1; dur: 300; startEvents: mouseenter"
+          animation__mouseleavescale="property: scale; to: 0.8 0.8 0.8; dur: 300; startEvents: mouseleave"
+          toggle-handler="target: #2.3.2.infopanel;"
+          ></a-entity>
+
+          <a-entity id="#2.3.2.infopanel"
+              position="5.9 2.25 -10.510" rotation="0 -90 0"
+              scale="1 1 1"  visible="true" shadow="cast: true">
+                  <a-entity   visible="true" class="clickable" toggle-handler="target: #2.3.2.infopanel;"
+                   id="close" geometry="primitive: plane; width: 2; height: 2" scale="1 1 1" position="0 0 0.005" rotation="0 0 0"  depth-material material="src: #close; transparent:  true;  alphaTest:  0.01; shader: standard"  shadow="cast:  false;  receive:  false" ></a-entity>
+                  <a-image src="#infopanel-background" height="2" width="2"></a-image>
+                      <a-text class="title"  font="fonts/Brandon_bld-msdf.json" font-image="fonts/Brandonbld.png" negate="false"
+                          position="-0.4 -0.518 0.001"  width="1"
+                          value="Ayn Rand, born Alisa Rosenbaum"
+                          align="left" color="#000000" anchor="left" baseline="top" height="0.02" wrap-count="40"></a-text>
+                      <a-image  position="0 0.3 0.001" src="#2.3.1.jpg" height="1" width="0.80" scale="1.2 1.2 1.2"></a-image>
+                      <a-text class="description" baseline="top" width="1" font="fonts/Brandon_reg-msdf.json" font-image="fonts/Brandonreg.png" negate="false"
+                          position="-0.4 -0.602 0.001"
+                          value="University application photograph\n\nLeningrad Russia, 1921\nPhotographic print on paper\nAyn Rand Papers"
+                          align="left" color="black"></a-text>
+          </a-entity>
+
+
+          <a-entity class="clickable" id="#2.4.1.jpg" geometry="primitive: plane; width: 0.58; height: 1" scale="0.8 0.8 0.8" visible="true" position="6.19 2.25 -10.66" rotation="0 -90 0"
+          material="src: #2.4.1.jpg;transparent: true; shader: standard;"  shadow="cast:  false;  receive:  false" depth-material
+          animation__mouseenterscale="property: scale; to: 1 1 1; dur: 300; startEvents: mouseenter"
+          animation__mouseleavescale="property: scale; to: 0.8 0.8 0.8; dur: 300; startEvents: mouseleave"
+          toggle-handler="target: #2.4.2.infopanel;"
+          ></a-entity>
+
+          <a-entity id="#2.4.2.infopanel"
+              position="5.8 2.25 -10.860" rotation="0 -90 0"
+              scale="1 1 1"  visible="true" shadow="cast: true">
+              <a-entity   visible="true" class="clickable" toggle-handler="target: #2.4.2.infopanel;"
+               id="close" geometry="primitive: plane; width: 2; height: 2" scale="1 1 1" position="0 0 0.005" rotation="0 0 0"  depth-material material="src: #close; transparent:  true;  alphaTest:  0.01; shader: standard"   shadow="cast:  false;  receive:  false" ></a-entity>
+                      <a-image src="#infopanel-background" height="2" width="2" ></a-image>
+                      <a-text class="title"   font="fonts/Brandon_bld-msdf.json" font-image="fonts/Brandonbld.png" negate="false"
+                          position="-0.013 -0.1 0.001"  width="1"
+                          value="State Techincum for Screen Arts"
+                          align="left" color="#000000" anchor="left" baseline="top" height="0.02" wrap-count="40"></a-text>
+                      <a-image  position="-0.503 0.189 0.001" src="#2.4.1.jpg" height="1" width="0.58" scale="1.3 1.3 1.3"></a-image>
+                      <a-text class="description" baseline="top" width="1"
+                           font="fonts/Brandon_reg-msdf.json" font-image="fonts/Brandonreg.png" negate="false" position="-0.022 -0.204 0.001"
+                          value="Leningrad, U.S.S.R.\n\nBuilding on Tchaikovsky St. that housed the\nSoviet film school attended by Ayn Rand,\n 1924-25\n\nPhotographic print on paper\nCourtesy Alex Lebedev\nSpecial Collections\nAyn Rand Archives"
+                          align="left" color="black"></a-text>
+          </a-entity>
+
+          <a-entity  class="clickable" id="#2.5.1.jpg" geometry="primitive: plane; width: 1.27; height: 1" scale="0.8 0.8 0.8" visible="true" position="6.19 2.25 -11.62" rotation="0 -90 0"
+          material="src: #2.5.1.jpg;transparent: true; shader: standard;"  shadow="cast:  false;  receive:  false" depth-material
+          animation__mouseenterscale="property: scale; to: 1 1 1; dur: 300; startEvents: mouseenter"
+          animation__mouseleavescale="property: scale; to: 0.8 0.8 0.8; dur: 300; startEvents: mouseleave"
+          toggle-handler="target: #2.5.2.infopanel;"
+          ></a-entity>
+
+
+<a-entity id="#2.5.2.infopanel"
+    position="5.7 2.25 -11.62" rotation="0 -90 0"
+    scale="1 1 1"  visible="true" shadow="cast: true">
+    <a-entity   visible="true" class="clickable" toggle-handler="target: #2.5.2.infopanel;"
+     id="close" geometry="primitive: plane; width: 2; height: 2" scale="1 1 1" position="0 0 0.005" rotation="0 0 0"  depth-material material="src: #close; transparent:  true;  alphaTest:  0.01; shader: standard"   shadow="cast:  false;  receive:  false" ></a-entity>
+        <a-image src="#infopanel-background" height="2" width="2"></a-image>
+            <a-text class="title"   font="fonts/Brandon_bld-msdf.json" font-image="fonts/Brandonbld.png" negate="false"
+                position="-0.625 -0.423 0.001"  width="1"
+                value="Acting Pose"
+                align="left" color="#000000" anchor="left" baseline="top" height="0.02" wrap-count="40"></a-text>
+            <a-image  position="0 0.341 0.001" src="#2.5.1.jpg" height="1" width="1.27" scale="1 1 1"></a-image>
+            <a-text class="description" baseline="top" width="1"
+                 font="fonts/Brandon_reg-msdf.json" font-image="fonts/Brandonreg.png" negate="false" position="-0.637 -0.517 0.001"
+                value="Alisa Rosenbaum\nc. 1924.\n\nSingle frame from a strip of expressive gestures\n\nPhotographic print on paper\nAyn Rand Photograph Collection"
+                align="left" color="black"></a-text>
+</a-entity>
+
+          <a-entity  class="clickable" id="2.6.1.jpg" geometry="primitive: plane; width: 1.55; height: 1" scale="0.8 0.8 0.8" visible="true" position="6.19 2.25 -13.06" rotation="0 -90 0"
+          material="src: #2.6.1.jpg;transparent: true; shader: standard;"  shadow="cast:  false;  receive:  false" depth-material
+          animation__mouseenterscale="property: scale; to: 1 1 1; dur: 300; startEvents: mouseenter"
+          animation__mouseleavescale="property: scale; to: 0.8 0.8 0.8; dur: 300; startEvents: mouseleave"
+          toggle-handler="target: #2.6.2.infopanel;"
+          ></a-entity>
+          <a-entity id="#2.6.2.infopanel"
+              position="5.6 2.25 -12.779" rotation="0 -90 0"
+              scale="1 1 1"  visible="true" shadow="cast: true">
+              <a-entity   visible="true" class="clickable" toggle-handler="target: #2.6.2.infopanel;"
+               id="close" geometry="primitive: plane; width: 2; height: 2" scale="1 1 1" position="0 0 0.005" rotation="0 0 0"  depth-material material="src: #close; transparent:  true;  alphaTest:  0.01; shader: standard"   shadow="cast:  false;  receive:  false" ></a-entity>
+                  <a-image src="#infopanel-background" height="2" width="2"></a-image>
+                      <a-text class="title"   font="fonts/Brandon_bld-msdf.json" font-image="fonts/Brandonbld.png" negate="false"
+                          position="-0.77 -0.353 0.001"  width="1"
+                          value="Early Russian Writings"
+                          align="left" color="#000000" anchor="left" baseline="top" height="0.02" wrap-count="40"></a-text>
+                      <a-image  position="0 0.369 0.001" src="#2.6.1.jpg" height="1" width="1.55" scale="1 1 1"></a-image>
+                      <a-text class="description" baseline="top" width="1.5" wrap-count="60"
+                           font="fonts/Brandon_reg-msdf.json" font-image="fonts/Brandonreg.png" negate="false" position="-0.773 -0.463 0.001"
+                          value="Hollywood: City of Cinema\nPola Negri / Alisa Rosenbaum\nc. 1925.\nCovers of pamphlets published in Soviet Russia on topics related to the American film industry.\n\nPhotographic print on paper\nAyn Rand Paper"
+                          align="left" color="black"></a-text>
+          </a-entity>
+
+          <a-entity  class="clickable" id="2.7.1.jpg" geometry="primitive: plane; width: 0.36; height: 2" scale="0.8 0.8 0.8" visible="true" position="4.697 2.26 -13.83" rotation="0 0 0"
+          material="src: #2.7.1.jpg;transparent: true; shader: standard;"  shadow="cast:  false;  receive:  false" depth-material
+          animation__mouseenterscale="property: scale; to: 1 1 1; dur: 300; startEvents: mouseenter"
+          animation__mouseleavescale="property: scale; to: 0.8 0.8 0.8; dur: 300; startEvents: mouseleave"
+          toggle-handler="target: #2.7.2.infopanel;"></a-entity>
+          <a-entity id="#2.7.2.infopanel"
+              position="4.521 2.25 -13.75" rotation="0 0 0"
+              scale="1 1 1"  visible="true" class="clickable" shadow="cast: true">
+              <a-entity   visible="true" class="clickable" toggle-handler="target: #2.7.2.infopanel;"
+               id="close" geometry="primitive: plane; width: 2; height: 2" scale="1 1 1" position="0 0 0.005" rotation="0 0 0"  depth-material material="src: #close; transparent:  true;  alphaTest:  0.01; shader: standard"   shadow="cast:  false;  receive:  false" ></a-entity>
+                  <a-image src="#infopanel-background" height="2" width="2"></a-image>
+                      <a-text class="title"   font="fonts/Brandon_bld-msdf.json" font-image="fonts/Brandonbld.png" negate="false"
+                          position="-0.214 0.327 0.001"  width="1"
+                          value="Preparing to Leave Russia"
+                          align="left" color="#000000" anchor="left" baseline="top" height="0.02" wrap-count="40"></a-text>
+                      <a-image  position="-0.639 0 0.001" src="#2.7.1.jpg" height="2" width="0.36" scale="0.9 0.9 0.9"></a-image>
+                      <a-text class="description" baseline="top" width="1"
+                           font="fonts/Brandon_reg-msdf.json" font-image="fonts/Brandonreg.png" negate="false" position="-0.208 0.236 0.001"
+                          value="Alisa Rosenbaum\nc. 1925-26\n\nA single strip of informal portraits.\n\nPhotographic print on paper\nAyn Rand Photograph Collection"
+                          align="left" color="black"></a-text>
+          </a-entity>
+
+          <a-text id="#2.8.title" class="title"   font="fonts/Brandon_bld-msdf.json" font-image="fonts/Brandonbld.png" negate="false"
+              position="4.997 2.822 -13.83" rotation="0 0 0"
+              width="1"
+              value="Leaving Soviet Russia"
+              align="left" color="#000000" anchor="left" baseline="top" height="0.02" wrap-count="20"></a-text>
+
+          <a-text id="#2.8.text" class="description" baseline="top" width="1" wrap-count="30"
+               font="fonts/Brandon_reg-msdf.json" font-image="fonts/Brandonreg.png" negate="false" position="5.021 2.654 -13.83" rotation="0 0 0"
+              value="During the Soviet period, Ayn Rand’s mother received a letter from a cousin living in Chicago who worked as a film exhibitor. A visit to America was proposed, which coincided with the easing of Soviet restrictions on students wishing to study abroad. The official purpose of Rand’s visit would be to study the American film industry first-hand and then to return and contribute the fruits of this research toward the development of Soviet film. The stated purpose was a ruse. Rand planned to make her American visit permanent. Her goal was to establish herself as a screenwriter, thereafter “graduating into literature” when her command of English had improved."
+              align="left" color="black"></a-text>
+
+
+
+
+
+  <!-- jardim -->
+          <a-entity geometry="primitive: plane; width: 20; height: 8.27" scale="1 1 1" visible="true" position="0.49309 0.01 -6.98941" rotation="-90 0 0" material="src: #water-sand;shader: standard;repeat: 5 5"  shadow="cast:  false;  receive:  true" depth-material></a-entity>
+          <a-ocean id="#water"  scale="1 1 1" position="0.30818432569503784 0.14 -6.96529483795166" visible="true" shadow="cast: true"  ocean="width:  20;  depth:  8;  density:  100;  amplitude:  0.02;  amplitudeVariance:  0.01;  speedVariance:  1;   color:  #0658cc; opacity: 0.5;"></a-ocean>
+
+            <a-entity id="mesh1" gltf-model="#tree" scale="1 1 1" shadow="cast: true"  instanced-mesh></a-entity>
+                   <a-entity id="#tree0" rotation="0 180 0" scale="1 1 1" position="9.535101890563965 0.2676752507686615 -11.347841262817383" instanced-mesh-member="mesh:#mesh1"></a-entity>
+                   <a-entity id="#tree1" rotation="0 0 0" scale="1.3 1.3 1.3" position="10.164834022521973 0.26359114050865173 -8.16844367980957" instanced-mesh-member="mesh:#mesh1"></a-entity>
+                   <a-entity id="#tree2" rotation="0 0 0"  scale="1.3 1.3 1.3" position="-9.82878 0.06068 -12.52574" instanced-mesh-member="mesh:#mesh1"></a-entity>
+                   <a-entity id="#tree3" rotation="0 60 0" scale="1 1 1" position="-10.18805 0.16068 -3.02889" instanced-mesh-member="mesh:#mesh1"></a-entity>
+
+
+                   <a-entity id="mesh2" gltf-model="#rock" scale="1 1 1" shadow="cast: true"  instanced-mesh></a-entity>
+                  <a-entity id="#rock0" scale="1 1 1" position="8.0 0.30000001192092896 -5.0" instanced-mesh-member="mesh:#mesh2"></a-entity>
+                  <a-entity id="#rock1" scale="1 1 1" position="-10.01913 0.41959 -9.78636" rotation="13.1 52.3 170.0"  instanced-mesh-member="mesh:#mesh2"></a-entity>
+
+                  <a-entity id="#grass.001" animation-mixer="timeScale:  0.8" gltf-model="#grass.001"  scale="2 2 2" position="-7.90047 -0.0472 -4.47596" visible="true" shadow="cast: false"  ></a-entity>
+                  <a-entity id="#grass.002" animation-mixer gltf-model="#grass.001" scale="1.5 1.5 1.5" position="8.89129 0.15663 -6.5577" visible="true" shadow="cast: false" ></a-entity>
+
+            <a-entity id="#grassshadow1" geometry="primitive: cylinder; openEnded: true; radius: 0.5" scale="1 1 1" visible="true" position="9.29624 0.67869 -2.07338" rotation="0 0 0"
+            material="src: #foliage; side: double; transparent: true; depthWrite:  false;shader: standard;"  shadow depth-material
+            ></a-entity>
+
+            <a-entity id="#grassshadow2" geometry="primitive: cylinder; openEnded: true; radius: 0.5" scale="1 1 1" visible="true" position="10.30018 0.67869 -2.42379" rotation="0 -70.91097559877608 0"
+            material="src: #foliage; side: double; transparent: true; depthWrite:  false;shader: standard;"  shadow depth-material
+            ></a-entity>
+
+
+
+            <a-entity id="#base_desk" gltf-model="#base_desk" scale="1 1 1" position="0 0 0" visible="true" shadow="cast: true" ></a-entity>
+      			<a-entity id="#desk" gltf-model="#desk" scale="1 1 1" position="0.487 1.293 -15.91" rotation="0 -90 0" visible="true" shadow="cast: true" ></a-entity>
+            <a-entity id="carpet" geometry="primitive: box; width: 4; height: 2.35; depth:0.01" scale="1 1 1" visible="true" position="0.579 1.29 -16.3" visible="" rotation="-90 90 180"
+            material="src: #carpet; shader: standard;roughness:1;"  shadow="cast:  true;  receive:  true" depth-material></a-entity>
+            <a-entity id="#sofa1" gltf-model="#sofa" scale="0.3 0.3 0.3" position="-3.731 1 -17.24" visible="" rotation="0 -20.74762 0" visible="true" shadow="cast: true" ></a-entity>
+            <a-entity id="#sofa2" gltf-model="#sofa" scale="0.3 0.3 0.3" position="-4.229 1 -16.28" visible="" rotation="0 2.819525309838781 0" visible="true" shadow="cast: true" ></a-entity>
+            <a-entity id="#sofa3" gltf-model="#sofa" scale="0.3 0.3 0.3" position="-3.390 1 -15.80" visible="" rotation="0 71.27537675647928 0" visible="true" shadow="cast: true" ></a-entity>
+            <a-entity id="#plant2" gltf-model="#plant2" scale="1 1 1" position="-0.608 1.276 -18.43" visible="" rotation="0 0 0" visible="true" shadow="cast: true" ></a-entity>
+      			<a-entity id="#floor" gltf-model="#floor" scale="1 1 1" position="0 0 0" visible="true" shadow="cast: true" ></a-entity>
+
+            <a-entity id="shadowfloorplane" geometry="primitive: plane; width: 12.6; height: 18.6; depth:0.01" scale="1 1 1" visible="true" rotation="-90 0 0" position="0 1.002 -15.31278"
+              material="src: #shadowfloorplane; transparent: true; shader: standard;roughness:1;"  shadow="cast:  false;  receive:  false" depth-material></a-entity>
+
+
+      			<a-entity id="#garden" gltf-model="#garden" scale="1 1 1" position="0.7013341188430786 -0.06333290040493011 -7.019270896911621" visible="true" shadow="cast: true" ></a-entity>
+      			<a-entity id="#guarda_dir" gltf-model="#guarda_dir" scale="1 1 1" position="3.824418783187866 1.2177233695983887 -1.8699088096618652" visible="true" shadow="cast: true" ></a-entity>
+      			<a-entity id="#guarda_esq" gltf-model="#guarda_esq" scale="1 1 1" position="-1.62558114528656 1.2177233695983887 -1.8699088096618652" visible="true" shadow="cast: true" ></a-entity>
+      			<a-entity id="#nav-mesh" gltf-model="#nav-mesh" scale="1 1 1" position="0 0 0" visible="false" shadow="cast: false"  nav-mesh="1.0"></a-entity>
+      			<a-entity id="#rampa" gltf-model="#rampa" scale="1 1 1" position="1.0993764400482178 0.49942606687545776 -2.083395004272461" visible="true" shadow="cast: true" ></a-entity>
+      			<a-entity id="#roof" gltf-model="#roof" scale="1 1 1" position="0 0 0" visible="true" shadow="cast: true" ></a-entity>
+      			<a-entity id="#walls" gltf-model="#walls" scale="1 1 1" position="0 0 0" visible="true" shadow="cast: true" ></a-entity>
+      			<a-entity id="#walls.001" gltf-model="#walls.001" scale="1 1 1" position="-4.883333683013916 2.5300002098083496 -7.5333356857299805" visible="true" shadow="cast: true" ></a-entity>
+      			<a-entity id="#walls.002" gltf-model="#walls.002" scale="1 1 1" position="5.500000476837158 2.5300002098083496 -7.133333206176758" visible="true" shadow="cast: true" ></a-entity>
+
+            <!-- Camera
+            <a-entity id="player"
+                position="0 1 0"
+                movement-controls="constrainToNavMesh: true;speed: 0.20000000298023224;">
+                <a-entity id="camera"
+                    camera="near: 0.001"
+                    position="0 1.5 0"
+                    look-controls="pointerLockEnabled: true">
+                        <a-entity id="cursor" cursor="fuse: false;" animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 50; from: 	0.1 0.1 0.1; to: 1 1 1"
+                            position="0 0 -0.1"
+                            geometry="primitive: circle; radius: 0.001;"
+                            material="color: #CCC; shader: flat;"
+                            raycaster = "far: 5.0; interval: 100.0; objects: .clickable,.links">
+                        </a-entity>
+                </a-entity>
+                    <a-entity id="leftHand" oculus-touch-controls="hand: left" vive-controls="hand: left"></a-entity>
+					<a-entity id="rightHand" laser-controls oculus-touch-controls="hand: right" vive-controls="hand: right" raycaster = "far: 10.0; interval: 1500.0; objects: .clickable,.links"></a-entity>
+            </a-entity>
+-->
+
+
+<!-- Basic movement and teleportation-->
+      <a-entity id="cameraRig" movement-controls="constrainToNavMesh: true;" navigator="cameraRig: #cameraRig; cameraHead: #head; collisionEntities: .collision; ignoreEntities: .clickable" position="0 0 0" rotation="0 0 0">
+        <!-- camera-->
+        <a-entity id="head" camera="active: true" position="0 1.6 0" look-controls="pointerLockEnabled: true; reverseMouseDrag: true" ></a-entity>
+              <!-- Left Controller-->
+              <a-entity id="leftHand" hand-controls="hand: left; handModelStyle: lowPoly; color: #15ACCF" teleport-controls="cameraRig: #cameraRig; teleportOrigin: #head; button: trigger; curveShootingSpeed: 18; landingMaxAngle: 60" visible="true"></a-entity>
+              <!-- Right Controller-->
+              <a-entity id="rightHand" hand-controls="hand: right; handModelStyle: lowPoly; color: #15ACCF" laser-controls raycaster="showLine: true; far: 10; interval: 0; objects: .clickable, a-link;" line="color: #7cfc00; opacity: 0.5" visible="true"></a-entity>
+      </a-entity>
+
+
+
+      </a-entity>
+
+
+
+
+
+
+ <a-entity light="type: ambient; intensity:0.4;"></a-entity>
+ <a-entity id="sun" light="type: directional; color: #FFF; intensity: 2; castShadow: true;
+shadowCameraFar: 90; shadowBias: -0.001; shadowMapHeight: 4096; shadowMapWidth: 4096; shadowCameraLeft: -25; shadowCameraRight: 35; shadowCameraBottom: -31; shadowCameraTop: 25; shadowCameraNear: 30.78;" position="25.90566 52.68376 -35.00793">
+</a-entity>
+
+
+        </a-scene>
+    </body>
+</html>
+<!--  -->

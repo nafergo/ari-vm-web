@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<!-- __V3D_PUZZLES__ - enable Puzzles button in the App Manager -->
+
+<html lang="en">
+<head>
+  <title>Verge3D Web Interactive</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+
+  <!-- Search Engines -->
+  <meta name="description" content="Interactive 3D Web application made with Verge3D. Immerse yourself in amazing graphics experience offered by state-of-the WebGL and HTML5 technologies.">
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Verge3D Web Interactive">
+  <meta name="twitter:description" content="Interactive 3D Web application made with Verge3D. Immerse yourself in amazing graphics experience offered by state-of-the WebGL and HTML5 technologies.">
+  <meta name="twitter:image:src" content="https://cdn.soft8soft.com/images/player_socials.jpg">
+  <!-- Open Graph -->
+  <meta property="og:title" content="Verge3D Web Interactive">
+  <meta property="og:description" content="Interactive 3D Web application made with Verge3D. Immerse yourself in amazing graphics experience offered by state-of-the WebGL and HTML5 technologies.">
+  <meta property="og:image" content="https://cdn.soft8soft.com/images/player_socials.jpg">
+  <meta property="og:type" content="website">
+
+  <meta name="generator" content="Verge3D 3.2.0">
+
+  <!-- favicons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="media/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="media/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="media/favicon-16x16.png">
+  <link rel="manifest" href="media/manifest.json">
+  <link rel="mask-icon" href="media/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="theme-color" content="#ffffff">
+
+  <script src="../../build/ammo.wasm.js"></script>
+
+  <script src="../../build/webxr-polyfill.js"></script>
+  <script>var polyfill = new WebXRPolyfill();</script>
+
+  <script src="../../build/v3d.js"></script>
+  <script src="aynrand_vr.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="aynrand_vr.css">
+
+</head>
+
+<body>
+  <div id="v3d-container">
+    <div id="fullscreen_button" class="fullscreen-button fullscreen-open" title="Toggle fullscreen mode"></div>
+  </div>
+<!-- Controlos -->
+
+<div id="control">
+  <div id="control-content">
+      <a href="#" class="tooltip" onclick="location.reload();"><img src="icon_reload.png" width="40" alt="Information about the exhibition"><span class="tooltiptext">Restart </span></a>
+      <a href="#info" class="tooltip" onclick="itemInfo.style.display = 'block';"><img src="icon_aynrand.png" width="46" alt="Information about the exhibition"><span class="tooltiptext">About the Exhibition</span></a>
+      <a href="#map" class="tooltip" onclick="itemMap.style.display = 'block';"><img src="icon_map.png" width="40" alt="Information about the exhibition"><span class="tooltiptext">Exhibition Map</span></a>
+      <a href="#controls" class="tooltip" onclick="itemControls.style.display = 'block';"><img src="icon_controls.png" width="40" alt="Information about the exhibition"><span class="tooltiptext">Navigation Control</span></a>
+      <!-- <a href="#help" class="tooltip" onclick="itemInfo.style.display = 'block';"><img src="icon_help.png" width="40" alt="Information about the exhibition"><span class="tooltiptext">Help</span></a> -->
+      <a href="#about" class="tooltip" onclick="itemAbout.style.display = 'block';"><img src="icon_about.png" width="40" alt="Information about the exhibition"><span class="tooltiptext">The Project</span></a>
+  </div>
+</div>
+
+<!-- Control: Info -->
+<div id="itemInfo" class="modal"><div class="modal-content control-panel"><span class="close closeInfo">&times;</span>
+  <article class="exhibition-item">
+    <h2>About the Exhibition</h2><h3>Writing at the Ayn Rand Archives</h3>
+    <div class="description">
+      <p>Ayn Rand (1905 - 82) was a unique novelist-philosopher. She thought that abstract, philosophical ideas have the most concrete, practical consequences in actual life. As a realistic novelist of ideas, her novels--We the Living, Anthem, The Fountainhead and Atlas Shrugged--along with her shorter works, presented stories depicting human beings living the consequences of their choices. And there was no greater, more consequential choice than the selection of one’s philosophy.</p>
+      <p>Ayn Rand’s own philosophy, an original system which she defined and called Objectivism, owes a great deal to the influence of Aristotle, which also shaped her approach to literature.</p>
+      <p>Ayn Rand held that a story concerned human beings and the events of their lives, and the events of people’s lives are dominated by the values they pursue in order to live. From the perspective of storytelling, the obstacles placed in the path of this pursuit gives rise to drama and literature. From Rand’s perspective, the most important literary esthetic issue was deciding to accept such obstacles as fated--or to challenge such obstacles as alterable. Volition and its exercise were the building blocks of her type of Romantic drama. </p>
+      <p>Ayn Rand considered herself a Romantic Realist. She believed that art should depict what is metaphysically important in actual life. In her paraphrase of Aristotle's Poetics, art is concerned not with human history, reported journalistically, but human life recreated and portrayed as it could be and ought to be. This was Ayn Rand’s portal into the field of art.</p>
+      <p>A Writer’s Studio: Ayn Rand in Los Angeles examines Rand’s art and the physical circumstances of her life while she was creating it. The exhibit incorporates artifacts from the Ayn Rand Archives, including ones selected from her personal papers and effects. These objects concretize her youthful decision to leave Soviet Russia and to establish herself in America in order to achieve “what ought to be” in her life and her art.</p>
+      <p>The central artifact on display is Ayn Rand’s writer’s desk. On its surface, she performed the bulk of her artistic activity, 1929 - 49. This 20 year period of creativity overlaps between New York and Los Angeles, two American cities in which her various “writer’s studios” were located.</p>
+      <p>The exhibit begins in Soviet Russia, during her post-university days, where, as an aspiring screenwriter and novelist, she enrolled in a Soviet film school. But her eyes were set toward America and achieving the freedom to write. The exhibit culminates in the Warner Bros. film studio adaptation of her breakthrough novel, The Fountainhead. A film studio, thus, supplements the writer’s studio. At this time, Rand was, simultaneously, drafting her literary-philosophic magnum opus, Atlas Shrugged.</p>
+      <p>Ayn Rand once said that if all philosophers were required to dramatize their ideas in fiction, there would be fewer but far better philosophers. Rand’s test of her ideas in fiction was a lifelong project. A Writer’s Studio: Ayn Rand in Los Angeles examines the various “studios” where this view was forged and then affirmed in “actual life.”</p>
+    </div>
+  </article>
+</div></div>
+
+<!-- Control: map -->
+<div id="itemMap" class="modal"><div class="modal-content control-panel"><span class="close closeMap">&times;</span>
+  <article class="exhibition-item">
+    <h2>Exhibition Map</h2><h3>A Writer’s Studio: Ayn Rand in Los Angeles</h3>
+    <div class="description">
+      <p><img src="map.png" width="200px"></p>
+      <ol>
+        <li>Leaving Soviet Russia</li>
+        <li>Early Hollywood Years</li>
+        <li>New York Interlude</li>
+        <li>Return to Los Angeles</li>
+        <li>Von Sternberg House</li>
+        <li>A New Novel: Atlas Shrugged</li>
+      </ol>
+    </div>
+  </article>
+</div></div>
+
+<!-- Control: controls -->
+<div id="itemControls" class="modal"><div class="modal-content control-panel"><span class="close closeControls">&times;</span>
+  <article class="exhibition-item">
+    <h2>How to move around the scene</h2>
+    <div class="description">
+      <div class="col" style="text-align: center">
+          <h3>Body Movement</h3>
+        <img src="icon_controls_directions.png" width="200"> 
+      
+        <p>Use the <b>keyboard</b> to move the character's body</p></div>
+      <div class="col" style="text-align: center">
+          <h3>Head Movement</h3>
+        <img src="icon_controls_mouse.png" width="200" style="padding-bottom:19px;">
+        <p><b>Click</b> and <b>drag</b> to move the character's head<br>The body movement is relative to the head.</p></div>
+    </div>
+  </article>
+</div></div>
+
+<!-- Control: help
+<div id="info" class="modal"><div class="modal-content control-panel"><span class="close close11">&times;</span>
+  <article class="exhibition-item">
+    <h2>Information</h2><h3>Ayn Rand</h3><time>1921</time>
+    <div class="description">
+      <p>University application photograph<br>
+        Printing on paper<br>
+        Ayn Rand Archives</p>
+    </div>
+  </article>
+</div></div> -->
+
+<!-- Control: about -->
+<div id="itemAbout" class="modal"><div class="modal-content control-panel"><span class="close closeAbout">&times;</span>
+  <article class="exhibition-item">
+    <h2 style="text-align:center;">About this Project</h2><h3></h3><p style="text-align:center;">Summer 2021</p>
+    <div class="description"  style="text-align:center;">
+      <p>Developed in academic context as a final graduation project.</p>
+      <p>Instituto Politécnico de Viseu<br>Escola Superior de Educação de Viseu</p>
+      <p>Artes Plásticas & Multimeria</p>
+      <p>Advisors<br>José Loureiro & Nelson Gonçalves</p>
+      <p>Author<br>Vinicius Freire 13071</p>
+    <hr />
+      <p>Exhibit Art Direction: Vinicius Freire & Jeff Britting<br>
+        Exhibit Curators: Vinicius Freire & Jeff Britting</p>
+        <p>Exhibit objects courtesy of the Ayn Rand Archives, the Library of Congress, <br>the Billy Rose Theatre Collection, New York Public Library, and Christian Esquevin.</p>
+        <p>Special thanks to the <a href="https://ari.aynrand.org" target="_blank" style="color:rgb(255, 196, 0);">Ayn Rand Institute</a> and <br>it's CEO Tal Tsfany for making this exhibit possible.</p>
+        <p>Contributors<br>
+          Jeff Britting<br>
+          Simon Federman<br>
+          Audra Hilse<br>
+        </p>
+    </div>
+  </article>
+</div></div>
+<!-- Section 1-->
+<div id="item11" class="modal"><div class="modal-content"><span class="close close11">&times;</span>
+  <article class="exhibition-item">
+    <h2>Ayn Rand as University Student</h2><h3>Ayn Rand</h3><time>1921</time>
+    <div class="description">
+      <p>University application photograph<br>
+        Printing on paper<br>
+        Ayn Rand Archives</p>
+    </div>
+  </article>
+</div></div>
+<div id="item12" class="modal"><div class="modal-content"><span class="close close12">&times;</span>
+	<article class="exhibition-item">
+    	<h2>Ayn Rand in FIlm School</h2><h3>Ayn Rand</h3><time>c. 1924</time>
+    	<div class="description">
+      		<p>Acting pose, while a student at the State Technicum for Screen Arts, 1924 - 25, where she also studied cinematography<br>
+            Printing on paper<br>
+            Ayn Rand Archives
+            </p>
+    	</div>
+  	</article>
+</div></div>
+<div id="item13" class="modal"><div class="modal-content"><span class="close close13">&times;</span>
+	<article class="exhibition-item">
+    	<h2>Cinema Institute</h2><h3>Ayn Rand</h3><time>1921</time>
+    	<div class="description">
+      		<p><em></em>“Film for us is the most important of the arts.”</em> Attributed to Lenin by Anatoly Lunacharsky, the Bolshevik government’s first Commissar for Education. (John Green, The Most Important of the Arts: Film After the Russian Revolution)<br>
+            Printing on paper<br>    
+            Ayn Rand Archives
+            </p>
+    	</div>
+  	</article>
+</div></div>
+<div id="item14" class="modal"><div class="modal-content"><span class="close close14">&times;</span>
+	<article class="exhibition-item">
+    	<h2>Early Writings on Hollywood</h2><h3>Ayn Rand</h3><time>c. 1920s</time>
+    	<div class="description">
+      		<p>First publications in Russian on film subjects, including an overview of Hollywood, <em>Hollywood: American City of Cinema</em> and, <em>Pola Negri</em>, a short profile on one of Rand’s favorite silent film actresses.<br>
+            Printing on paper<br>
+            Ayn Rand Archives
+            </p>
+    	</div>
+  	</article>
+</div></div>
+<!-- Secton 2 -->
+<div id="item21" class="modal"><div class="modal-content"><span class="close close21">&times;</span>
+	<article class="exhibition-item">
+    	<h2>Hollywood</h2><h3>Panorama of Hollywood</h3><time>c. 1920s</time>
+    	<div class="description">
+      		<p>Look toward downtown Hollywood and the Hollywood Hills<br>
+            Digital reproduction<br>            
+            Library of Congress
+            </p>
+    	</div>
+  	</article>
+</div></div>
+<div id="item22" class="modal"><div class="modal-content"><span class="close close22">&times;</span>
+	<article class="exhibition-item">
+    	<h2>Wardrobe D., RKO Radio Pictures</h2><h3>Ayn Rand</h3><time>c. 1930s</time>
+    	<div class="description">
+      		<p>On the rooftop of her apartment building overlooking the wardrobe building at RKO Radio Pictures studio</p><p>
+            Print on paper<br>            
+            Ayn Rand Archives
+            </p>
+    	</div>
+  	</article>
+</div></div>
+<div id="item23" class="modal"><div class="modal-content"><span class="close close23">&times;</span>
+	<article class="exhibition-item">
+    	<h2>Wardrobe: Walter Plunkett, Marie Ree</h2><h3>Walter Plunkett, Costume Designer, RKO</h3><time></time>
+    	<div class="description">
+      		<p>Walter Plunkett, shown with Marie Ree, the wardrobe department’s head cutter-fitter. Plunkett was a major Hollywood costume designer who worked at RKO studios and served as Ayn Rand’s boss. Plunkett was best man at Rand’s 1929 marriage to actor, Frank O’Connor. <br>
+            Digital reproduction</p><p>
+            Christian Esquevin, “Silver Screen Modes”</p><p>
+            Ayn Rand Archives
+            </p>
+    	</div>
+  	</article>
+</div></div>
+<div id="item24" class="modal"><div class="modal-content"><span class="close close24">&times;</span>
+	<article class="exhibition-item">
+    	<h2>Woman on Trial</h2><h3>Ayn Rand</h3><time>1934</time>
+    	<div class="description">
+      		<p>Ayn Rand standing before a sign affixed to the The Hollywood Playhouse during the initial run of her play, Woman on Trial</p><p>
+            Print on paper<br>            
+            Ayn Rand Archives
+            </p>
+    	</div>
+  	</article>
+</div></div>
+<div id="item25" class="modal"><div class="modal-content"><span class="close close25">&times;</span>
+	<article class="exhibition-item">
+    	<h2>Writing We the Living</h2><h3>Ayn Rand</h3><time>c. +1933</time>
+    	<div class="description">
+      		<p>An early portrait photograph of Ayn Rand at her writing desk. The location is believed to be her apartment in what is currently West Hollywood, California, where Rand began the final draft of her novel, We the Living, in 1933.</p><p>
+            Print on paper<br>            
+            Ayn Rand Archives
+            </p>
+    	</div>
+  	</article>
+</div></div>
+<!-- Section 3 -->
+<div id="item31" class="modal"><div class="modal-content"><span class="close close31">&times;</span>
+	<article class="exhibition-item">
+    	<h2>Night of January 16th</h2><h3>Night of January 16th</h3><time>c. 1936</time>
+    	<div class="description">
+      		<p>A poster from the 1936 Broadway production of Ayn Rand’s first play in which actress Doris Nolan portrayed Karen Andre</p><p>
+            Digital reproduction <br>            
+            Billy Rose Theatre Collection, New York Public Library
+            </p>
+    	</div>
+  	</article>
+</div></div>
+<div id="item32" class="modal"><div class="modal-content"><span class="close close32">&times;</span>
+	<article class="exhibition-item">
+    	<h2>Publishing <em>We the Living</em></h2><h3><em>We the Living</em>, original cover</h3><time>c. 1936</time>
+    	<div class="description">
+      		<p>Print on paper<br>
+            Ayn Rand Archives
+            </p>
+    	</div>
+  	</article>
+</div></div>
+<div id="item33" class="modal"><div class="modal-content"><span class="close close33">&times;</span>
+	<article class="exhibition-item">
+    	<h2>Writing Anthem</h2><h3><em>Anthem</em>, original cover</h3><time>c. 1937</time>
+    	<div class="description">
+      		<p>Taking a break from writing The Fountainhead, Rand wrote a novella entitled, Anthem. Originally conceived as a play, the work depicts a futuristic society in which the word “I” has been dropped from the vocabularies (and minds) of human beings. Its theme is the meaning of man’s ego.</p><p>
+            Print on paper<br>            
+            Ayn Rand Archives
+            </p>
+    	</div>
+  	</article>
+</div></div>
+<div id="item34" class="modal"><div class="modal-content"><span class="close close34">&times;</span>
+	<article class="exhibition-item">
+    	<h2>The Unconquered on Broadway</h2><h3><em>The Unconquered</em></h3><time>c. 1940</time>
+    	<div class="description">
+      		<p>Poster for the George Abbott production of Rand’s adaptation of her novel, We the Living. Shown left to right: John Emery as Leo; Helen Craig as Kira and Dean Jagger as Leo. The critical response--even from those sympathetic to Rand’s ideas--was uniformly negative, and the play closed after six performances.</p><p>
+            Print on paper<br>            
+            Ayn Rand Archives
+            </p>
+    	</div>
+  	</article>
+</div></div>
+
+<div id="item351" class="modal"><div class="modal-content"><span class="close close351">&times;</span>
+	<article class="exhibition-item">
+    	<h2>Writing The Fountainhead</h2><h3>The Fountainhead, first page</h3><time>June 26, 1938</time>
+    	<div class="description">
+      		<p>Rand’s breakthrough novel, published on May 8, 1943. The theme was collectivism versus individualism, not in politics but in man’s soul. The New York Times wrote: Ayn Rand “has written a hymn in praise of the individual . . . you will not be able to read this masterful book without thinking through some of the basic concepts of our times.”</p><p>
+            Print on paper<br>            
+            Ayn Rand Archives
+            </p>
+    	</div>
+  	</article>
+</div></div>
+<div id="item352" class="modal"><div class="modal-content"><span class="close close352">&times;</span>
+	<article class="exhibition-item">
+    <h2>Writing The Fountainhead</h2><h3>The Fountainhead, last page</h3><time>November 29, 1942</time>
+    	<div class="description">
+      		<p>Rand’s breakthrough novel, published on May 8, 1943. The theme was collectivism versus individualism, not in politics but in man’s soul. The New York Times wrote: Ayn Rand “has written a hymn in praise of the individual . . . you will not be able to read this masterful book without thinking through some of the basic concepts of our times.”</p><p>
+            Print on paper<br>            
+            Ayn Rand Archives
+            </p>
+    	</div>
+  	</article>
+</div></div>
+<!-- Section 4 -->
+<div id="item411" class="modal"><div class="modal-content"><span class="close close411">&times;</span>
+	<article class="exhibition-item">
+    	<h2>What Los Angele is Reading</h2><h3>“What Los Angele is Reading”</h3><time>August 19, 1945</time>
+    	<div class="description">
+      		<p>Unknown newspaper clipping reporting on a list compiled by the Los Angeles Public Library. The clipping is from a file of regional best-seller lists. <br>
+            Newsprint<br>            
+            Ayn Rand Papers<br>
+            Ayn Rand Archives
+            </p>
+    	</div>
+  	</article>
+</div></div>
+<div id="item412" class="modal"><div class="modal-content"><span class="close close412">&times;</span>
+	<article class="exhibition-item">
+    <h2>What Los Angele is Reading</h2><h3>“What Los Angele is Reading”</h3><time>August 19, 1945</time>
+    <div class="description">
+        <p>Unknown newspaper clipping reporting on a list compiled by the Los Angeles Public Library. The clipping is from a file of regional best-seller lists. <br>
+          Newsprint<br>            
+          Ayn Rand Papers<br>
+          Ayn Rand Archives
+          </p>
+    	</div>
+  	</article>
+</div></div>
+<div id="item421" class="modal"><div class="modal-content"><span class="close close421">&times;</span>
+	<article class="exhibition-item">
+    <h2>Hollywood Studio Employment</h2><h3>Hollywood Studio Employment</h3><time>1944, 1945</time>
+    <div class="description">
+        <p>Ayn Rand with Jean Negulesco, director of <em>The Conspirators</em> (Warner Bros. 1944) and with Hal Wallis, producer of <em>Love Letters</em> (Paramount 1945)</p><p>
+          Print on paper<br>            
+          Ayn Rand Archives
+          </p>
+    	</div>
+  	</article>
+</div></div>
+<div id="item422" class="modal"><div class="modal-content"><span class="close close422">&times;</span>
+	<article class="exhibition-item">
+    <h2>Hollywood Studio Employment</h2><h3>Hollywood Studio Employment</h3><time>1944, 1945</time>
+    <div class="description">
+        <p>Ayn Rand with Jean Negulesco, director of <em>The Conspirators</em> (Warner Bros. 1944) and with Hal Wallis, producer of <em>Love Letters</em> (Paramount 1945)</p><p>
+          Print on paper<br>            
+          Ayn Rand Archives
+          </p>
+    	</div>
+  	</article>
+</div></div>
+<div id="item43" class="modal"><div class="modal-content"><span class="close close43">&times;</span>
+	<article class="exhibition-item">
+    	<h2>Hollywood and Politics</h2><h3>Ayn Rand</h3><time>October 20, 1947</time>
+    	<div class="description">
+      		<p>Rand testifying before the House Committee on Un-American Activities October 20, 1947. She was voted onto the board of the Motion Picture Alliance for the Preservation of American ideals, an organization of conservatives and liberals that exposed the subtle use of totalitarian propaganda in films.</p><p>
+            Print on paper<br>            
+            Ayn Rand Archives
+            </p>
+    	</div>
+  	</article>
+</div></div>
+<!-- Section 5 -->
+<div id="item511" class="modal"><div class="modal-content"><span class="close close511">&times;</span>
+	<article class="exhibition-item">
+    	<h2>Neutra’s von Sternberg House</h2><h3>Richard Nuetra’s von Sternberg House</h3><time>1947</time>
+    	<div class="description">
+      		<p>Photographs of von Sternberg House during Ayn Rand’s occupancy taken by noted architectural photographer, Julius Shulman</p><p>
+            Prints on paper<br>            
+            Ayn Rand Archives
+            </p>
+    	</div>
+  	</article>
+</div></div>
+<div id="item512" class="modal"><div class="modal-content"><span class="close close512">&times;</span>
+	<article class="exhibition-item">
+    	<h2>Neutra’s von Sternberg House</h2><h3>Richard Nuetra’s von Sternberg House</h3><time>1947</time>
+    	<div class="description">
+      		<p>Photographs of von Sternberg House during Ayn Rand’s occupancy taken by noted architectural photographer, Julius Shulman</p><p>
+            Prints on paper<br>            
+            Ayn Rand Archives
+            </p>
+    	</div>
+  	</article>
+</div></div>
+<div id="item513" class="modal"><div class="modal-content"><span class="close close513">&times;</span>
+	<article class="exhibition-item">
+    	<h2>Neutra’s von Sternberg House</h2><h3>Richard Nuetra’s von Sternberg House</h3><time>1947</time>
+    	<div class="description">
+      		<p>Photographs of von Sternberg House during Ayn Rand’s occupancy taken by noted architectural photographer, Julius Shulman</p><p>
+            Prints on paper<br>            
+            Ayn Rand Archives
+            </p>
+    	</div>
+  	</article>
+</div></div>
+<div id="item514" class="modal"><div class="modal-content"><span class="close close514">&times;</span>
+	<article class="exhibition-item">
+    	<h2>Neutra’s von Sternberg House</h2><h3>Richard Nuetra’s von Sternberg House</h3><time>1947</time>
+    	<div class="description">
+      		<p>Photographs of von Sternberg House during Ayn Rand’s occupancy taken by noted architectural photographer, Julius Shulman</p><p>
+            Prints on paper<br>            
+            Ayn Rand Archives
+            </p>
+    	</div>
+  	</article>
+</div></div>
+<div id="item515" class="modal"><div class="modal-content"><span class="close close515">&times;</span>
+	<article class="exhibition-item">
+    	<h2>Neutra’s von Sternberg House</h2><h3>Richard Nuetra’s von Sternberg House</h3><time>1947</time>
+    	<div class="description">
+      		<p>Photographs of von Sternberg House during Ayn Rand’s occupancy taken by noted architectural photographer, Julius Shulman</p><p>
+            Prints on paper<br>            
+            Ayn Rand Archives
+            </p>
+    	</div>
+  	</article>
+</div></div>
+
+<div id="item521" class="modal"><div class="modal-content"><span class="close close521">&times;</span>
+	<article class="exhibition-item">
+    	<h2>Life at the Ranch	</h2><h3>Life at the Ranch</h3><time>c. 1940</time>
+    	<div class="description">
+      		<p>Informal snapshots of Ayn Rand and her husband, Frank O’Connor. At von Sternberg House. O’Connor raised peacocks. And peacock blue was a favorite color of Rand’s.<br>
+            Print on paper<br>            
+            Ayn Rand Archives
+            </p>
+    	</div>
+  	</article>
+</div></div>
+<div id="item522" class="modal"><div class="modal-content"><span class="close close522">&times;</span>
+	<article class="exhibition-item">
+    	<h2>Life at the Ranch	</h2><h3>Life at the Ranch</h3><time>c. 1940</time>
+    	<div class="description">
+      		<p>Informal snapshots of Ayn Rand and her husband, Frank O’Connor. At von Sternberg House. O’Connor raised peacocks. And peacock blue was a favorite color of Rand’s.<br>
+            Print on paper<br>            
+            Ayn Rand Archives
+            </p>
+    	</div>
+  	</article>
+</div></div>
+<div id="item523" class="modal"><div class="modal-content"><span class="close close523">&times;</span>
+	<article class="exhibition-item">
+    	<h2>Life at the Ranch	</h2><h3>Life at the Ranch</h3><time>c. 1940</time>
+    	<div class="description">
+      		<p>Informal snapshots of Ayn Rand and her husband, Frank O’Connor. At von Sternberg House. O’Connor raised peacocks. And peacock blue was a favorite color of Rand’s.<br>
+            Print on paper<br>            
+            Ayn Rand Archives
+            </p>
+    	</div>
+  	</article>
+</div></div>
+<div id="item524" class="modal"><div class="modal-content"><span class="close close524">&times;</span>
+	<article class="exhibition-item">
+    	<h2>Life at the Ranch	</h2><h3>Life at the Ranch</h3><time>c. 1940</time>
+    	<div class="description">
+      		<p>Informal snapshots of Ayn Rand and her husband, Frank O’Connor. At von Sternberg House. O’Connor raised peacocks. And peacock blue was a favorite color of Rand’s.<br>
+            Print on paper<br>            
+            Ayn Rand Archives
+            </p>
+    	</div>
+  	</article>
+</div></div>
+<div id="item525" class="modal"><div class="modal-content"><span class="close close525">&times;</span>
+	<article class="exhibition-item">
+    	<h2>Life at the Ranch	</h2><h3>Life at the Ranch</h3><time>c. 1940</time>
+    	<div class="description">
+      		<p>Informal snapshots of Ayn Rand and her husband, Frank O’Connor. At von Sternberg House. O’Connor raised peacocks. And peacock blue was a favorite color of Rand’s.<br>
+            Print on paper<br>            
+            Ayn Rand Archives
+            </p>
+    	</div>
+  	</article>
+</div></div>
+
+<div id="item531" class="modal"><div class="modal-content"><span class="close close531">&times;</span>
+	<article class="exhibition-item">
+    	<h2>A Writer’s Studio</h2><h3>A Writer’s Studio</h3><time>c. 1940</time>
+    	<div class="description">
+      		<p>The dedicated office of Ayn Rand at von Sternberg House where she began writing Atlas Shrugged. The garden chair visible in the patio was designed by Richard Nuetra especially for this house. A large chest of drawers and storage in front of the writing desk--and partially on view--was a piece of mid-century modern, blonde wood furniture, which Ayn Rand nicknamed “the entity.”</p><p>
+            Print on paper<br>            
+            Ayn Rand Archives
+            </p>
+    	</div>
+  	</article>
+</div></div>
+<div id="item532" class="modal"><div class="modal-content"><span class="close close532">&times;</span>
+	<article class="exhibition-item">
+    	<h2>A Writer’s Studio</h2><h3>A Writer’s Studio</h3><time>c. 1940</time>
+    	<div class="description">
+      		<p>The dedicated office of Ayn Rand at von Sternberg House where she began writing Atlas Shrugged. The garden chair visible in the patio was designed by Richard Nuetra especially for this house. A large chest of drawers and storage in front of the writing desk--and partially on view--was a piece of mid-century modern, blonde wood furniture, which Ayn Rand nicknamed “the entity.”</p><p>
+            Print on paper<br>            
+            Ayn Rand Archives
+            </p>
+    	</div>
+  	</article>
+</div></div>
+<div id="item533" class="modal"><div class="modal-content"><span class="close close533">&times;</span>
+	<article class="exhibition-item">
+    	<h2>A Writer’s Studio</h2><h3>A Writer’s Studio</h3><time>c. 1940</time>
+    	<div class="description">
+      		<p>The dedicated office of Ayn Rand at von Sternberg House where she began writing Atlas Shrugged. The garden chair visible in the patio was designed by Richard Nuetra especially for this house. A large chest of drawers and storage in front of the writing desk--and partially on view--was a piece of mid-century modern, blonde wood furniture, which Ayn Rand nicknamed “the entity.”</p><p>
+            Print on paper<br>            
+            Ayn Rand Archives
+            </p>
+    	</div>
+  	</article>
+</div></div>
+<!-- Section 6 -->
+<div id="item61" class="modal"><div class="modal-content"><span class="close close61">&times;</span>
+	<article class="exhibition-item">
+    	<h2>The Ayn Rand Writing Desk</h2><h3>The Ayn Rand Writing Desk</h3><time>c. 1940s</time>
+    	<div class="description">
+      		<p>The desk on which Ayn Rand wrote the bulk of her literary and philosophical works was an early 20th century pedestal desk, which was a gift from Frank O’Connor to Ayn Rand. O’Connor purchased the furniture at a well known, Hollywood store selling furniture, lighting and studio expendables to the film industry.</p><p>
+            Furniture<br>            
+            Ayn Rand Archives
+            </p>
+    	</div>
+  	</article>
+</div></div>
+
+<div id="item621" class="modal"><div class="modal-content"><span class="close close621">&times;</span>
+	<article class="exhibition-item">
+    	<h2>“The Strike,” p. 1</h2><h3>Handwritten notes on Atlas Shrugged</h3><time>January 1, 1945</time>
+    	<div class="description">
+      		<p>Reproduction on paper<br>
+            Ayn Rand Archives            
+          </p><p>From the earliest extant notes stating the theme and meaning of “The Strike,” the original title of Atlas Shrugged.           
+          </p><p>In the 1940s, strikes initiated by organized labor were a well-known tactic of the American liberal left.           
+          </p><p>Rand thought that it would be both dramatic and ironic to present a strike by industrialists — the “prime movers” — against a moral code that branded them as evil exploiters. Eventually, Rand dropped the original title, “The Strike,” as too journalistic sounding.
+            </p>
+    	</div>
+  	</article>
+</div></div>
+<div id="item622" class="modal"><div class="modal-content"><span class="close close622">&times;</span>
+	<article class="exhibition-item">
+    	<h2>Notes, p. 1</h2><h3>Handwritten notes on Atlas Shrugged</h3><time>June 20, 1946</time>
+    	<div class="description">
+      		<p>Reproduction on paper<br>
+            Ayn Rand Archives</p><p>
+            This note concerns Rand’s view of man and his relationship to physical nature. As depicted in the novel, “the parasites,” i.e., those who feed off of industrialists while morally condemning them, are beginning to live in fear of “natural phenomena and disasters.” This note presents an idea first presented in The Fountainhead but expanded in Atlas Shrugged: that “man cannot exist (or survive) at the mercy of nature — his basic existence (his ‘means of survival’) is the fact that he must exist through mastering nature, through controlling it for his purposes . . .”</p>
+    	</div>
+  	</article>
+</div></div>
+<div id="item623" class="modal"><div class="modal-content"><span class="close close623">&times;</span>
+	<article class="exhibition-item">
+    	<h2>“The Calendar,” p. 1</h2><h3>Handwritten notes on Atlas Shrugged</h3><time>September 2, 1946</time>
+    	<div class="description">
+      		<p>Reproduction on paper<br>
+            Ayn Rand Archives</p><p>             
+            The opening page of the novel is dated September 2, 1946. The expression “Who is John Galt?” — which occurs throughout the novel — evokes the despair and futility of a world in decline.</p><p>
+            Rand wrote her fiction in longhand. After a typist created a typescript of each sequence, Rand further revisions by hand. Of the more than 12,000 pages contained in the final handwritten manuscript, she estimated that each page was rewritten, on average, five times.
+            </p>
+    	</div>
+  	</article>
+</div></div>
+<div id="item624" class="modal"><div class="modal-content"><span class="close close624">&times;</span>
+	<article class="exhibition-item">
+    	<h2>Note</h2><h3>Handwritten notes on Atlas Shrugged</h3><time>March 29, 1947</time>
+    	<div class="description">
+      		<p>Reproduction on paper<br>
+            Ayn Rand Archives</p><p>            
+          </p><p>In this note Rand considers railroad language as a means to communicate symbolic “danger signals.” Throughout the story the phrase “Stop, Look, Listen” calls the reader’s attention to the “poverty, discomfort and self-denial” of the present. However, as presented in the novel, these signals of collapsing civilization are, in fact, considered “signs of virtue” by the intellectual status quo. Historically, the moral philosophy that regards poverty and self-denial as virtuous is altruism. Rand defined altruism as the view that<br>            
+          </p><p>“man has no right to exist for his own sake, that service to others is the only justification of his existence, and that self-sacrifice is his highest duty, virtue and value.”<br>
+            (<em>Philosophy: Who Needs It</em>, 1982)</p><p>           
+            The final line of the note ends with Rand’s statement that altruism is “the morality of death.” As the novel unfolds, Rand dramatizes the alternative, which she calls “the morality of life.”
+            </p>
+    	</div>
+  	</article>
+</div></div>
+<div id="item625" class="modal"><div class="modal-content"><span class="close close625">&times;</span>
+	<article class="exhibition-item">
+    	<h2>p. 21</h2><h3>Handwritten notes on Atlas Shrugged</h3><time>July 14, 1948</time>
+    	<div class="description">
+      		<p>Reproduction on paper<br>
+            Ayn Rand Archives</p>
+            <p>This 1948 page is from the sequence introducing Dagny Taggart, the operational vice-president of Taggart Transcontinental. Dagny is a businesswoman of outstanding ability who struggles to keep her railroad in operation despite mounting government intervention. This page depicts Dagny’s affirmative response to the music of her favorite composer, Richard Halley. Halley has disappeared mysteriously at the height of his fame. Soon Dagny discovers a pattern of similar disappearances and wonders if a destroyer is removing the men of ability from the world.
+            </p>
+    	</div>
+  	</article>
+</div></div>
+<div id="item626" class="modal"><div class="modal-content"><span class="close close626">&times;</span>
+	<article class="exhibition-item">
+    	<h2>p. 6</h2><h3>Handwritten notes on Atlas Shrugged</h3><time>October 6, 1949</time>
+    	<div class="description">
+      		<p>Reproduction on paper<br>
+            Ayn Rand Archives</p><p>            
+          </p><p>The underlined sentence in this 1949 note summarizes Rand’s philosophic goal in writing Atlas Shrugged: “My most important job is the formulation of a rational morality of and for man, of and for his life, of and for this earth.”<br>            
+          </p><p>Following the 1943 publication of The Fountainhead, Rand attempted to write a nonfiction treatise on her moral philosophy, but abandoned the attempt in favor of writing Atlas Shrugged. Rand’s interest in philosophy arose primarily out of her interest in portraying the ideal man in fiction. She wanted to define the philosophical premises that would make such a character possible. Atlas Shrugged and its theme of “the mind on strike” would provide Rand further motivation to develop her philosophy. The novel would combine abstract statement, concretizing drama and the portrayal of new heroic characters.
+
+          </p>
+    	</div>
+  	</article>
+</div></div>
+<div id="item627" class="modal"><div class="modal-content"><span class="close close627">&times;</span>
+	<article class="exhibition-item">
+    	<h2>p. 8</h2><h3>Handwritten notes on Atlas Shrugged</h3><time>October 6, 1949</time>
+    	<div class="description">
+      		<p>Reproduction on paper<br>
+            Ayn Rand Archives</p>
+            <p>This note on the “social” foundation of morality continues Rand’s critique of altruism. By making morality “not an individual matter” but rather “a code for the relation of man to man,” morality collapses into collectivism. Collectivists fail because they place “the standard of their code of values outside of man.” This criticism applies to both “religious morality” (e.g., Judeo-Christian) and “any attempt at a ‘social’ morality, like communism.”
+            </p>
+    	</div>
+  	</article>
+</div></div>
+<div id="item628" class="modal"><div class="modal-content"><span class="close close628">&times;</span>
+	<article class="exhibition-item">
+    	<h2>“For the passengers: Main philosophical points,” p. 1</h2><h3>Handwritten notes on Atlas Shrugged</h3><time>July 19, 1950</time>
+    	<div class="description">
+      		<p>Reproduction on paper<br>
+            Ayn Rand Archives</p><p>            
+            In preparation for writing a sequence describing a train accident, Rand noted the philosophical views of the victims. Included among them are: “collectivism,” “anti-reason,” “materialism.” As depicted in the novel, the accident is shown to be a consequence of these views put into practice. The sequence is a dramatic illustration of the practical, life-and-death nature of philosophical ideas.
+            </p>
+    	</div>
+  	</article>
+</div></div>
+<div id="item629" class="modal"><div class="modal-content"><span class="close close629">&times;</span>
+	<article class="exhibition-item">
+    	<h2>Notes for Part II, p. 1</h2><h3>Handwritten notes on Atlas Shrugged</h3><time>January 5, 1951</time>
+    	<div class="description">
+      		<p>Reproduction on paper<br>
+            Ayn Rand Archives</p><p>            
+            This note discusses the “death principle” of altruism and its expression in economics. The thinkers, the industrialists and creators in every field face a fundamental threat from the “looters’ laws.” Governmental controls over the entire economy have effectively criminalized every action necessary for human survival. The regulated economy depicted in the novel demonstrates altruism’s contempt for human life. “You have to pay for the right to live — existence is now a crime.”
+            </p>
+    	</div>
+  	</article>
+</div></div>
+<div id="item6210" class="modal"><div class="modal-content"><span class="close close6210">&times;</span>
+	<article class="exhibition-item">
+    	<h2>p. 190</h2><h3>Handwritten notes on Atlas Shrugged</h3><time>Undated</time>
+    	<div class="description">
+      		<p>Reproduction on paper<br>
+            Ayn Rand Archives</p><p>            
+            From an early draft of the novel — this page of dialogue dramatizes both the theme of the novel and Rand’s final title. Hank Rearden, an industrialist struggling under the world’s moral code, listens to Francisco d’Anconia, a former copper magnate. The decision to “shrug,” and thereby let the world fall, requires a moral sanction — a sanction permitted by a radical, new code of morality. Rearden’s discovery of this new morality is dramatized in the remainder of the novel.
+            </p>
+    	</div>
+  	</article>
+</div></div>
+<div id="item6211" class="modal"><div class="modal-content"><span class="close close6211">&times;</span>
+	<article class="exhibition-item">
+    	<h2>p. 257</h2><h3>Handwritten notes on Atlas Shrugged</h3><time>Undated</time>
+    	<div class="description">
+      		<p>Reproduction on paper<br>
+            Ayn Rand Archives</p>            
+          </p><p>At this point in the novel, John Galt, the novel’s main hero, is revealed as the originator and force behind the strike. In this passage Galt explains how a strike by the men of ability merely complies with the world’s moral code. He states:<br>            
+          </p><p>We accept no job that requires the exercise of an independent rational judgment. Ability is a selfish evil that leaves no chance to those who are less able? We have withdrawn from the competition and left the field open to all comers, to get along as they may without us. The pursuit of wealth is greed, the root of all evil? We have abandoned that pursuit and do not seek to make fortunes any longer.
+            </p>
+    	</div>
+  	</article>
+</div></div>
+<div id="item6212" class="modal"><div class="modal-content"><span class="close close6212">&times;</span>
+	<article class="exhibition-item">
+    	<h2>Main subjects of Galt’s speech</h2><h3>Handwritten notes on Atlas Shrugged</h3><time>July 29, 1953</time>
+    	<div class="description">
+      		<p>Reproduction on paper<br>
+            Ayn Rand Archives</p>
+            <p>This note outlines the main subjects of Galt’s speech, a 35,000 word summary of Rand’s philosophy and its morality of life. The outline here covers four branches of philosophy: Metaphysics (the nature of reality); Epistemology (the nature of knowledge and its validation); Ethics (the good); Politics (the nature of a proper social system). She also lists economics, which is not a branch of philosophy. In her speech Galt explains the moral foundations of a capitalist economic system.</p>
+            <p>Rand’s defense of the prime movers</p>            
+            <p>“required that she formulate her own views on numerous philosophical issues, including the origin of values, the nature of volition, the law of identity as the bridge between metaphysics and epistemology, the finitude of space and time, and the nature of universals. When a philosophical issue arose during the writing of the novel, she would think about it for several days and then, in one or two attempts, resolve the problem.”</p>
+            <p>(<em>Ayn Rand</em>, by Jeff Britting, 2004)</p>
+    	</div>
+  	</article>
+</div></div>
+<div id="item6213" class="modal"><div class="modal-content"><span class="close close6213">&times;</span>
+	<article class="exhibition-item">
+    	<h2>The Morality of Death, p. 1</h2><h3>Handwritten notes on Atlas Shrugged</h3><time>January 9, 1954</time>
+    	<div class="description">
+      		<p>Reproduction on paper<br>
+            Ayn Rand Archives</p><p>            
+            In an earlier note from Atlas Shrugged, Rand wrote that evil “cannot remain stationary: it must either be eliminated entirely or it will grow (like ‘a few’ controls in a free economy.)” In this 1954 note created during the writing of Galt’s Speech, Rand analyzes the full flowering of evil in philosophical terms. In its final form, the speech will attack original sin, the soul-body dichotomy, sacrifice and altruism.</p>
+    	</div>
+  	</article>
+</div></div>
+<div id="item6214" class="modal"><div class="modal-content"><span class="close close6214">&times;</span>
+	<article class="exhibition-item">
+    	<h2>p. 493</h2><h3>Handwritten notes on Atlas Shrugged</h3><time>October 13, 1955</time>
+    	<div class="description">
+        <p>Reproduction on paper<br>
+            Ayn Rand Archives
+            </p>
+      		<p>This 1955 draft is the earliest extant, final page of Galt’s Speech, which includes the oath taken by all the strikers:</p><p>
+
+            <em>I swear — by my life and my love of it — that I shall never live for the sake of another man nor ask another man to live for mine.</em>
+            </p>
+    	</div>
+  	</article>
+</div></div>
+<div id="item6215" class="modal"><div class="modal-content"><span class="close close6215">&times;</span>
+	<article class="exhibition-item">
+      <h2>p. 87</h2><h3>Handwritten notes on Atlas Shrugged</h3><time>March 20, 1957</time>
+    	<div class="description">
+      		<p>Reproduction on paper<br>
+              Ayn Rand Archives</p>
+              
+            <p>This 1957 page is Rand’s last and final handwritten page of the novel. The work had taken almost fourteen years to complete. As to Ayn Rand’s personal reaction to completing the final page of the manuscript, she recounts:
+              
+              </p><p>I was too dazed, in a way, to remember anything except walking into the kitchen and Frank [O’Connor] was there, and I held the last page, with the words, “The End” and the date on it.
+              </p>
+    	</div>
+  	</article>
+</div></div>
+<!-- Section 7 -->
+<div id="item71" class="modal"><div class="modal-content"><span class="close close71">&times;</span>
+	<article class="exhibition-item">
+    	<h2>A New Film: Adapting  The Fountainhead</h2><h3>The Script</h3><time>c. 1940s</time>
+    	<div class="description">
+      		<p>A page from a draft of the script featuring the beginning of Roark’s courtroom speech, one of the longest speeches in film history</p><p>
+              Print on paper<br>              
+              Ayn Rand Archives
+              </p>
+    	</div>
+  	</article>
+</div></div>
+<div id="item721" class="modal"><div class="modal-content"><span class="close close721">&times;</span>
+	<article class="exhibition-item">
+    	<h2>A New Film: Adapting  The Fountainhead</h2><h3>The Film</h3><time>c. 1940s</time>
+    	<div class="description">
+      		<p>Clippings from Ayn Rand’s papers covering aspects of the Warner Bros. film from its pre-release and exhibition phases</p><p>
+              Print on paper<br>              
+              Ayn Rand Archives
+              </p>
+    	</div>
+  	</article>
+</div></div>
+<div id="item722" class="modal"><div class="modal-content"><span class="close close722">&times;</span>
+	<article class="exhibition-item">
+    	<h2>A New Film: Adapting  The Fountainhead</h2><h3>The Film</h3><time>c. 1940s</time>
+    	<div class="description">
+      		<p>Clippings from Ayn Rand’s papers covering aspects of the Warner Bros. film from its pre-release and exhibition phases</p><p>
+              Print on paper<br>              
+              Ayn Rand Archives
+              </p>
+    	</div>
+  	</article>
+</div></div>
+<div id="item723" class="modal"><div class="modal-content"><span class="close close723">&times;</span>
+	<article class="exhibition-item">
+    	<h2>A New Film: Adapting  The Fountainhead</h2><h3>The Film</h3><time>c. 1940s</time>
+    	<div class="description">
+      		<p>Clippings from Ayn Rand’s papers covering aspects of the Warner Bros. film from its pre-release and exhibition phases</p><p>
+              Print on paper<br>              
+              Ayn Rand Archives
+              </p>
+    	</div>
+  	</article>
+</div></div>
+<div id="item724" class="modal"><div class="modal-content"><span class="close close724">&times;</span>
+	<article class="exhibition-item">
+    	<h2>A New Film: Adapting  The Fountainhead</h2><h3>The Film</h3><time>c. 1940s</time>
+    	<div class="description">
+      		<p>Clippings from Ayn Rand’s papers covering aspects of the Warner Bros. film from its pre-release and exhibition phases</p><p>
+              Print on paper<br>              
+              Ayn Rand Archives
+              </p>
+    	</div>
+  	</article>
+</div></div>
+<div id="item725" class="modal"><div class="modal-content"><span class="close close725">&times;</span>
+	<article class="exhibition-item">
+    	<h2>A New Film: Adapting  The Fountainhead</h2><h3>The Film</h3><time>c. 1940s</time>
+    	<div class="description">
+      		<p>Clippings from Ayn Rand’s papers covering aspects of the Warner Bros. film from its pre-release and exhibition phases</p><p>
+              Print on paper<br>              
+              Ayn Rand Archives
+              </p>
+    	</div>
+  	</article>
+</div></div>
+<div id="item726" class="modal"><div class="modal-content"><span class="close close726">&times;</span>
+	<article class="exhibition-item">
+    	<h2>A New Film: Adapting  The Fountainhead</h2><h3>The Film</h3><time>c. 1940s</time>
+    	<div class="description">
+      		<p>Clippings from Ayn Rand’s papers covering aspects of the Warner Bros. film from its pre-release and exhibition phases</p><p>
+              Print on paper<br>              
+              Ayn Rand Archives
+              </p>
+    	</div>
+  	</article>
+</div></div>
+<div id="item73" class="modal"><div class="modal-content"><span class="close close73">&times;</span>
+	<article class="exhibition-item">
+    	<h2>A New Film: Adapting  The Fountainhead</h2><h3>The Fountainhead film trailer</h3><time>1949</time>
+    	<div class="description">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/swOxKu80JpU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <p>The Fountainhead is a 1949 American, black-and-white drama film from Warner Bros., produced by Henry Blanke, directed by King Vidor, that stars Gary Cooper, Patricia Neal, Raymond Massey, Robert Douglas, and Kent Smith. The film is based on the bestselling 1943 novel of the same name by Ayn Rand, who also wrote the screenplay adaptation. Although Rand's screenplay was used with minimal alterations, she later criticized the film's editing, production design, and acting.</p>
+          <p>The film's and novel's story are concerned with the life of Howard Roark, an individualistic young architect who chooses to struggle in obscurity rather than compromise his artistic and personal vision, following his battle to design what the public sees as modern architecture, which he believes is superior to other forms, despite resistance from a traditionally minded architectural establishment. Roark's complex relationships with the individuals who assist or hinder his progress, or both, allow the film to be both a romantic drama and a philosophical work. Roark represents Rand's embodiment of the human spirit, and his struggle represents the struggle between individualism and collectivism.</p>
+          <p style="text-align:left;">From Warner Bros. Fandom Site</p>
+          <p>
+              Video on Film<br>              
+              Ayn Rand Archives
+              </p>
+    	</div>
+  	</article>
+</div></div>
+
+<script>
+  // Get the modal
+
+  // Menu
+  var itemInfo = document.getElementById("itemInfo"); var closeInfo = document.getElementsByClassName("close closeInfo")[0]; closeInfo.onclick = function() {itemInfo.style.display = "none";}
+  var itemMap = document.getElementById("itemMap"); var closeMap = document.getElementsByClassName("close closeMap")[0]; closeMap.onclick = function() {itemMap.style.display = "none";}
+  var itemControls = document.getElementById("itemControls"); var closeControls = document.getElementsByClassName("close closeControls")[0]; closeControls.onclick = function() {itemControls.style.display = "none";}
+  var itemAbout = document.getElementById("itemAbout"); var closeAbout = document.getElementsByClassName("close closeAbout")[0]; closeAbout.onclick = function() {itemAbout.style.display = "none";}
+
+  // Section 1
+  var item11 = document.getElementById("item11"); var close11 = document.getElementsByClassName("close close11")[0]; close11.onclick = function() {item11.style.display = "none";}
+  var item12 = document.getElementById("item12"); var close12 = document.getElementsByClassName("close close12")[0]; close12.onclick = function() {item12.style.display = "none";}
+  var item13 = document.getElementById("item13"); var close13 = document.getElementsByClassName("close close13")[0]; close13.onclick = function() {item13.style.display = "none";}
+  var item14 = document.getElementById("item14"); var close14 = document.getElementsByClassName("close close14")[0]; close14.onclick = function() {item14.style.display = "none";}
+// Section 2
+  var item21 = document.getElementById("item21"); var close21 = document.getElementsByClassName("close close21")[0]; close21.onclick = function() {item21.style.display = "none";}
+  var item22 = document.getElementById("item22"); var close22 = document.getElementsByClassName("close close22")[0]; close22.onclick = function() {item22.style.display = "none";}
+  var item23 = document.getElementById("item23"); var close23 = document.getElementsByClassName("close close23")[0]; close23.onclick = function() {item23.style.display = "none";}
+  var item24 = document.getElementById("item24"); var close24 = document.getElementsByClassName("close close24")[0]; close24.onclick = function() {item24.style.display = "none";}
+  var item25 = document.getElementById("item25"); var close25 = document.getElementsByClassName("close close25")[0]; close25.onclick = function() {item25.style.display = "none";}
+// Section 3
+  var item31 = document.getElementById("item31"); var close31 = document.getElementsByClassName("close close31")[0]; close31.onclick = function() {item31.style.display = "none";}
+  var item32 = document.getElementById("item32"); var close32 = document.getElementsByClassName("close close32")[0]; close32.onclick = function() {item32.style.display = "none";}
+  var item33 = document.getElementById("item33"); var close33 = document.getElementsByClassName("close close33")[0]; close33.onclick = function() {item33.style.display = "none";}
+  var item34 = document.getElementById("item34"); var close34 = document.getElementsByClassName("close close34")[0]; close34.onclick = function() {item34.style.display = "none";}
+  
+  var item351 = document.getElementById("item351"); var close351 = document.getElementsByClassName("close close351")[0]; close351.onclick = function() {item351.style.display = "none";}
+  var item352 = document.getElementById("item352"); var close352 = document.getElementsByClassName("close close352")[0]; close352.onclick = function() {item352.style.display = "none";}
+// Section 4
+  var item411 = document.getElementById("item411"); var close411 = document.getElementsByClassName("close close411")[0]; close411.onclick = function() {item411.style.display = "none";}
+  var item412 = document.getElementById("item412"); var close412 = document.getElementsByClassName("close close412")[0]; close412.onclick = function() {item412.style.display = "none";}
+  
+  var item421 = document.getElementById("item421"); var close421 = document.getElementsByClassName("close close421")[0]; close421.onclick = function() {item421.style.display = "none";}
+  var item422 = document.getElementById("item422"); var close422 = document.getElementsByClassName("close close422")[0]; close422.onclick = function() {item422.style.display = "none";}
+  
+  var item43 = document.getElementById("item43");   var close43 = document.getElementsByClassName("close close43")[0];    close43.onclick = function() {  item43.style.display = "none";}
+// Section 5
+  var item511 = document.getElementById("item511"); var close511 = document.getElementsByClassName("close close511")[0]; close511.onclick = function() {item511.style.display = "none";}
+  var item512 = document.getElementById("item512"); var close512 = document.getElementsByClassName("close close512")[0]; close512.onclick = function() {item512.style.display = "none";}
+  var item513 = document.getElementById("item513"); var close513 = document.getElementsByClassName("close close513")[0]; close513.onclick = function() {item513.style.display = "none";}
+  var item514 = document.getElementById("item514"); var close514 = document.getElementsByClassName("close close514")[0]; close514.onclick = function() {item514.style.display = "none";}
+  var item515 = document.getElementById("item515"); var close515 = document.getElementsByClassName("close close515")[0]; close515.onclick = function() {item515.style.display = "none";}
+  
+  var item521 = document.getElementById("item521"); var close521 = document.getElementsByClassName("close close521")[0]; close521.onclick = function() {item521.style.display = "none";}
+  var item522 = document.getElementById("item522"); var close522 = document.getElementsByClassName("close close522")[0]; close522.onclick = function() {item522.style.display = "none";}
+  var item523 = document.getElementById("item523"); var close523 = document.getElementsByClassName("close close523")[0]; close523.onclick = function() {item523.style.display = "none";}
+  var item524 = document.getElementById("item524"); var close524 = document.getElementsByClassName("close close524")[0]; close524.onclick = function() {item524.style.display = "none";}
+  var item525 = document.getElementById("item525"); var close525 = document.getElementsByClassName("close close525")[0]; close525.onclick = function() {item525.style.display = "none";}
+  
+  var item531 = document.getElementById("item531"); var close531 = document.getElementsByClassName("close close531")[0]; close531.onclick = function() {item531.style.display = "none";}
+  var item532 = document.getElementById("item532"); var close532 = document.getElementsByClassName("close close532")[0]; close532.onclick = function() {item532.style.display = "none";}
+  var item533 = document.getElementById("item533"); var close533 = document.getElementsByClassName("close close533")[0]; close533.onclick = function() {item533.style.display = "none";}
+// Section 6
+  var item61 = document.getElementById("item61"); var close61 = document.getElementsByClassName("close close61")[0]; close61.onclick = function() {item61.style.display = "none";}
+  
+  var item621 = document.getElementById("item621"); var close621 = document.getElementsByClassName("close close621")[0]; close621.onclick = function() {item621.style.display = "none";}
+  var item622 = document.getElementById("item622"); var close622 = document.getElementsByClassName("close close622")[0]; close622.onclick = function() {item622.style.display = "none";}
+  var item623 = document.getElementById("item623"); var close623 = document.getElementsByClassName("close close623")[0]; close623.onclick = function() {item623.style.display = "none";}
+  var item624 = document.getElementById("item624"); var close624 = document.getElementsByClassName("close close624")[0]; close624.onclick = function() {item624.style.display = "none";}
+  var item625 = document.getElementById("item625"); var close625 = document.getElementsByClassName("close close625")[0]; close625.onclick = function() {item625.style.display = "none";}
+  var item626 = document.getElementById("item626"); var close626 = document.getElementsByClassName("close close626")[0]; close626.onclick = function() {item626.style.display = "none";}
+  var item627 = document.getElementById("item627"); var close627 = document.getElementsByClassName("close close627")[0]; close627.onclick = function() {item627.style.display = "none";}
+  var item628 = document.getElementById("item628"); var close628 = document.getElementsByClassName("close close628")[0]; close628.onclick = function() {item628.style.display = "none";}
+  var item629 = document.getElementById("item629"); var close629 = document.getElementsByClassName("close close629")[0]; close629.onclick = function() {item629.style.display = "none";}
+  var item6210 = document.getElementById("item6210"); var close6210 = document.getElementsByClassName("close close6210")[0]; close6210.onclick = function() {item6210.style.display = "none";}
+  var item6211 = document.getElementById("item6211"); var close6211 = document.getElementsByClassName("close close6211")[0]; close6211.onclick = function() {item6211.style.display = "none";}
+  var item6212 = document.getElementById("item6212"); var close6212 = document.getElementsByClassName("close close6212")[0]; close6212.onclick = function() {item6212.style.display = "none";}
+  var item6213 = document.getElementById("item6213"); var close6213 = document.getElementsByClassName("close close6213")[0]; close6213.onclick = function() {item6213.style.display = "none";}
+  var item6214 = document.getElementById("item6214"); var close6214 = document.getElementsByClassName("close close6214")[0]; close6214.onclick = function() {item6214.style.display = "none";}
+  var item6215 = document.getElementById("item6215"); var close6215 = document.getElementsByClassName("close close6215")[0]; close6215.onclick = function() {item6215.style.display = "none";}
+// Section 7
+  var item71 = document.getElementById("item71"); var close71 = document.getElementsByClassName("close close71")[0]; close71.onclick = function() {item71.style.display = "none";}
+  var item721 = document.getElementById("item721"); var close721 = document.getElementsByClassName("close close721")[0]; close721.onclick = function() {item721.style.display = "none";}
+  var item722 = document.getElementById("item722"); var close722 = document.getElementsByClassName("close close722")[0]; close722.onclick = function() {item722.style.display = "none";}
+  var item723 = document.getElementById("item723"); var close723 = document.getElementsByClassName("close close723")[0]; close723.onclick = function() {item723.style.display = "none";}
+  var item724 = document.getElementById("item724"); var close724 = document.getElementsByClassName("close close724")[0]; close724.onclick = function() {item724.style.display = "none";}
+  var item725 = document.getElementById("item725"); var close725 = document.getElementsByClassName("close close725")[0]; close725.onclick = function() {item725.style.display = "none";}
+  var item726 = document.getElementById("item726"); var close726 = document.getElementsByClassName("close close726")[0]; close726.onclick = function() {item726.style.display = "none";}
+  var item73 = document.getElementById("item73"); var close73 = document.getElementsByClassName("close close73")[0]; close73.onclick = function() {item73.style.display = "none";}
+
+
+
+  window.onclick = function(event) {console.log(event);}
+
+  //var item43 = document.getElementById("item43");
+
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+    if (event.target == itemInfo) {itemInfo.style.display = "none";}
+    if (event.target == itemMap) {itemMap.style.display = "none";}
+    if (event.target == itemControls) {itemControls.style.display = "none";}
+    if (event.target == itemAbout) {itemAbout.style.display = "none";}
+
+    if (event.target == item11) {item11.style.display = "none";}
+    if (event.target == item12) {item12.style.display = "none";}
+    if (event.target == item13) {item13.style.display = "none";}
+    if (event.target == item14) {item14.style.display = "none";}
+    if (event.target == item21) {item21.style.display = "none";}
+    if (event.target == item22) {item22.style.display = "none";}
+    if (event.target == item23) {item23.style.display = "none";}
+    if (event.target == item24) {item24.style.display = "none";}
+    if (event.target == item25) {item25.style.display = "none";}
+    if (event.target == item31) {item31.style.display = "none";}
+    if (event.target == item32) {item32.style.display = "none";}
+    if (event.target == item33) {item33.style.display = "none";}
+    if (event.target == item34) {item34.style.display = "none";}
+    if (event.target == item351) {item351.style.display = "none";}
+    if (event.target == item352) {item352.style.display = "none";}
+    if (event.target == item411) {item411.style.display = "none";}
+    if (event.target == item412) {item412.style.display = "none";}
+    if (event.target == item421) {item421.style.display = "none";}
+    if (event.target == item422) {item422.style.display = "none";}
+    if (event.target == item43) {item43.style.display = "none";}
+    if (event.target == item511) {item511.style.display = "none";}
+    if (event.target == item512) {item512.style.display = "none";}
+    if (event.target == item513) {item513.style.display = "none";}
+    if (event.target == item514) {item514.style.display = "none";}
+    if (event.target == item515) {item515.style.display = "none";}
+    if (event.target == item521) {item521.style.display = "none";}
+    if (event.target == item522) {item522.style.display = "none";}
+    if (event.target == item523) {item523.style.display = "none";}
+    if (event.target == item524) {item524.style.display = "none";}
+    if (event.target == item525) {item525.style.display = "none";}
+    if (event.target == item531) {item531.style.display = "none";}
+    if (event.target == item532) {item532.style.display = "none";}
+    if (event.target == item533) {item533.style.display = "none";}
+    if (event.target == item61) {item61.style.display = "none";}
+    if (event.target == item621) {item621.style.display = "none";}
+    if (event.target == item622) {item622.style.display = "none";}
+    if (event.target == item623) {item623.style.display = "none";}
+    if (event.target == item624) {item624.style.display = "none";}
+    if (event.target == item625) {item625.style.display = "none";}
+    if (event.target == item626) {item626.style.display = "none";}
+    if (event.target == item627) {item627.style.display = "none";}
+    if (event.target == item628) {item628.style.display = "none";}
+    if (event.target == item629) {item629.style.display = "none";}
+    if (event.target == item6210) {item6210.style.display = "none";}
+    if (event.target == item6211) {item6211.style.display = "none";}
+    if (event.target == item6212) {item6212.style.display = "none";}
+    if (event.target == item6213) {item6213.style.display = "none";}
+    if (event.target == item6214) {item6214.style.display = "none";}
+    if (event.target == item6215) {item6215.style.display = "none";}
+    if (event.target == item71) {item71.style.display = "none";}
+    if (event.target == item721) {item721.style.display = "none";}
+    if (event.target == item722) {item722.style.display = "none";}
+    if (event.target == item723) {item723.style.display = "none";}
+    if (event.target == item724) {item724.style.display = "none";}
+    if (event.target == item725) {item725.style.display = "none";}
+    if (event.target == item726) {item726.style.display = "none";}
+    if (event.target == item73) {item73.style.display = "none";}
+  }
+  </script>
+</body>
+
+</html>

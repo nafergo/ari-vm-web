@@ -1,0 +1,1098 @@
+<!doctype html>
+<html lang="en">
+        <head>
+        <title>Ayn Rand - VR Museum</title>
+        <link rel="icon" type="image/png" href="favicon.ico"/>
+        <meta name="description" content="3D Application">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+        <script src="js/aframe.1.1.min.js"></script>
+        <script src="js/aframe-extras.6.1.1.min.js"></script>
+        <script type="text/javascript" src="js/webxr.js"></script>
+        <script type="text/javascript" src="js/joystick.js"></script>
+        <script type="text/javascript" src="js/camera-cube-env.js"></script>
+        <script type="text/javascript" src="js/aframe-physics-system.min.js"></script>
+        <script type="text/javascript" src="js/aframe-environment-component.min.js"></script>
+        <script type="text/javascript" src="js/aframe-extras.controls.min.js"></script>
+        <script type="text/javascript" src="js/aframe-extras.loaders.min.js"></script>
+        <script type="text/javascript" src="js/aframe-extras.misc.min.js"></script>
+        <script type="text/javascript" src="js/aframe-extras.pathfinding.min.js"></script>
+        <script type="text/javascript" src="js/aframe-extras.primitives.min.js"></script>
+        <script type="text/javascript" src="js/aframe-event-set-component.min.js"></script>
+        <script type="text/javascript" src="js/aframe-animation-toggle-component.js"></script>
+        <script type="text/javascript" src="js/depth-material.js"></script>
+        <script type="text/javascript" src="js/highlight.js"></script>
+        <script type="text/javascript" src="js/play-on-click.js"></script>
+        <script type="text/javascript" src="js/play-on-hover.js"></script>
+        <script type="text/javascript" src="js/aframe-preloader-component.min.js"></script>
+        <script type="text/javascript" src="js/aframe-proxemic-component.min.js"></script>
+        <script type="text/javascript" src="js/aframe-look-at-component.min.js"></script>
+        <script type="text/javascript" src="js/init.js"></script>
+
+
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+    <body onload="init();">
+        <a-scene  loading-screen="dotsColor: black; backgroundColor: white"   shadow="type: pcfsoft; autoUpdate: true;" renderer="antialias: true; colorManagement: true; physicallyCorrectLights: false;">
+            <!-- Assets -->
+            <a-assets>
+               <!-- exterior -->
+               <a-asset-item id="tree1.001" src="./assets/tree1.glb"></a-asset-item>
+                <a-asset-item id="rock1" src="./assets/rock1.glb"></a-asset-item>
+                <a-asset-item id="grass.001" src="./assets/grass1.glb"></a-asset-item>
+                <a-asset-item id="peixinho.001" src="./assets/peixinho1.glb"></a-asset-item>
+                <img id="water-sand" src="./resources/sand.jpg">
+                <img id="foliage" src="./resources/foliage.png">
+                <img id="infopanel-background" src="./media/infopanel-down.png">
+                <img id="groundTexture" src="./resources/grass.jpg">
+                <img id="carpet" src="./resources/carpet.jpg">
+                <img id="close" src="./resources/close.jpg">
+
+                <!-- exhibition -->
+                <img id="0.1.png"  src="./exhibition/0/0.1.png">
+                <img id="1.1.png"  src="./exhibition/1/1.1.png">
+                <img id="1.2.png"  src="./exhibition/1/1.2.png">
+                <img id="1.3.1.png"  src="./exhibition/1/1.3.1.png">
+                <img id="1.3.2.png"  src="./exhibition/1/1.3.2.png">
+                <img id="1.3.png"  src="./exhibition/1/1.3.png">
+                <video muted preload="auto" id="2.2.1.mp4" src="./exhibition/2/2.2.1.mp4" ></video>
+                <img id="2.3.1.jpg"  src="./exhibition/2/2.3.1.jpg">
+                <img id="2.4.1.jpg"  src="./exhibition/2/2.4.1.jpg">
+                <img id="2.5.1.jpg"  src="./exhibition/2/2.5.1.jpg">
+                <img id="2.6.1.jpg"  src="./exhibition/2/2.6.1.jpg">
+                <img id="2.7.1.jpg"  src="./exhibition/2/2.7.1.jpg">
+                <img id="3.2.1.jpg"  src="./exhibition/3/3.2.1.jpg">
+                <img id="3.3.1.jpg"  src="./exhibition/3/3.3.1.jpg">
+                <img id="3.5.1.jpg"  src="./exhibition/3/3.5.1.jpg">
+                <img id="3.6.1.jpg"  src="./exhibition/3/3.6.1.jpg">
+                <img id="3.7.1.jpg"  src="./exhibition/3/3.7.1.jpg">
+                <img id="3.8.1.jpg"  src="./exhibition/3/3.8.1.jpg">
+                <img id="3.9.1.jpg"  src="./exhibition/3/3.9.1.jpg">
+                <img id="4.1.1.png"  src="./exhibition/4/4.1.1.png">
+                <video muted preload="auto" id="4.2.1.mp4" src="./exhibition/4/4.2.1.mp4" ></video>
+                <img id="4.3.1.jpg"  src="./exhibition/4/4.3.1.jpg">
+                <img id="4.3.2.jpg"  src="./exhibition/4/4.3.2.jpg">
+                <img id="4.3.3.jpg"  src="./exhibition/4/4.3.3.jpg">
+                <img id="4.4.1.jpg"  src="./exhibition/4/4.4.1.jpg">
+                <img id="4.4.2.jpg"  src="./exhibition/4/4.4.2.jpg">
+                <img id="4.4.4.jpg"  src="./exhibition/4/4.4.4.jpg">
+                <img id="4.5.1.jpg"  src="./exhibition/4/4.5.1.jpg">
+                <img id="4.6.1.jpg"  src="./exhibition/4/4.6.1.jpg">
+                <img id="4.7.1.jpg"  src="./exhibition/4/4.7.1.jpg">
+                <img id="4.8.1.jpg"  src="./exhibition/4/4.8.1.jpg">
+                <img id="5.1.1.png"  src="./exhibition/5/5.1.1.png">
+                <video muted preload="auto" id="5.2.1.mp4" src="./exhibition/5/5.2.1.mp4" ></video>
+                <img id="5.3.1.jpg"  src="./exhibition/5/5.3.1.jpg">
+                <img id="5.4.1.jpg"  src="./exhibition/5/5.4.1.jpg">
+                <img id="5.5.1.jpg"  src="./exhibition/5/5.5.1.jpg">
+                <img id="5.6.1.jpg"  src="./exhibition/5/5.6.1.jpg">
+                <img id="5.7.1.jpg"  src="./exhibition/5/5.7.1.jpg">
+                <img id="5.7.2.jpg"  src="./exhibition/5/5.7.2.jpg">
+                <img id="5.7.3.jpg"  src="./exhibition/5/5.7.3.jpg">
+                <img id="5.7.4.jpg"  src="./exhibition/5/5.7.4.jpg">
+                <img id="5.7.5.jpg"  src="./exhibition/5/5.7.5.jpg">
+                <img id="6.0.jpg"  src="./exhibition/6/6.0.jpg">
+                <img id="6.10.jpg"  src="./exhibition/6/6.10.jpg">
+                <img id="6.11.jpg"  src="./exhibition/6/6.11.jpg">
+                <img id="6.1.1.png"  src="./exhibition/6/6.1.1.png">
+                <img id="6.13.jpg"  src="./exhibition/6/6.13.jpg">
+                <img id="6.14.jpg"  src="./exhibition/6/6.14.jpg">
+                <img id="6.15.1.jpg"  src="./exhibition/6/6.15.1.jpg">
+                <img id="6.15.2.jpg"  src="./exhibition/6/6.15.2.jpg">
+                <img id="6.2.1.jpg"  src="./exhibition/6/6.2.1.jpg">
+                <img id="6.3.1.jpg"  src="./exhibition/6/6.3.1.jpg">
+                <img id="6.4.1.jpg"  src="./exhibition/6/6.4.1.jpg">
+                <img id="6.5.1.jpg"  src="./exhibition/6/6.5.1.jpg">
+                <img id="6.6.1.jpg"  src="./exhibition/6/6.6.1.jpg">
+                <img id="6.7.1.jpg"  src="./exhibition/6/6.7.1.jpg">
+                <img id="6.8.1.jpg"  src="./exhibition/6/6.8.1.jpg">
+                <img id="6.9.1.jpg"  src="./exhibition/6/6.9.1.jpg">
+                <img id="7.1.1.jpg"  src="./exhibition/6/7.1.1.jpg">
+
+				<a-asset-item id="base_desk" src="./assets/base_desk.glb"></a-asset-item>
+				<a-asset-item id="desk" src="./assets/desk.glb"></a-asset-item>
+				<a-asset-item id="floor" src="./assets/floor.glb"></a-asset-item>
+				<a-asset-item id="garden" src="./assets/garden.gltf"></a-asset-item>
+				<a-asset-item id="guarda_dir" src="./assets/guarda_dir.gltf"></a-asset-item>
+				<a-asset-item id="guarda_esq" src="./assets/guarda_esq.glb"></a-asset-item>
+				<a-asset-item id="nav-mesh" src="./assets/nav-mesh.gltf"></a-asset-item>
+				<a-asset-item id="porta_dir" src="./assets/porta_dir.gltf"></a-asset-item>
+				<a-asset-item id="porta_esq" src="./assets/porta_esq.gltf"></a-asset-item>
+				<a-asset-item id="rampa" src="./assets/rampa.gltf"></a-asset-item>
+				<a-asset-item id="roof" src="./assets/roof.glb"></a-asset-item>
+				<a-asset-item id="walls" src="./assets/walls.glb"></a-asset-item>
+				<a-asset-item id="walls.001" src="./assets/walls.001.gltf"></a-asset-item>
+				<a-asset-item id="walls.002" src="./assets/walls.002.gltf"></a-asset-item>
+        <a-asset-item id="sofa" src="./assets/sofa.glb"></a-asset-item>
+        <a-asset-item id="plant1" src="./assets/plant1.glb"></a-asset-item>
+        <a-asset-item id="plant2" src="./assets/plant2.glb"></a-asset-item>
+            </a-assets>
+
+            <!-- Entities -->
+            <a-entity  position="0 -0.01 0" environment="active:true;preset:default;lighting:distant;ground:hills;playArea: 1.5; groundYScale: 6.51;"></a-entity>
+            <a-plane src="#groundTexture" rotation="-90 0 0" width="150" roughness="1" height="150"  repeat="50 50"></a-plane>
+          <!-- porta 2-->
+          <a-entity proximity-sensor="distance: 3" id="#porta_dir" gltf-model="#porta_dir" scale="1 1 1" position="1.569325566291809 2.2427077293395996 -6.017" visible="true" shadow="cast: true"
+          animation__position="property: position; from: 1.569325566291809 2.2427077293395996 -6.017; to: 2.53 2.2427077293395996 -6.017; dur: 300; startEvents: proximityenter;"
+          animation__scale="property: scale; from: 1 1 1; to: 0.25 1 1; dur: 300;startEvents: proximityenter;"
+          animation__positionout="property: position; from: 2.53 2.216055393218994 -6.017; to: 1.569325566291809 2.2427077293395996 -6.017; dur: 300; startEvents: proximityexit"
+          animation__scaleout="property: scale; from: 0.25 1 1; to: 1 1 1; dur: 300;startEvents: proximityexit"
+          depth-material
+          ></a-entity>
+
+    			<a-entity proximity-sensor="distance: 3" id="#porta_esq" gltf-model="#porta_esq" scale="1 1 1" position="-0.48808956146240234 2.2427077293395996 -6.017" visible="true" shadow="cast: true"
+          animation__position="property: position; from: -0.48808956146240234 2.2427077293395996 -6.017; to: -1.5 2.2427077293395996 -6.017; dur: 300; startEvents: proximityenter;"
+          animation__scale="property: scale; from: 1 1 1; to: 0.25 1 1; dur: 300;startEvents: proximityenter;"
+          animation__positionout="property: position; from: -1.5 2.2427077293395996 -6.017; to: -0.48808956146240234 2.2427077293395996 -6.017; dur: 300; startEvents: proximityexit"
+          animation__scaleout="property: scale; from: 0.25 1 1; to: 1 1 1; dur: 300;startEvents: proximityexit"
+          depth-material
+           ></a-entity>
+
+          <!-- exhibition -->
+          <!-- 0 -->
+          <a-entity id="0.1.png" geometry="primitive: plane; width: 3.27; height: 1" scale="1 1 1" visible="true" position="-3.682572841644287 1.3 -5.996516227722168" rotation="0 0 0"
+          material="src: #0.1.png;transparent: true; shader: standard;"  shadow="cast:  false;  receive:  true" depth-material></a-entity>
+          <!-- 1 -->
+          <a-entity id="1.1.png" geometry="primitive: plane; width: 2.5; height: 2.5" scale="1 1 1" visible="true" position="-1.18 2.229 -9.35" rotation="0 0 0"
+          material="src: #1.1.png;transparent: true; shader: standard;"  shadow="cast:  false;  receive:  true" depth-material></a-entity>
+          <a-entity id="1.2.png" geometry="primitive: plane; width: 2.2; height: 0.61" scale="1 1 1" visible="true" position="3.237 3.161 -9.35" rotation="0 0 0"
+          material="src: #1.2.png; transparent: true; shader: standard;"  shadow="cast:  false;  receive:  true" depth-material></a-entity>
+          <a-entity id="1.3.png" geometry="primitive: plane; width: 2.65; height: 1.99" scale="1 1 1" visible="true" position="3.539 2.150 -9.34" rotation="0 0 0"
+          material="src: #1.3.png;transparent: true; shader: standard;"  shadow="cast:  false;  receive:  false" depth-material></a-entity>
+          <a-entity id="1.3.1.png" geometry="primitive: plane; width: 2.65; height: 2.37" scale="0.95 0.95 0.95" visible="true" position="0.98 2.26 -13.82" rotation="0 0 0"
+          material="src: #1.3.1.png;transparent: true; shader: standard;"  shadow="cast:  false;  receive:  false" depth-material></a-entity>
+          <a-entity id="1.3.2.png" geometry="primitive: plane; width: 3; height: 1.9" scale="1 1 1" visible="true" position="-0.3 2.25 -11.6" rotation="0 90 0"
+          material="src: #1.3.2.png;transparent: true; shader: standard;"  shadow="cast:  false;  receive:  false" depth-material></a-entity>
+          <!-- 2 -->
+          <a-text id="#2.1.title" class="title"  font="roboto"
+              position="3.739 3.1 -9.517" rotation="0 180 0"
+              width="2"
+              value="Soviet Russia\nEarly Writings"
+              align="left" color="#000000" anchor="left" baseline="top" height="0.02" wrap-count="20"></a-text>
+          <a-text id="#2.1.text" class="description" baseline="top" width="1.6" wrap-count="50"
+              font="roboto" position="3.729 2.612 -9.517" rotation="0 180 0"
+              value="After completing her studies at the University of Leningrad in 1924, Ayn Rand enrolled at the State Technicum for Screen Arts, a film school established by Lenin for the development of Soviet cinema. Her objective was to study screenwriting, and in preparation she also began writing film reviews and short essays on Hollywood, some of which were published. She briefly thought about becoming a Soviet screenwriter, subtly incorporating her individualist ethical and political ideas into her scripts. But this early experiment with literary misdirection failed. The collectivist nature of Russian politics and culture was monolithic.  And she realized her prospects for survival in Soviet Russia were nonexistent: “I would have been probably dead within one year,” she later concluded."
+              align="left" color="black"></a-text>
+
+          <a-entity class="clickable" id="#2.2.1.mp4" geometry="primitive: plane; width: 1.6; height: 0.9" scale="1 1 1" visible="true" position="4.965 2.46 -9.517" rotation="0 180 0"
+          material="shader: flat;src: #2.2.1.mp4"  shadow="cast:  false;  receive:  false" play-on-click></a-entity>
+
+          <a-text id="#2.2.1.title" class="title"  font="roboto"
+              position="4.963 3.1 -9.517" rotation="0 180 0"
+              width="2"
+              value="Leningrad, U.S.S.R."
+              align="center" color="#000000" anchor="center" baseline="top" height="0.02" wrap-count="20"></a-text>
+
+          <a-text id="#2.2.1.text" class="description" baseline="top" width="1.6" wrap-count="50"
+              font="roboto" position="5.765 1.9 -9.517" rotation="0 180 0"
+              value="c. 1920s\nThis montage of film shots from Leningrad includes a long shot of the Square of the Uprising, which was taken from Ayn Rand’s family apartment building, which housed her father’s commercial pharmacy. The business was nationalized during the Bolshevik Revolution.\n\nCourtesy U.S. Department of Defense, Armed Forces Information and Education.\n\n1966"
+              align="left" color="black"></a-text>
+
+          <a-entity class="clickable" id="#2.3.1.jpg" geometry="primitive: plane; width: 0.40; height: 0.5" scale="0.8 0.8 0.8" visible="true" position="6.19 2.25 -9.95" rotation="0 -90 0"
+          material="src: #2.3.1.jpg;transparent: true; shader: standard;emissive:#000000;emissiveIntensity:0"  shadow="cast:  false;  receive:  false" depth-material
+          animation__mouseenterscale="property: scale; to: 1 1 1; dur: 300; startEvents: mouseenter"
+          animation__mouseleavescale="property: scale; to: 0.8 0.8 0.8; dur: 300; startEvents: mouseleave"
+          toggle-handler="target: #2.3.2.infopanel;"
+          ></a-entity>
+
+          <a-entity id="#2.3.2.infopanel"
+              position="5.9 2.25 -10.510" rotation="0 -90 0"
+              scale="1 1 1"  visible="true" shadow="cast: true">
+                  <a-entity  class="clickable" toggle-handler="target: #2.3.2.infopanel;" id="close" geometry="primitive: plane; width: 0.2; height: 0.2" scale="1 1 1" visible="true" position="0.866 0.855 0.001" rotation="0 0 0"  material="src: #close; shader: flat;"  shadow="cast:  false;  receive:  false" ></a-entity>
+                  <a-image src="#infopanel-background" height="2" width="2"></a-image>
+                      <a-text class="title"  font="roboto"
+                          position="0 0.893 0.001"  width="2"
+                          value="Ayn Rand,\n born Alisa Rosenbaum"
+                          align="center" color="#595a5a" anchor="center" baseline="top" height="0.02" wrap-count="20"></a-text>
+                      <a-image  position="0 0 0.001" src="#2.3.1.jpg" height="1" width="0.80" scale="1 1 1"></a-image>
+                      <a-text class="description" baseline="top" width="1"
+                          font="roboto" position="-0.4 -0.602 0.001"
+                          value="University application photograph\n\nLeningrad Russia, 1921\nPhotographic print on paper\nAyn Rand Papers"
+                          align="left" color="black"></a-text>
+          </a-entity>
+
+
+
+          <a-entity class="clickable" id="#2.4.1.jpg" geometry="primitive: plane; width: 0.58; height: 1" scale="0.8 0.8 0.8" visible="true" position="6.19 2.25 -10.66" rotation="0 -90 0"
+          material="src: #2.4.1.jpg;transparent: true; shader: standard;"  shadow="cast:  false;  receive:  false" depth-material
+          animation__mouseenterscale="property: scale; to: 1 1 1; dur: 300; startEvents: mouseenter"
+          animation__mouseleavescale="property: scale; to: 0.8 0.8 0.8; dur: 300; startEvents: mouseleave"
+          toggle-handler="target: #2.4.2.infopanel;"
+          ></a-entity>
+
+          <a-entity id="#2.4.2.infopanel"
+              position="5.8 2.25 -10.860" rotation="0 -90 0"
+              scale="1 1 1"  visible="true" shadow="cast: true">
+              <a-entity  class="clickable" toggle-handler="target: #2.4.2.infopanel;" id="close" geometry="primitive: plane; width: 0.2; height: 0.2" scale="1 1 1" visible="true" position="0.866 0.855 0.001" rotation="0 0 0"  material="src: #close; shader: flat;"  shadow="cast:  false;  receive:  false" ></a-entity>
+                      <a-image src="#infopanel-background" height="2" width="2" ></a-image>
+                      <a-text class="title"  font="roboto"
+                          position="-0.051 0.827 0.001"  width="2"
+                          value="State\nTechincum\nfor\n Screen Arts"
+                          align="left" color="#595a5a" anchor="left" baseline="top" height="0.02" wrap-count="20"></a-text>
+                      <a-image  position="-0.503 0.189 0.001" src="#2.4.1.jpg" height="1" width="0.58" scale="1.3 1.3 1.3"></a-image>
+                      <a-text class="description" baseline="top" width="1"
+                          font="roboto" position="-0.022 0.04 0.001"
+                          value="Leningrad, U.S.S.R.\n\nBuilding on Tchaikovsky St. that housed the\nSoviet film school attended by Ayn Rand,\n 1924-25\n\nPhotographic print on paper\nCourtesy Alex Lebedev\nSpecial Collections\nAyn Rand Archives"
+                          align="left" color="black"></a-text>
+          </a-entity>
+
+          <a-entity  class="clickable" id="#2.5.1.jpg" geometry="primitive: plane; width: 1.27; height: 1" scale="0.8 0.8 0.8" visible="true" position="6.19 2.25 -11.62" rotation="0 -90 0"
+          material="src: #2.5.1.jpg;transparent: true; shader: standard;"  shadow="cast:  false;  receive:  false" depth-material
+          animation__mouseenterscale="property: scale; to: 1 1 1; dur: 300; startEvents: mouseenter"
+          animation__mouseleavescale="property: scale; to: 0.8 0.8 0.8; dur: 300; startEvents: mouseleave"
+          toggle-handler="target: #2.5.2.infopanel;"
+          ></a-entity>
+
+
+<a-entity id="#2.5.2.infopanel"
+    position="5.7 2.25 -11.62" rotation="0 -90 0"
+    scale="1 1 1"  visible="true" shadow="cast: true">
+                  <a-entity  class="clickable" toggle-handler="target: #2.5.2.infopanel;" id="close" geometry="primitive: plane; width: 0.2; height: 0.2" scale="1 1 1" visible="true" position="0.866 0.855 0.001" rotation="0 0 0"  material="src: #close; shader: flat;"  shadow="cast:  false;  receive:  false" ></a-entity>
+        <a-image src="#infopanel-background" height="2" width="2"></a-image>
+            <a-text class="title"  font="roboto"
+                position="0 0.82714 0.001"  width="2"
+                value="Acting Pose"
+                align="center" color="#595a5a" anchor="center" baseline="top" height="0.02" wrap-count="20"></a-text>
+            <a-image  position="0 0 0.001" src="#2.5.1.jpg" height="1" width="1.27" scale="1 1 1"></a-image>
+            <a-text class="description" baseline="top" width="1"
+                font="roboto" position="-0.656 -0.602 0.001"
+                value="Alisa Rosenbaum\nc. 1924.\n\nSingle frame from a strip of expressive gestures\n\nPhotographic print on paper\nAyn Rand Photograph Collection"
+                align="left" color="black"></a-text>
+</a-entity>
+
+          <a-entity  class="clickable" id="2.6.1.jpg" geometry="primitive: plane; width: 1.55; height: 1" scale="0.8 0.8 0.8" visible="true" position="6.19 2.25 -13.06" rotation="0 -90 0"
+          material="src: #2.6.1.jpg;transparent: true; shader: standard;"  shadow="cast:  false;  receive:  false" depth-material
+          animation__mouseenterscale="property: scale; to: 1 1 1; dur: 300; startEvents: mouseenter"
+          animation__mouseleavescale="property: scale; to: 0.8 0.8 0.8; dur: 300; startEvents: mouseleave"
+          toggle-handler="target: #2.6.2.infopanel;"
+          ></a-entity>
+          <a-entity id="#2.6.2.infopanel"
+              position="5.6 2.25 -12.779" rotation="0 -90 0"
+              scale="1 1 1"  visible="true" shadow="cast: true">
+                            <a-entity  class="clickable" toggle-handler="target: #2.6.2.infopanel;" id="close" geometry="primitive: plane; width: 0.2; height: 0.2" scale="1 1 1" visible="true" position="0.866 0.855 0.001" rotation="0 0 0"  material="src: #close; shader: flat;"  shadow="cast:  false;  receive:  false" ></a-entity>
+                  <a-image src="#infopanel-background" height="2" width="2"></a-image>
+                      <a-text class="title"  font="roboto"
+                          position="0 0.82714 0.001"  width="2"
+                          value="Early Russian Writings"
+                          align="center" color="#595a5a" anchor="center" baseline="top" height="0.02" wrap-count="20"></a-text>
+                      <a-image  position="0 0.131 0.001" src="#2.6.1.jpg" height="1" width="1.55" scale="1 1 1"></a-image>
+                      <a-text class="description" baseline="top" width="1"
+                          font="roboto" position="-0.773 -0.463 0.001"
+                          value="Hollywood: City of Cinema\nPola Negri\nAlisa Rosenbaum\nc. 1925.\n\nCovers of pamphlets published in Soviet Russia on topics related to the American film industry.\n\nPhotographic print on paper\nAyn Rand Paper"
+                          align="left" color="black"></a-text>
+          </a-entity>
+
+          <a-entity  class="clickable" id="2.7.1.jpg" geometry="primitive: plane; width: 0.36; height: 2" scale="0.8 0.8 0.8" visible="true" position="4.617 2.27 -13.83" rotation="0 0 0"
+          material="src: #2.7.1.jpg;transparent: true; shader: standard;"  shadow="cast:  false;  receive:  false" depth-material
+          animation__mouseenterscale="property: scale; to: 1 1 1; dur: 300; startEvents: mouseenter"
+          animation__mouseleavescale="property: scale; to: 0.8 0.8 0.8; dur: 300; startEvents: mouseleave"
+          toggle-handler="target: #2.7.2.infopanel;"
+          ></a-entity>
+          <a-entity id="#2.7.2.infopanel"
+              position="4.521 2.25 -13.75" rotation="0 0 0"
+              scale="1 1 1"  visible="true" shadow="cast: true">
+              <a-entity  class="clickable" toggle-handler="target: #2.7.2.infopanel;" id="close" geometry="primitive: plane; width: 0.2; height: 0.2" scale="1 1 1" visible="true" position="0.866 0.855 0.001" rotation="0 0 0"  material="src: #close; shader: flat;"  shadow="cast:  false;  receive:  false" ></a-entity>              
+                  <a-image src="#infopanel-background" height="2" width="2"></a-image>
+                      <a-text class="title"  font="roboto"
+                          position="-0.236 0.827 0.001"  width="2"
+                          value="Preparing to\nLeave Russia"
+                          align="left" color="#595a5a" anchor="left" baseline="top" height="0.02" wrap-count="20"></a-text>
+                      <a-image  position="-0.639 0 0.001" src="#2.7.1.jpg" height="2" width="0.36" scale="0.9 0.9 0.9"></a-image>
+                      <a-text class="description" baseline="top" width="1"
+                          font="roboto" position="-0.208 0.236 0.001"
+                          value="Alisa Rosenbaum\nc. 1925-26\n\nA single strip of informal portraits.\n\nPhotographic print on paper\nAyn Rand Photograph Collection"
+                          align="left" color="black"></a-text>
+          </a-entity>
+
+          <a-text id="#2.8.title" class="title"  font="roboto"
+              position="4.997 3.1 -13.83" rotation="0 0 0"
+              width="2"
+              value="Leaving\nSoviet Russia"
+              align="left" color="#000000" anchor="left" baseline="top" height="0.02" wrap-count="20"></a-text>
+
+          <a-text id="#2.8.text" class="description" baseline="top" width="1" wrap-count="30"
+              font="roboto" position="5.021 2.654 -13.83" rotation="0 0 0"
+              value="During the Soviet period, Ayn Rand’s mother received a letter from a cousin living in Chicago who worked as a film exhibitor. A visit to America was proposed, which coincided with the easing of Soviet restrictions on students wishing to study abroad. The official purpose of Rand’s visit would be to study the American film industry first-hand and then to return and contribute the fruits of this research toward the development of Soviet film. The stated purpose was a ruse. Rand planned to make her American visit permanent. Her goal was to establish herself as a screenwriter, thereafter “graduating into literature” when her command of English had improved."
+              align="left" color="black"></a-text>
+
+          <!-- 3 -->
+          <a-entity class="clickable" id="3.2.1.jpg" geometry="primitive: plane; width: 0.81; height: 1" scale="0.8 0.8 0.8" visible="true" position="5.57 2.27 -19.62" rotation="0 -24.499 0"
+          material="src: #3.2.1.jpg;transparent: true; shader: standard;"  shadow="cast:  false;  receive:  false" depth-material
+          animation__mouseenterscale="property: scale; to: 1 1 1; dur: 300; startEvents: mouseenter"
+          animation__mouseleavescale="property: scale; to: 0.8 0.8 0.8; dur: 300; startEvents: mouseleave"
+          toggle-handler="target: #3.2.1.infopanel;"
+          ></a-entity>
+          <a-entity id="#3.2.1.infopanel"
+              position="5.176 2.27 -19.5" rotation="0 -24.499 0"
+              scale="1 1 1"  visible="true" shadow="cast: true">
+              <a-entity  class="clickable" toggle-handler="target: #3.2.1.infopanel;" id="close" geometry="primitive: plane; width: 2; height: 2" scale="1 1 1" visible="true" position="0 0 0.003" rotation="0 0 0"  material="src: #close; shader: flat;"  shadow="cast:  false;  receive:  false" ></a-entity>
+
+                  <a-image src="#infopanel-background" height="2" width="2"></a-image>
+                      <a-text class="title"  font="roboto"
+                          position="0 0.893 0.001"  width="2"
+                          value="Writing We the Living"
+                          align="center" color="#595a5a" anchor="center" baseline="top" height="0.02" wrap-count="20"></a-text>
+                      <a-image  position="0 0.1 0.001" src="#3.2.1.jpg" height="1" width="0.81" scale="1 1 1"></a-image>
+                      <a-text class="description" baseline="top" width="1"
+                          font="roboto" position="-0.4 -0.5 0.001"
+                          value="Ayn Rand\nc. 1933\n\nThe very first picture taken of Ayn Rand at her writing desk, which was a gift to her from her husband, Frank O’Connor.\n\nPhotographic print on paper\nAyn Rand Photograph Collection"
+                          align="left" color="black"></a-text>
+          </a-entity>
+          <a-entity class="clickable" id="3.3.1.jpg" geometry="primitive: plane; width: 4.72; height: 0.79" scale="0.8 0.8 0.8" visible="true" position="6.19 2.27 -16.66" rotation="0 -90 0"
+          material="src: #3.3.1.jpg;transparent: true; shader: standard;"  shadow="cast:  false;  receive:  false" depth-material
+          animation__mouseenterscale="property: scale; to: 1 1 1; dur: 300; startEvents: mouseenter"
+          animation__mouseleavescale="property: scale; to: 0.8 0.8 0.8; dur: 300; startEvents: mouseleave"
+          toggle-handler="target: #3.3.1.infopanel;"
+          ></a-entity>
+          <a-entity id="#3.3.1.infopanel"
+              position="5.9 2.27 -16.66" rotation="0 -90 0"
+              scale="1 1 1"  visible="true" shadow="cast: true">
+                  <a-image src="#infopanel-background" height="2" width="4"></a-image>
+                      <a-text class="title"  font="roboto"
+                          position="0 0.893 0.001"  width="3"
+                          value="Panoramic Photograph of Hollywood"
+                          align="center" color="#595a5a" anchor="center" baseline="top" height="0.02" wrap-count="30"></a-text>
+                      <a-image  position="0 0.253 0.001" src="#3.3.1.jpg" height="0.79" width="4.72" scale="0.8 0.8 0.8"></a-image>
+                      <a-text class="description" baseline="top" width="3"
+                          font="roboto" position="-1.413 -0.254 0.001"
+                          value="c. 1930s\n\nThe sweep of the Los Angeles district known as Hollywood.\nFrom 1926 to 1933, she occupied six apartments and moved her writing desk at least 2 times. She began writing the final draft of her first novel, We the Living, while living in what is now the City of West Hollywood.\n\nPhotographic print on paper\nCourtesy Library of Congress"
+                          align="left" color="black" wrap-count="80"></a-text>
+          </a-entity>
+
+          <a-text id="#3.4.title" class="title"  font="roboto"
+              position="2.37 3.119 -15.0" rotation="0 90 0"
+              width="2"
+              value="Early Hollywood Years"
+              align="left" color="#000000" anchor="left" baseline="top" height="0.02" wrap-count="20"></a-text>
+
+          <a-text id="#3.4.text" class="description" baseline="top" width="1" wrap-count="30"
+              font="roboto" position="2.37 3.113 -13.95" rotation="0 90 0"
+              value="Ayn Rand arrived in New York City in February 1926. She spent the next six months with her relatives in Chicago, obtained an extension to her visa, and then left for Hollywood to pursue a career as a screenwriter.\n\nOn Rand's second day in Hollywood, Cecil B. DeMille saw her standing at the gate of his studio, offered her a ride to the set of his movie 'The King of Kings', and gave her a job, first as an extra, then as a script reader. During the next week at the studio, she met an actor, Frank O'Connor, whom she married in 1929; they were married until his death fifty years later.\n\nAfter struggling for several years at various nonwriting jobs, including one in the wardrobe department at the RKO Radio Pictures, Inc., she sold her first screenplay, 'Red Pawn', to Universal Pictures in 1932 and saw her first stage play produced in Hollywood as 'Woman on Trial', and then later on Broadway as 'Night of January 16th'."
+              align="left" color="black"></a-text>
+
+          <a-entity class="clickable" id="3.5.1.jpg" geometry="primitive: plane; width: 0.79; height: 0.80" scale="0.8 0.8 0.8" visible="true" position="2.37 2.27 -15.36" rotation="0 90 0"
+          material="src: #3.5.1.jpg;transparent: true; shader: standard;"  shadow="cast:  false;  receive:  false" depth-material
+          animation__mouseenterscale="property: scale; to: 1 1 1; dur: 300; startEvents: mouseenter"
+          animation__mouseleavescale="property: scale; to: 0.8 0.8 0.8; dur: 300; startEvents: mouseleave"
+          toggle-handler="target: #3.5.1.infopanel;"
+          ></a-entity>
+          <a-entity id="#3.5.1.infopanel"
+          position="2.38 2.27 -15.36" rotation="0 90 0"
+              scale="1 1 1"  visible="true" shadow="cast: true">
+                  <a-image src="#infopanel-background" height="2" width="2"></a-image>
+                      <a-text class="title"  font="roboto"
+                          position="0 0.893 0.001"  width="2"
+                          value="Map of Hollywood"
+                          align="center" color="#595a5a" anchor="center" baseline="top" height="0.02" wrap-count="20"></a-text>
+                      <a-image  position="0 0.253 0.001" src="#3.5.1.jpg" height="0.8" width="0.79" scale="1 1 1"></a-image>
+                      <a-text class="description" baseline="top" width="1.5"
+                          font="roboto" position="-0.743 -0.254 0.001"
+                          value="c. 1930s\n\nThis map of Hollywood, created for tourists visiting Los Angeles, illustrates some of the neighborhoods in which Ayn Rand lived and worked. Her first residence, the Hollywood Studio Club was located in vicinity of Paramount Studios. Also shown is Grauman’s Chinese Theater, location of the first public screening of The King of Kings, directed by Cecil B. DeMille, a premiere she and her husband, Frank O’Connor, attended.\nThese and other locations are depicted in photographs displayed along the wall and to the right of the map.\n\nPhotographic print on paper\nCourtesy Library of Congress"
+                          align="left" color="black" wrap-count="60"></a-text>
+          </a-entity>
+
+          <a-entity class="clickable" id="3.6.1.jpg" geometry="primitive: plane; width: 1.23; height: 0.80" scale="0.8 0.8 0.8" visible="true" position="2.37 2.27 -16.48" rotation="0 90 0"
+          material="src: #3.6.1.jpg;transparent: true; shader: standard;"  shadow="cast:  false;  receive:  false" depth-material
+          animation__mouseenterscale="property: scale; to: 1 1 1; dur: 300; startEvents: mouseenter"
+          animation__mouseleavescale="property: scale; to: 0.8 0.8 0.8; dur: 300; startEvents: mouseleave"
+          toggle-handler="target: #3.6.1.infopanel;"
+          ></a-entity>
+          <a-entity id="#3.6.1.infopanel"
+          position="2.39 2.27 -16.48" rotation="0 90 0"
+          scale="1 1 1"  visible="true" shadow="cast: true">
+                  <a-image src="#infopanel-background" height="2" width="2"></a-image>
+                      <a-text class="title"  font="roboto"
+                          position="0 0.893 0.001"  width="2"
+                          value="Hollywood Studio Club: Early Writings"
+                          align="center" color="#595a5a" anchor="center" baseline="top" height="0.02" wrap-count="20"></a-text>
+                      <a-image  position="0 0.091 0.001" src="#3.6.1.jpg" height="0.8" width="1.23" scale="1 1 1"></a-image>
+                      <a-text class="description" baseline="top" width="1.5"
+                          font="roboto" position="-0.778 -0.455 0.001"
+                          value="Ayn Rand\nc. 1927\nLocated near Paramount Picture Studios\n\nA page from Ayn Rand’s “Demille Notebook” showing a mixture of film poster titles in Russian and English. Ayn Rand is photographed on the balcony of her room in the Hollywood Studio Club, a facility created for young women seeking to enter the motion picture industry.\n\nPhotographic print on paper\nAyn Rand Photograph Collection"
+                          align="left" color="black" wrap-count="60"></a-text>
+          </a-entity>
+
+          <a-entity class="clickable" id="3.7.1.jpg" geometry="primitive: plane; width: 1.02; height: 0.80" scale="0.8 0.8 0.8" visible="true" position="2.37 2.27 -17.67" rotation="0 90 0"
+          material="src: #3.7.1.jpg;transparent: true; shader: standard;"  shadow="cast:  false;  receive:  false" depth-material
+          animation__mouseenterscale="property: scale; to: 1 1 1; dur: 300; startEvents: mouseenter"
+          animation__mouseleavescale="property: scale; to: 0.8 0.8 0.8; dur: 300; startEvents: mouseleave"
+          toggle-handler="target: #3.7.1.infopanel;"
+          ></a-entity>
+          <a-entity id="#3.7.1.infopanel"
+          position="2.40 2.27 -17.67" rotation="0 90 0"
+              scale="1 1 1"  visible="true" shadow="cast: true">
+                  <a-image src="#infopanel-background" height="2" width="2"></a-image>
+                      <a-text class="title"  font="roboto"
+                          position="0 0.893 0.001"  width="2"
+                          value="Premiere of 'The King of Kings' Grauman’s Chinese Theater"
+                          align="center" color="#595a5a" anchor="center" baseline="top" height="0.02" wrap-count="20"></a-text>
+                      <a-image  position="0 -0.041 0.001" src="#3.7.1.jpg" height="0.8" width="1.02" scale="1 1 1"></a-image>
+                      <a-text class="description" baseline="top" width="1.5"
+                          font="roboto" position="-0.705 -0.504 0.001"
+                          value="1927\nLocated on Hollywood Blvd.\n\nThis aerial view of Hollywood Blvd captures the excitement of a Hollywood premiere. Ayn Rand was employed for more than six months as a film extra during the motion picture’s production. She and her future husband, Frank O’Connor, attended the event.\n\nPhotographic print on paper\nAyn Rand Archives"
+                          align="left" color="black" wrap-count="60"></a-text>
+          </a-entity>
+
+          <a-entity class="clickable" id="3.8.1.jpg" geometry="primitive: plane; width: 0.93; height: 0.80" scale="0.8 0.8 0.8" visible="true" position="2.37 2.27 -18.71" rotation="0 90 0"
+          material="src: #3.8.1.jpg;transparent: true; shader: standard;"  shadow="cast:  false;  receive:  false" depth-material
+          animation__mouseenterscale="property: scale; to: 1 1 1; dur: 300; startEvents: mouseenter"
+          animation__mouseleavescale="property: scale; to: 0.8 0.8 0.8; dur: 300; startEvents: mouseleave"
+          toggle-handler="target: #3.8.1.infopanel;"
+          ></a-entity>
+          <a-entity id="#3.8.1.infopanel" class="clickable"
+          position="2.41 2.27 -18.1" rotation="0 90 0"
+              scale="1 1 1"  visible="true" shadow="cast: true">
+                  <a-image src="#infopanel-background" height="2" width="2"></a-image>
+                      <a-text class="title"  font="roboto"
+                          position="0 0.893 0.001"  width="2"
+                          value="A Sunday Drive in California"
+                          align="center" color="#595a5a" anchor="center" baseline="top" height="0.02" wrap-count="20"></a-text>
+                      <a-image  position="0 0.096 0.001" src="#3.8.1.jpg" height="0.8" width="0.93" scale="1 1 1"></a-image>
+                      <a-text class="description" baseline="top" width="1.5"
+                          font="roboto" position="-0.664 -0.41 0.001"
+                          value="Frank O’Connor\nAyn Rand\nc. 1928\nPosed on a large oak tree, likely location, Hollywood Hills\n\nThe O’Connor’s often devoted Sundays to to exploring the Southern California region surrounding Los Angeles. Their personal photograph collection contains many images of road trips, a pastime typical of young people working within the film industry.\n\nPhotographic print on paper\nAyn Rand Archives"
+                          align="left" color="black" wrap-count="60"></a-text>
+          </a-entity>
+
+
+          <a-entity class="clickable" id="3.9.1.jpg" geometry="primitive: plane; width: 0.48; height: 0.80" scale="0.8 0.8 0.8" visible="true" position="2.37 2.27 -19.49" rotation="0 90 0"
+          material="src: #3.9.1.jpg;transparent: true; shader: standard;"  shadow="cast:  false;  receive:  false" depth-material
+          animation__mouseenterscale="property: scale; to: 1 1 1; dur: 300; startEvents: mouseenter"
+          animation__mouseleavescale="property: scale; to: 0.8 0.8 0.8; dur: 300; startEvents: mouseleave"
+          toggle-handler="target: #3.9.1.infopanel;"
+          ></a-entity>
+          <a-entity id="#3.9.1.infopanel" class="clickable"
+          position="2.42 2.27 -18.70" rotation="0 90 0"
+              scale="1 1 1"  visible="true" shadow="cast: true">
+                  <a-image src="#infopanel-background" height="2" width="2"></a-image>
+                      <a-text class="title"  font="roboto"
+                          position="0.089 0.205 0.001"  width="2"
+                          value="RKO Radio\nPicture\nStudios"
+                          align="left" color="#595a5a" anchor="left" baseline="top" height="0.02" wrap-count="20"></a-text>
+                      <a-image  position="-0.409 0.324 0.001" src="#3.9.1.jpg" height="0.80" width="0.48" scale="1.5 1.5 1.5"></a-image>
+                      <a-text class="description" baseline="top" width="1.5"
+                          font="roboto" position="-0.768 -0.359 0.001"
+                          value="Ayn Rand\nc. 1929\nLocation central Hollywood\n\nAyn Rand is depicted on the rooftop her her Gower St. apartment, directly across from the building housing the RKO studio wardrobe department, where she work for near three years. During this period she would continue developing her first novel, We the Living, as well as an original screen story based on an early novella called Red Pawn.\n\nPhotographic print on paper\nAyn Rand Archives"
+                          align="left" color="black" wrap-count="60"></a-text>
+          </a-entity>
+
+          <!-- 4 -->
+
+          <a-text id="#4.1.title" class="title"  font="roboto"
+          position="-0.386 3.154 -24.45" rotation="0 0 0"
+              width="2"
+              value="New York Years"
+              align="left" color="#000000" anchor="left" baseline="top" height="0.02" wrap-count="20"></a-text>
+
+          <a-text id="#4.1.text" class="description" baseline="top" width="1.5" wrap-count="40"
+              font="roboto" position="-0.351 2.956 -24.45" rotation="0 0 0"
+              value="Ayn Rand arrived in New York City in February 1926. She spent the next six months with her relatives in Chicago, obtained an extension to her visa, and then left for Hollywood to pursue a career as a screenwriter.\n\nOn Rand's second day in Hollywood, Cecil B. DeMille saw her standing at the gate of his studio, offered her a ride to the set of his movie 'The King of Kings', and gave her a job, first as an extra, then as a script reader. During the next week at the studio, she met an actor, Frank O'Connor, whom she married in 1929; they were married until his death fifty years later.\n\nAfter struggling for several years at various nonwriting jobs, including one in the wardrobe department at the RKO Radio Pictures, Inc., she sold her first screenplay, 'Red Pawn', to Universal Pictures in 1932 and saw her first stage play produced in Hollywood as 'Woman on Trial', and then later on Broadway as 'Night of January 16th'."
+              align="left" color="black"></a-text>
+
+              <a-text id="#4.1.2.title" class="title"  font="roboto"
+              position="1.56 3.186 -24.45" rotation="0 0 0"
+                  width="2"
+                  value="New York Interlude"
+                  align="left" color="#000000" anchor="left" baseline="top" height="0.02" wrap-count="20"></a-text>
+
+              <a-text id="#4.1.2.text" class="description" baseline="top" width="2" wrap-count="50"
+                  font="roboto" position="1.591 3.017 -24.45" rotation="0 0 0"
+                  value="Ayn Rand’s first novel, We the Living, was completed in 1934 but was rejected by numerous publishers, until The Macmillan Company in the United States and Cassells and Company in England published the book in 1936. The most autobiographical of her novels, it was based on her years under Soviet tyranny. Its theme was the evil of dictatorship.\n\nIn 1934, Ayn Rand and her husband moved from Hollywood to New York City in order to work on a Broadway production of Night of January 16th. She began writing The Fountainhead in 1935. In the character of the architect Howard Roark, she presented for the first time the kind of hero whose depiction was the chief goal of her writing: the ideal man, man as 'he could be and ought to be.'\n\nIn 1937, Ayn Rand took a break from The Fountainhead in order to write a new work originally entitled, 'Ego', and later renamed, Anthem.\n\nThe Fountainhead was rejected by twelve publishers but finally accepted by the Bobbs-Merrill Company. When published in 1943, it made history by becoming a best seller through word-of-mouth two years later, and gained for its author lasting recognition as a champion of individualism."
+                  align="left" color="black"></a-text>
+
+
+          <a-entity class="clickable" id="4.2.1.mp4" geometry="primitive: plane; width: 1.6; height: 0.9" scale="1 1 1" visible="true" position="4.839 2.4 -24.45" rotation="0 0 0"
+          material="shader: flat;src: #4.2.1.mp4"  shadow="cast:  false;  receive:  false" play-on-click></a-entity>
+          <a-text id="#4.2.1.title" class="title"  font="roboto"
+              position="4.815 3.1 -24.45" rotation="0 0 0"
+              width="2"
+              value="New York City"
+              align="center" color="#000000" anchor="center" baseline="top" height="0.02" wrap-count="20"></a-text>
+
+          <a-text id="#4.2.1.text" class="description" baseline="top" width="1.6" wrap-count="50"
+              font="roboto" position="4.037 1.9 -24.45" rotation="0 0 0"
+              value="c. 1930s\nThis shot of the skyline of lower Manhattan captures the dynamic skyline of the city, which would be celebrated in The Fountainhead.\n\nMotion picture plates, unidentified source.\n\nAyn Rand Archives"
+              align="left" color="black"></a-text>
+
+          <a-entity id="4.3.1.jpg" geometry="primitive: plane; width: 1.45; height: 1" scale="0.8 0.8 0.8" visible="true" position="6.19 2.25 -23.58" rotation="0 -90 0"
+          material="src: #4.3.1.jpg;transparent: true; shader: standard;"  shadow="cast:  false;  receive:  false" depth-material></a-entity>
+          <a-entity id="4.3.2.jpg" geometry="primitive: plane; width: 0.89; height: 1" scale="0.8 0.8 0.8" visible="true" position="6.19 2.25 -22.22" rotation="0 -90 0"
+          material="src: #4.3.2.jpg;transparent: true; shader: standard;"  shadow="cast:  false;  receive:  false" depth-material></a-entity>
+
+          <a-entity class="clickable" id="4.3.3.jpg" geometry="primitive: plane; width: 1.04; height: 1" scale="0.8 0.8 0.8" visible="true" position="6.19 2.25 -21.04" rotation="0 -90 0"
+          material="src: #4.3.3.jpg;transparent: true; shader: standard;"  shadow="cast:  false;  receive:  false" depth-material
+          animation__mouseenterscale="property: scale; to: 1 1 1; dur: 300; startEvents: mouseenter"
+          animation__mouseleavescale="property: scale; to: 0.8 0.8 0.8; dur: 300; startEvents: mouseleave"
+          toggle-handler="target: #4.3.3.infopanel;"
+          ></a-entity>
+
+          <a-entity id="#4.3.3.infopanel"
+            position="5.7 2.25 -21.24" rotation="0 -90 0"
+            scale="1 1 1"  visible="true" shadow="cast: true">
+                  <a-image src="#infopanel-background" height="2" width="2"></a-image>
+                      <a-text class="title"  font="roboto"
+                          position="0 0.9 0.001"  width="2"
+                          value="Empire State Building Under Construction"
+                          align="center" color="#595a5a" anchor="center" baseline="top" height="0.02" wrap-count="20"></a-text>
+                      <a-image  position="-0.541 0.043 0.001" src="#4.3.1.jpg" height="1" width="1.45" scale="0.5 0.5 0.5"></a-image>
+                      <a-image  position="0.1 0.043 0.001" src="#4.3.2.jpg" height="1" width="0.89" scale="0.5 0.5 0.5"></a-image>
+                      <a-image  position="0.645 0.043 0.001" src="#4.3.3.jpg" height="1" width="1.04" scale="0.5 0.5 0.5"></a-image>
+                      <a-text class="description" baseline="top" width="1.5"
+                          font="roboto" position="-0.737 -0.458 0.001"
+                          value="Lewis W. Hine\nPhotographer\nc. 1930s\n\nThree images taken by the noted documentary photographer.\n\nIncluded at left is “Icarus,” an anonymous rigger. This image is featured in the book, Men at Work, a publication acquired by Ayn Rand during the writing of The Fountainhead.\n\nAyn Rand Archives"
+                          align="left" color="black" wrap-count="60"></a-text>
+          </a-entity>
+
+          <a-entity class="clickable" id="4.5.1.jpg" geometry="primitive: plane; width: 0.66; height: 1" scale="0.8 0.8 0.8" visible="true" position="5.619 2.25 -20.089" rotation="0 -155.2 0"
+          material="src: #4.5.1.jpg;transparent: true; shader: standard;"  shadow="cast:  false;  receive:  false" depth-material
+          animation__mouseenterscale="property: scale; to: 1 1 1; dur: 300; startEvents: mouseenter"
+          animation__mouseleavescale="property: scale; to: 0.8 0.8 0.8; dur: 300; startEvents: mouseleave"
+          toggle-handler="target: #4.5.1.infopanel;"
+          ></a-entity>
+          <a-entity id="#4.5.1.infopanel" class="clickable"
+          position="5.196 2.25 -20.14" rotation="0 -155.2 0"
+            scale="1 1 1"  visible="true" shadow="cast: true">
+                  <a-image src="#infopanel-background" height="2" width="2"></a-image>
+                      <a-text class="title"  font="roboto"
+                        position="-0.669 0.9 0.001"  width="2"
+                          value="The Fountainhead"
+                          align="left" color="#595a5a" anchor="left" baseline="top" height="0.02" wrap-count="20"></a-text>
+                      <a-image  position="-0.409 -0.128 0.001" src="#4.5.1.jpg" height="1" width="0.66" scale="1.5 1.5 1.5"></a-image>
+                      <a-text class="description" baseline="top" width="0.7"
+                          font="roboto" position="0.202 -0.169 0.001"
+                          value="cover\n1943\n\nOriginal Bobbs-Merrill cover art, repurposed for a commemorative edition in the 1990s.\n\nPhotographic print on paper.\nAyn Rand Archives"
+                          align="left" color="black" wrap-count="20"></a-text>
+          </a-entity>
+
+
+          <a-entity class="clickable" id="4.6.1.jpg" geometry="primitive: plane; width: 0.48; height: 0.68" scale="0.8 0.8 0.8" visible="true" position="1.97 2.26 -19.1" rotation="0 180 0"
+          material="src: #4.6.1.jpg;transparent: true; shader: standard;"  shadow="cast:  false;  receive:  false" depth-material
+          animation__mouseenterscale="property: scale; to: 1 1 1; dur: 300; startEvents: mouseenter"
+          animation__mouseleavescale="property: scale; to: 0.8 0.8 0.8; dur: 300; startEvents: mouseleave"
+          toggle-handler="target: #4.6.1.infopanel;"
+          ></a-entity>
+          <a-entity id="#4.6.1.infopanel"
+          position="1.216 2.26 -19.2" rotation="0 180 0"
+              scale="1 1 1"  visible="true" shadow="cast: true">
+                  <a-image src="#infopanel-background" height="2" width="2"></a-image>
+                      <a-text class="title"  font="roboto"
+                          position="0 0.827 0.001"  width="2"
+                          value="Anthem"
+                          align="center" color="#595a5a" anchor="center" baseline="top" height="0.02" wrap-count="20"></a-text>
+                      <a-image  position="-0.377 -0.114 0.001" src="#4.6.1.jpg" height="0.68" width="0.48" scale="2 2 2"></a-image>
+                      <a-text class="description" baseline="top" width="0.7" wrap-count="25"
+                          font="roboto" position="0.216 -0.081 0.001"
+                          value="cover\n1938/1953\nU. K. Cassell & Co. Edition, a British edition.\n\nOriginally submitted to American publishers, the novel was rejected (in part) because Ayn Rand 'did not understand socialism.' The first American edition was published in 1946.\n\nPhotographic print on paper.\nAyn Rand Archives"
+                          align="left" color="black"></a-text>
+          </a-entity>
+
+          <a-entity class="clickable" id="4.7.1.jpg" geometry="primitive: plane; width: 0.96; height: 0.68" scale="0.8 0.8 0.8" visible="true" position="1.18 2.26 -19.1" rotation="0 180 0"
+          material="src: #4.7.1.jpg;transparent: true; shader: standard;"  shadow="cast:  false;  receive:  false" depth-material
+          animation__mouseenterscale="property: scale; to: 1 1 1; dur: 300; startEvents: mouseenter"
+          animation__mouseleavescale="property: scale; to: 0.8 0.8 0.8; dur: 300; startEvents: mouseleave"
+          toggle-handler="target: #4.7.1.infopanel;"
+          ></a-entity>
+          <a-entity id="#4.7.1.infopanel"
+          position="0.488 2.26 -19.25" rotation="0 180 0"
+              scale="1 1 1"  visible="true" shadow="cast: true">
+                  <a-image src="#infopanel-background" height="2" width="2"></a-image>
+                      <a-text class="title"  font="roboto"
+                          position="0 0.82714 0.001"  width="2"
+                          value="Writing 'Ego' & Plotting 'Second Hand Lives'"
+                          align="center" color="#595a5a" anchor="center" baseline="top" height="0.02" wrap-count="20"></a-text>
+                      <a-image  position="0.39 0.082 0.001" src="#4.7.1.jpg" height="0.68" width="0.96" scale="1 1 1"></a-image>
+                      <a-text class="description" baseline="top" width="1.75" wrap-count="50"
+                          font="roboto" position="-0.862 0.148 0.001"
+                          value="1937\nFrank O’Connor\nAyn Rand\nStony Brook, Connecticut\n\nFacsimile on paper\nAyn Rand Archives\n\n'. . .  Anthem took maybe a few weeks. That wasn‘t difficult. But it was mainly as rest from working on the plot [of The Fountainhead]. And I remember sitting on the water . . . there was a tiny little raft . . . it‘s, you know, on Long Island Sound, so that we had a somewhat like a beach or swimming, and I remember sitting on that swimming raft and thinking out the plot.'\n\nAyn Rand Biographical Interviews"
+                          align="left" color="black"></a-text>
+          </a-entity>
+
+          <a-entity id="4.8.1.jpg" geometry="primitive: plane; width: 1.13; height: 0.68" scale="0.8 0.8 0.8" visible="true" position="0.07 2.26 -19.1" rotation="0 180 0"
+          material="src: #4.8.1.jpg;transparent: true; shader: standard;"  shadow="cast:  false;  receive:  false" depth-material></a-entity>
+
+          <!-- 5 -->
+          <a-text id="#5.1.1.title" class="title"  font="roboto"
+              position="-0.690 3.249 -23.53" rotation="0 -90 0"
+              width="2"
+              value="Return to Los Angeles"
+              align="center" color="#000000" anchor="center" baseline="top" height="0.02" wrap-count="15"></a-text>
+
+            <a-text id="#5.1.2.title" class="title"  font="roboto"
+                  position="-0.690 2.35 -23.56" rotation="0 -90 0"
+                  width="2"
+                  value="Von Sternberg House"
+                  align="center" color="#000000" anchor="center" baseline="top" height="0.02" wrap-count="20"></a-text>
+
+          <a-text id="#5.1.2.text" class="description" baseline="top" width="1.7" wrap-count="50"
+              font="roboto" position="-0.690 2.103 -24.39" rotation="0 -90 0"
+              value="Ayn Rand returned to Hollywood in late 1943 to write the screenplay for the Warner Bros. film production of The Fountainhead, but wartime restrictions delayed production until 1948. Working part-time as a screenwriter for Hal Wallis Productions, she began her final novel, Atlas Shrugged, in 1946.\n\nShortly after their return to Los Angeles, Frank O’Connor began looking for residential/investment property. After considering Frank Lloyd Wright’s Storer House, located six blocks from the small West Hollywood apartment in which Rand has worked on We the Living in 1933, he selected a house by Richard Neutra.\n\nOriginally built for director Josef von Sternberg, the steel-and-glass house was located on a thirteen acres property in the Chatsworth area of the San Fernando Valley."
+              align="left" color="black"></a-text>
+
+          <a-entity class="clickable" id="5.2.1.mp4" geometry="primitive: plane; width: 1.6; height: 0.9" scale="1 1 1" visible="true" position="-3.544 2.4 -24.45" rotation="0 0 0"
+          material="shader: flat;src: #5.2.1.mp4"  shadow="cast:  false;  receive:  false" play-on-click ></a-entity>
+          <a-text id="#5.2.1.title" class="title"  font="roboto"
+              position="-3.544 3.1 -24.45" rotation="0 0 0"
+              width="2"
+              value="San Fernando Valley, CA"
+              align="center" color="#000000" anchor="center" baseline="top" height="0.02" wrap-count="20"></a-text>
+
+          <a-text id="#5.2.1.text" class="description" baseline="top" width="1.6" wrap-count="50"
+              font="roboto" position="-4.348 1.9 -24.45" rotation="0 0 0"
+              value="c. 1940s\nThis motion picture footage (process plate) looks south from Devonshire St., in the semi-rural Chatsworth district of the San Fernando Valley. The eastern perimeter of the 14 acre ranch at 10,000 Tampa Ave. is located in the vicinity of the horizon.\n\nA landmark of mid-century modern architectural design, the house was owned by the Ayn Rand and her husband until the early 1960s. The house was demolished in the early 1970s to make room for a public school.\n\nCourtesy Pelinger Motion Picture Archives"
+              align="left" color="black"></a-text>
+
+          <a-entity class="clickable" id="5.3.1.jpg" geometry="primitive: plane; width: 1.27; height: 1" scale="0.8 0.8 0.8" visible="true" position="-6.19 2.27 -23.17" rotation="0 90 0"
+          material="src: #5.3.1.jpg;transparent: true; shader: standard;"  shadow="cast:  false;  receive:  false" depth-material
+          animation__mouseenterscale="property: scale; to: 1 1 1; dur: 300; startEvents: mouseenter"
+          animation__mouseleavescale="property: scale; to: 0.8 0.8 0.8; dur: 300; startEvents: mouseleave"
+          toggle-handler="target: #5.3.1.infopanel;"
+          ></a-entity>
+          <a-entity id="#5.3.1.infopanel"
+          position="-6.115 2.27 -23.17" rotation="0 90 0"
+              scale="1 1 1"  visible="true" shadow="cast: true">
+                  <a-image src="#infopanel-background" height="2" width="2"></a-image>
+                      <a-text class="title"  font="roboto"
+                          position="0 0.82714 0.001"  width="2"
+                          value="Von Sternberg House"
+                          align="center" color="#595a5a" anchor="center" baseline="top" height="0.02" wrap-count="20"></a-text>
+                      <a-image  position="0 0 0.001" src="#5.3.1.jpg" height="1" width="1.27" scale="1 1 1"></a-image>
+                      <a-text class="description" baseline="top" width="1" wrap-count="40"
+                          font="roboto" position="-0.638 -0.575 0.001"
+                          value="Julius Shulman\nPhotographer\n1947\n\nExterior front, driveway and moat.\n\nFacsimile on paper.\nAyn Rand Archives"
+                          align="left" color="black"></a-text>
+          </a-entity>
+
+          <a-entity class="clickable" id="5.4.1.jpg" geometry="primitive: plane; width: 1.27; height: 1" scale="0.8 0.8 0.8" visible="true" position="-6.19 2.27 -21.08" rotation="0 90 0"
+          material="src: #5.4.1.jpg;transparent: true; shader: standard;"  shadow="cast:  false;  receive:  false" depth-material
+          animation__mouseenterscale="property: scale; to: 1 1 1; dur: 300; startEvents: mouseenter"
+          animation__mouseleavescale="property: scale; to: 0.8 0.8 0.8; dur: 300; startEvents: mouseleave"
+          toggle-handler="target: #5.4.1.infopanel;"
+          ></a-entity>
+          <a-entity id="#5.4.1.infopanel"
+          position="-6.115 2.27 -21.08" rotation="0 90 0"
+              scale="1 1 1"  visible="true" shadow="cast: true">
+                  <a-image src="#infopanel-background" height="2" width="2"></a-image>
+                      <a-text class="title"  font="roboto"
+                          position="0 0.82714 0.001"  width="2"
+                          value="Von Sternberg House"
+                          align="center" color="#595a5a" anchor="center" baseline="top" height="0.02" wrap-count="20"></a-text>
+                      <a-image  position="0 0 0.001" src="#4.7.1.jpg" height="1" width="1.27" scale="1 1 1"></a-image>
+                      <a-text class="description" baseline="top" width="1" wrap-count="40"
+                          font="roboto" position="-0.635 -0.575 0.001"
+                          value="Julius Shulman\nPhotographer\n1947\n\nLiving room from second floor.\n\nFacsimile on paper.\nAyn Rand Archives"
+                          align="left" color="black"></a-text>
+          </a-entity>
+
+          <a-entity class="clickable" id="5.5.1.jpg" geometry="primitive: plane; width: 0.63; height: 0.50" scale="0.8 0.8 0.8" visible="true" position="-5.73 2.26 -19.81" rotation="0 180 0"
+          material="src: #5.5.1.jpg;transparent: true; shader: standard;"  shadow="cast:  false;  receive:  false" depth-material
+          animation__mouseenterscale="property: scale; to: 1 1 1; dur: 300; startEvents: mouseenter"
+          animation__mouseleavescale="property: scale; to: 0.8 0.8 0.8; dur: 300; startEvents: mouseleave"
+          toggle-handler="target: #5.5.1.infopanel;"
+          ></a-entity>
+          <a-entity id="#5.5.1.infopanel"
+          position="-5.171 2.26 -19.88" rotation="0 180 0"
+              scale="1 1 1"  visible="true" shadow="cast: true">
+                  <a-image src="#infopanel-background" height="2" width="2"></a-image>
+                      <a-text class="title"  font="roboto"
+                          position="0 0.82714 0.001"  width="2"
+                          value="Von Sternberg House"
+                          align="center" color="#595a5a" anchor="center" baseline="top" height="0.02" wrap-count="20"></a-text>
+                      <a-image  position="0 0 0.001" src="#5.5.1.jpg" height="0.5" width="0.63" scale="2 2 2"></a-image>
+                      <a-text class="description" baseline="top" width="1" wrap-count="40"
+                          font="roboto" position="-0.635 -0.575 0.001"
+                          value="Julius Shulman\nPhotographer\n1947\n\nSecond floor guest room..\n\nFacsimile on paper.\nAyn Rand Archives"
+                          align="left" color="black"></a-text>
+          </a-entity>
+
+          <a-entity class="clickable" id="5.6.1.jpg" geometry="primitive: plane; width: 0.63; height: 0.50" scale="0.8 0.8 0.8" visible="true" position="-4.91 2.26 -19.81" rotation="0 180 0"
+          material="src: #5.6.1.jpg;transparent: true; shader: standard;"  shadow="cast:  false;  receive:  false" depth-material
+          animation__mouseenterscale="property: scale; to: 1 1 1; dur: 300; startEvents: mouseenter"
+          animation__mouseleavescale="property: scale; to: 0.8 0.8 0.8; dur: 300; startEvents: mouseleave"
+          toggle-handler="target: #5.6.1.infopanel;"
+          ></a-entity>
+          <a-entity id="#5.6.1.infopanel"
+          position="-4.91 2.26 -19.9" rotation="0 180 0"
+              scale="1 1 1"  visible="true" shadow="cast: true">
+                  <a-image src="#infopanel-background" height="2" width="2"></a-image>
+                      <a-text class="title"  font="roboto"
+                          position="0 0.82714 0.001"  width="2"
+                          value="Von Sternberg House"
+                          align="center" color="#595a5a" anchor="center" baseline="top" height="0.02" wrap-count="20"></a-text>
+                      <a-image  position="0 0 0.001" src="#5.6.1.jpg" height="0.5" width="0.63" scale="1 1 1"></a-image>
+                      <a-text class="description" baseline="top" width="1" wrap-count="40"
+                          font="roboto" position="-0.635 -0.575 0.001"
+                          value="Julius Shulman\nPhotographer\n1947\n\nSecond floor guest room.\n\nFacsimile on paper.\nAyn Rand Archives"
+                          align="left" color="black"></a-text>
+          </a-entity>
+
+          <a-entity id="5.7.1.jpg" geometry="primitive: plane; width: 0.69; height: 0.5" scale="0.8 0.8 0.8" visible="true" position="-3.77 2.26 -19.81" rotation="0 180 0"
+          material="src: #5.7.1.jpg;transparent: true; shader: standard;"  shadow="cast:  false;  receive:  false" depth-material></a-entity>
+          <a-entity id="5.7.2.jpg" geometry="primitive: plane; width: 0.35; height: 0.50" scale="0.8 0.8 0.8" visible="true" position="-3.2 2.26 -19.81" rotation="0 180 0"
+          material="src: #5.7.2.jpg;transparent: true; shader: standard;"  shadow="cast:  false;  receive:  false" depth-material></a-entity>
+          <a-entity id="5.7.3.jpg" geometry="primitive: plane; width: 0.69; height: 0.50" scale="0.8 0.8 0.8" visible="true" position="-3.78 1.60 -19.81" rotation="0 180 0"
+          material="src: #5.7.3.jpg;transparent: true; shader: standard;"  shadow="cast:  false;  receive:  false" depth-material></a-entity>
+          <a-entity id="5.7.4.jpg" geometry="primitive: plane; width: 0.70; height: 0.5" scale="0.8 0.8 0.8" visible="true" position="-2.96 1.60 -19.81" rotation="0 180 0"
+          material="src: #5.7.4.jpg;transparent: true; shader: standard;"  shadow="cast:  false;  receive:  false" depth-material></a-entity>
+
+          <a-entity class="clickable" id="5.7.5.jpg" geometry="primitive: plane; width: 0.35; height: 0.5" scale="0.8 0.8 0.8" visible="true" position="-2.78 2.26 -19.81" rotation="0 180 0"
+          material="src: #5.7.5.jpg;transparent: true; shader: standard;"  shadow="cast:  false;  receive:  false" depth-material
+          animation__mouseenterscale="property: scale; to: 1 1 1; dur: 300; startEvents: mouseenter"
+          animation__mouseleavescale="property: scale; to: 0.8 0.8 0.8; dur: 300; startEvents: mouseleave"
+          toggle-handler="target: #5.7.5.infopanel;"
+          ></a-entity>
+          <a-entity id="#5.7.5.infopanel"
+          position="-2.78 2.26 -19.83" rotation="0 180 0"
+              scale="1 1 1"  visible="true" shadow="cast: true">
+                  <a-image src="#infopanel-background" height="2" width="2"></a-image>
+                      <a-text class="title"  font="roboto"
+                          position="0 0.82714 0.001"  width="2"
+                          value="Life on the Ranch"
+                          align="center" color="#595a5a" anchor="center" baseline="top" height="0.02" wrap-count="20"></a-text>
+                      <a-image  position="0 0.12 0.001" src="#5.7.5.jpg" height="0.5" width="0.35" scale="2 2 2"></a-image>
+                      <a-text class="description" baseline="top" width="1.8" wrap-count="70"
+                          font="roboto" position="-0.856 -0.431 0.001"
+                          value="Personal photographs\nc. 1940s\n\nThese five images depicts moments of life on the Chatsworth ranch, which was cultivated commercially to produce hay and gladiolas. Frank O’Connor also raised chickens and peacocks. The peacocks were housed in a pen without a roof, which enabled to clacking birds to fly freely about the property. The birds’ peacock blue color was a favorite of his wife’s.\n\nFacsimile on paper.\nAyn Rand Archives"
+                          align="left" color="black"></a-text>
+          </a-entity>
+
+          <!-- 6 -->
+          <a-text id="#6.1.1.title" class="title"  font="roboto"
+              position="-4.337 3.181 -19.69" rotation="0 0 0"
+              width="3"
+              value="The Writer's Studio:\n Atlas Shrugged"
+              align="center" color="#000000" anchor="center" baseline="top" height="0.02" wrap-count="25"></a-text>
+
+          <a-text id="#6.1.2.text" class="description" baseline="top" width="3" wrap-count="70"
+              font="roboto" position="-5.832 2.695 -19.69" rotation="0 0 0"
+              value="Ayn Rand described the theme of Atlas Shrugged as 'the role of the mind in man’s existence — and, as a corollary, the demonstration of a new moral philosophy: the morality of rational self-interest.'\n\nThe idea for the novel occurred to her in 1943, while discussing the philosophy of The Fountainhead with an acquaintance who insisted that Rand was obligated to enlighten her readers with a nonfiction version of her ethical philosophy. Rand countered she had already fulfilled the obligation and that her case was clear to any attentive reader of her fiction. However, she wondered aloud, 'What would happen if every creative person went on strike against such obligations?' That, she exclaimed, would make a good novel. After the discussion ended, [her husband Frank] O’Connor, who was in the room at the time, turned to her and said: 'It would make a good novel.'\n\nThe story of Atlas Shrugged concerns men and women of ability in all fields, who are oppressed by a collectivist world that refuses to recognize their value. The background is modern industrial civilization. When the story opens, New York City is crumbling . . . . living conditions are getting worse. The world’s generator is running low, but no one knows why. Against this backdrop, Rand would present and dramatize her entire philosophy."
+              align="left" color="black"></a-text>
+
+
+
+          <a-entity class="clickable" id="6.2.1.jpg" geometry="primitive: plane; width: 0.78; height: 1" scale="0.8 0.8 0.8" visible="true" position="-6.19 2.27 -18.01" rotation="0 90 0"
+          material="src: #6.2.1.jpg;transparent: true; shader: standard;"  shadow="cast:  false;  receive:  false" depth-material
+          animation__mouseenterscale="property: scale; to: 0.9 0.9 0.9; dur: 300; startEvents: mouseenter"
+          animation__mouseleavescale="property: scale; to: 0.7 0.7 0.7; dur: 300; startEvents: mouseleave"
+          toggle-handler="target: #6.2.1.infopanel;"
+          ></a-entity>
+          <a-entity id="#6.2.1.infopanel"
+          position="-6.14 2.27 -18.01" rotation="0 90 0"
+              scale="1 1 1"  visible="true" shadow="cast: true">
+                  <a-image src="#infopanel-background" height="2" width="2"></a-image>
+                      <a-text class="title"  font="roboto"
+                          position="0 0.82714 0.001"  width="2"
+                          value="January 1, 1945, 'The Strike', p.1"
+                          align="center" color="#595a5a" anchor="center" baseline="top" height="0.02" wrap-count="20"></a-text>
+                      <a-image  position="0.568 0.186 0.001" src="#6.2.1.jpg" height="1" width="0.78" scale="0.5 0.5 0.5"></a-image>
+                      <a-text class="description" baseline="top" width="1.7" wrap-count="50"
+                          font="roboto" position="-0.791 -0.139 0.001"
+                          value="andwritten notes on Atlas Shrugged\nReproduction on paper\nFrom the earliest extant notes stating the theme and meaning of “The Strike,” the original title of Atlas Shrugged.\nIn the 1940s, strikes initiated by organized labor were a well-known tactic of the American liberal left. Rand thought that it would be both dramatic and ironic to present a strike by industrialists — the “prime movers” — against a moral code that branded them as evil exploiters. Eventually, Rand dropped the original title, 'The Strike', as too journalistic sounding.\n\nAny Rand Archives"
+                          align="left" color="black"></a-text>
+          </a-entity>
+
+          <a-entity class="clickable" id="6.3.1.jpg" geometry="primitive: plane; width: 0.78; height: 1" scale="0.8 0.8 0.8" visible="true" position="-6.19 2.27 -17.14" rotation="0 90 0"
+          material="src: #6.3.1.jpg;transparent: true; shader: standard;"  shadow="cast:  false;  receive:  false" depth-material
+          animation__mouseenterscale="property: scale; to: 0.9 0.9 0.9; dur: 300; startEvents: mouseenter"
+          animation__mouseleavescale="property: scale; to: 0.7 0.7 0.7; dur: 300; startEvents: mouseleave"
+          toggle-handler="target: #6.3.1.infopanel;"
+          ></a-entity>
+          <a-entity id="#6.3.1.infopanel"
+          position="-6.145 2.27 -17.14" rotation="0 90 0"
+              scale="1 1 1"  visible="true" shadow="cast: true">
+                  <a-image src="#infopanel-background" height="2" width="2"></a-image>
+                      <a-text class="title"  font="roboto"
+                          position="0 0.82714 0.001"  width="2"
+                          value="September 2, 'The Calendar', p.1"
+                          align="center" color="#595a5a" anchor="center" baseline="top" height="0.02" wrap-count="20"></a-text>
+                      <a-image  position="0.6 0.157 0.001" src="#6.3.1.jpg" height="1" width="0.78" scale="0.5 0.5 0.5"></a-image>
+                      <a-text class="description" baseline="top" width="1.7" wrap-count="50"
+                          font="roboto" position="-0.838 -0.012 0.001"
+                          value="Handwritten manuscript, Atlas Shrugged\nReproduction on paper\n\nThe opening page of the novel is dated September 2, 1946. The expression 'Who is John Galt?' — which occurs throughout the novel — evokes the despair and futility of a world in decline.\nRand wrote her fiction in longhand. After a typist created a typescript of each sequence, Rand further revisions by hand. Of the more than 12,000 pages contained in the final handwritten manuscript, she estimated that each page was rewritten, on average, five times.\n\nAny Rand Archives"
+                          align="left" color="black"></a-text>
+          </a-entity>
+
+          <a-entity class="clickable" class="clickable" id="6.4.1.jpg" geometry="primitive: plane; width: 0.78; height: 1" scale="0.8 0.8 0.8" visible="true" position="-6.19 2.27 -16.27" rotation="0 90 0"
+          material="src: #6.4.1.jpg;transparent: true; shader: standard;"  shadow="cast:  false;  receive:  false" depth-material
+          animation__mouseenterscale="property: scale; to: 0.9 0.9 0.9; dur: 300; startEvents: mouseenter"
+          animation__mouseleavescale="property: scale; to: 0.7 0.7 0.7; dur: 300; startEvents: mouseleave"
+          toggle-handler="target: #6.4.1.infopanel;"
+          ></a-entity>
+          <a-entity id="#6.4.1.infopanel"
+          position="-6.15 2.27 -16.27" rotation="0 90 0"
+              scale="1 1 1"  visible="true" shadow="cast: true">
+                  <a-image src="#infopanel-background" height="2" width="2"></a-image>
+                      <a-text class="title"  font="roboto"
+                          position="0 0.82714 0.001"  width="2"
+                          value="October 6, 1949, p.6"
+                          align="center" color="#595a5a" anchor="center" baseline="top" height="0.02" wrap-count="20"></a-text>
+                      <a-image visible="false" position="0 0 0.001" src="#6.4.1.jpg" height="1" width="0.78" scale="0 0 0"></a-image>
+                      <a-text class="description" baseline="top" width="1.7" wrap-count="50"
+                          font="roboto" position="-0.819 0.439 0.001"
+                          value="Handwritten notes on Atlas Shrugged\nReproduction on paper\n\nThe underlined sentence in this 1949 note summarizes Rand’s philosophic goal in writing Atlas Shrugged: 'My most important job is the formulation of a rational morality of and for man, of and for his life, of and for this earth.'\n\nFollowing the 1943 publication of The Fountainhead, Rand attempted to write a nonfiction treatise on her moral philosophy, but abandoned the attempt in favor of writing Atlas Shrugged. Rand’s interest in philosophy arose primarily out of her interest in portraying the ideal man in fiction. She wanted to define the philosophical premises that would make such a character possible. Atlas Shrugged and its theme of “the mind on strike” would provide Rand further motivation to develop her philosophy. The novel would combine abstract statement, concretizing drama and the portrayal of new heroic characters.\n\nAny Rand Archives"
+                          align="left" color="black"></a-text>
+          </a-entity>
+
+          <a-entity class="clickable" id="6.5.1.jpg" geometry="primitive: plane; width: 0.77; height: 1" scale="0.8 0.8 0.8" visible="true" position="-6.19 2.27 -15.39" rotation="0 90 0"
+          material="src: #6.5.1.jpg;transparent: true; shader: standard;"  shadow="cast:  false;  receive:  false" depth-material
+          animation__mouseenterscale="property: scale; to: 0.9 0.9 0.9; dur: 300; startEvents: mouseenter"
+          animation__mouseleavescale="property: scale; to: 0.7 0.7 0.7; dur: 300; startEvents: mouseleave"
+          toggle-handler="target: #6.5.1.infopanel;"
+          ></a-entity>
+          <a-entity id="#6.5.1.infopanel"
+          position="-6.115 2.27 -15.39" rotation="0 90 0"
+              scale="1 1 1"  visible="true" shadow="cast: true">
+                  <a-image src="#infopanel-background" height="2" width="2"></a-image>
+                      <a-text class="title"  font="roboto"
+                          position="0 0.82714 0.001"  width="2"
+                          value="Undated, p.190"
+                          align="center" color="#595a5a" anchor="center" baseline="top" height="0.02" wrap-count="20"></a-text>
+                      <a-image  position="0.591 0.297 0.001" src="#6.5.1.jpg" height="1" width="0.77" scale="0.5 0.5 0.5"></a-image>
+                      <a-text class="description" baseline="top" width="1.7" wrap-count="50"
+                          font="roboto" position="-0.791 -0.033 0.001"
+                          value="Handwritten notes on Atlas Shrugged\nReproduction on paper\n\nFrom an early draft of the novel — this page of dialogue dramatizes both the theme of the novel and Rand’s final title. Hank Rearden, an industrialist struggling under the world’s moral code, listens to Francisco d’Anconia, a former copper magnate. The decision to 'shrug', and thereby let the world fall, requires a moral sanction — a sanction permitted by a radical, new code of morality. Rearden’s discovery of this new morality is dramatized in the remainder of the novel.\n\nAny Rand Archives"
+                          align="left" color="black"></a-text>
+          </a-entity>
+
+          <a-entity class="clickable" id="6.6.1.jpg" geometry="primitive: plane; width: 0.77; height: 1" scale="0.8 0.8 0.8" visible="true" position="-6.19 2.27 -14.51" rotation="0 90 0"
+          material="src: #6.6.1.jpg;transparent: true; shader: standard;"  shadow="cast:  false;  receive:  false" depth-material
+          animation__mouseenterscale="property: scale; to: 0.9 0.9 0.9; dur: 300; startEvents: mouseenter"
+          animation__mouseleavescale="property: scale; to: 0.7 0.7 0.7; dur: 300; startEvents: mouseleave"
+          toggle-handler="target: #6.6.1.infopanel;"
+          ></a-entity>
+          <a-entity id="#6.6.1.infopanel"
+          position="-6.16 2.27 -14.51" rotation="0 90 0"
+              scale="1 1 1"  visible="true" shadow="cast: true">
+                  <a-image src="#infopanel-background" height="2" width="2"></a-image>
+                      <a-text class="title"  font="roboto"
+                          position="0 0.82714 0.001"  width="2"
+                          value="July 29, 1953, Main subjects of Galt’s speech"
+                          align="center" color="#595a5a" anchor="center" baseline="top" height="0.02" wrap-count="20"></a-text>
+                      <a-image visible="false" position="0 0 0.001" src="#6.6.1.jpg" height="1" width="0.77" scale="0 0 0"></a-image>
+                      <a-text class="description" baseline="top" width="1.7" wrap-count="50"
+                          font="roboto" position="-0.874 0.366 0.001"
+                          value="Handwritten notes on Atlas Shrugged\nReproduction on paper\n\nThis note outlines the main subjects of Galt’s speech, a 35,000 word summary of Rand’s philosophy and its morality of life. The outline here covers four branches of philosophy: Metaphysics (the nature of reality); Epistemology (the nature of knowledge and its validation); Ethics (the good); Politics (the nature of a proper social system). She also lists economics, which is not a branch of philosophy. In her speech Galt explains the moral foundations of a capitalist economic system. Rand’s defense of the prime movers required that she formulate her own views on numerous philosophical issues, including the origin of values, the nature of volition, the law of identity as the bridge between metaphysics and epistemology, the finitude of space and time, and the nature of universals. When a philosophical issue arose during the writing of the novel, she would think about it for several days and then, in one or two attempts, resolve the problem.\n\nAny Rand Archives"
+                          align="left" color="black"></a-text>
+          </a-entity>
+
+          <a-entity class="clickable" id="6.7.1.jpg" geometry="primitive: plane; width: 0.77; height: 1" scale="0.8 0.8 0.8" visible="true" position="-6.19 2.27 -13.63" rotation="0 90 0"
+          material="src: #6.7.1.jpg;transparent: true; shader: standard;"  shadow="cast:  false;  receive:  false" depth-material
+          animation__mouseenterscale="property: scale; to: 0.9 0.9 0.9; dur: 300; startEvents: mouseenter"
+          animation__mouseleavescale="property: scale; to: 0.7 0.7 0.7; dur: 300; startEvents: mouseleave"
+          toggle-handler="target: #6.7.1.infopanel;"
+          ></a-entity>
+          <a-entity id="#6.7.1.infopanel"
+          position="-6.165 2.27 -13.64" rotation="0 90 0"
+              scale="1 1 1"  visible="true" shadow="cast: true">
+                  <a-image src="#infopanel-background" height="2" width="2"></a-image>
+                      <a-text class="title"  font="roboto"
+                          position="0 0.82714 0.001"  width="2"
+                          value="October 13, 1955, p.493"
+                          align="center" color="#595a5a" anchor="center" baseline="top" height="0.02" wrap-count="20"></a-text>
+                      <a-image  position="0.694 0.362 0.001" src="#6.7.1.jpg" height="1" width="0.77" scale="0.5 0.5 0.5"></a-image>
+                      <a-text class="description" baseline="top" width="1.7" wrap-count="50"
+                          font="roboto" position="-0.761 0.05 0.001"
+                          value="Handwritten notes on Atlas Shrugged\nReproduction on paper\n\nThis 1955 draft is the earliest extant, final page of Galt’s Speech, which includes the oath taken by all the strikers:\nI swear — by my life and my love of it — that I shall never live for the sake of another man nor ask another man to live for mine.\n\n Any Rand Archives"
+                          align="left" color="black"></a-text>
+          </a-entity>
+
+          <a-entity class="clickable" id="6.8.1.jpg" geometry="primitive: plane; width: 0.76; height: 1" scale="0.8 0.8 0.8" visible="true" position="-6.19 2.27 -12.75" rotation="0 90 0"
+          material="src: #6.8.1.jpg;transparent: true; shader: standard;"  shadow="cast:  false;  receive:  false" depth-material
+          animation__mouseenterscale="property: scale; to: 0.9 0.9 0.9; dur: 300; startEvents: mouseenter"
+          animation__mouseleavescale="property: scale; to: 0.7 0.7 0.7; dur: 300; startEvents: mouseleave"
+          toggle-handler="target: #6.8.1.infopanel;"
+          ></a-entity>
+          <a-entity id="#6.8.1.infopanel"
+          position="-6.17 2.27 -12.75" rotation="0 90 0"
+              scale="1 1 1"  visible="true" shadow="cast: true">
+                  <a-image src="#infopanel-background" height="2" width="2"></a-image>
+                      <a-text class="title"  font="roboto"
+                          position="0 0.82714 0.001"  width="2"
+                          value="March 20, 1957, p. 87"
+                          align="center" color="#595a5a" anchor="center" baseline="top" height="0.02" wrap-count="20"></a-text>
+                      <a-image  position="0.624 0.367 0.001" src="#6.8.1.jpg" height="1" width="0.76" scale="0.5 0.5 0.5"></a-image>
+                      <a-text class="description" baseline="top" width="1.7" wrap-count="50"
+                          font="roboto" position="-0.814 0.212 0.001"
+                          value="Handwritten manuscript, Atlas Shrugged\nReproduction on paper\n\nThis 1957 page is Rand’s last and final handwritten page of the novel. The work had taken almost fourteen years to complete. As to Ayn Rand’s personal reaction to completing the final page of the manuscript, she recounts:\nI was too dazed, in a way, to remember anything except walking into the kitchen and Frank [O’Connor] was there, and I held the last page, with the words, 'The End' and the date on it.\n\nAny Rand Archives"
+                          align="left" color="black"></a-text>
+          </a-entity>
+
+          <a-entity class="clickable"  id="6.9.1.jpg" geometry="primitive: plane; width: 1.64; height: 2.31" scale="0.7 0.7 0.7" visible="true" position="-4.70 2.264 -10.71" rotation="0 180 0"
+          material="src: #6.9.1.jpg;transparent: true; shader: standard;"  shadow="cast:  false;  receive:  false" depth-material
+          animation__mouseenterscale="property: scale; to: 0.9 0.9 0.9; dur: 300; startEvents: mouseenter"
+          animation__mouseleavescale="property: scale; to: 0.7 0.7 0.7; dur: 300; startEvents: mouseleave"
+          toggle-handler="target: #6.9.1.infopanel;"
+          ></a-entity>
+          <a-entity id="#6.9.1.infopanel"
+          position="-4.70 2.26 -10.79" rotation="0 180 0"
+              scale="1 1 1"  visible="true" shadow="cast: true">
+                  <a-image src="#infopanel-background" height="2" width="2"></a-image>
+                      <a-text class="title"  font="roboto"
+                          position="0 0.82714 0.001"  width="2"
+                          value="Atlas Shrugged cover"
+                          align="center" color="#595a5a" anchor="center" baseline="top" height="0.02" wrap-count="20"></a-text>
+                      <a-image  position="-0.328 -0.054 0.001" src="#6.9.1.jpg" height="2.31" width="1.64" scale="0.6 0.6 0.6"></a-image>
+                      <a-text class="description" baseline="top" width="0.5" wrap-count="20"
+                          font="roboto" position="0.312 -0.145 0.001"
+                          value="1957\n\nOriginal Random House cover ar design by German born George Salter, one of the most distinguished book designers of the twentieth century.\n\nPhotographic print on paper\nAny Rand Archives"
+                          align="left" color="black"></a-text>
+          </a-entity>
+
+
+          <a-entity id="6.11.jpg" geometry="primitive: plane; width: 3.52; height: 2.03" scale="1 1 1" visible="true" position="2.24 2.3 -16.66" rotation="0 -90 0"
+          material="src: #6.11.jpg;transparent: true; shader: standard;"  shadow="cast:  false;  receive:  false" depth-material></a-entity>
+
+          <!-- 7 -->
+          <a-entity class="clickable" id="7.1.1.jpg" geometry="primitive: plane; width: 1.39; height: 1.76" scale="0.8 0.8 0.8" visible="true" position="-0.48 2.3 -10.55" rotation="0 -90 0"
+          material="src: #7.1.1.jpg;transparent: true; shader: standard;"  shadow="cast:  false;  receive:  false" depth-material
+          animation__mouseenterscale="property: scale; to: 0.9 0.9 0.9; dur: 300; startEvents: mouseenter"
+          animation__mouseleavescale="property: scale; to: 0.7 0.7 0.7; dur: 300; startEvents: mouseleave"
+          toggle-handler="target: #7.1.1.infopanel;"
+          ></a-entity>
+          <a-entity id="#7.1.1.infopanel"
+          position="-0.583 2.3 -10.6" rotation="0 -90 0"
+              scale="1 1 1"  visible="true" shadow="cast: true">
+                  <a-image src="#infopanel-background" height="2" width="2"></a-image>
+                      <a-text class="title"  font="roboto"
+                          position="0 0.82714 0.001"  width="2"
+                          value="Von Sternberg House grounds"
+                          align="center" color="#595a5a" anchor="center" baseline="top" height="0.02" wrap-count="20"></a-text>
+                      <a-image  position="0 0 0.001" src="#7.1.1.jpg" height="1.76" width="1.39" scale="0.5 0.5 0.5"></a-image>
+                      <a-text class="description" baseline="top" width="1" wrap-count="40"
+                          font="roboto" position="-0.709 -0.5 0.001"
+                          value="Julius Shulman\nPhotographer\n1947\n\nFrank O’Connor and Ayn Rand walking in a birch grove.\n\nFacsimile on paper.\nAny Rand Archives"
+                          align="left" color="black"></a-text>
+          </a-entity>
+
+
+  <!-- jardim -->
+          <a-entity geometry="primitive: plane; width: 20; height: 8.27" scale="1 1 1" visible="true" position="0.49309 0.01 -6.98941" rotation="-90 0 0" material="src: #water-sand;shader: standard;repeat: 5 5"  shadow="cast:  false;  receive:  true" depth-material></a-entity>
+          <a-ocean id="#water"  scale="1 1 1" position="0.30818432569503784 0.14 -6.96529483795166" visible="true" shadow="cast: true"  ocean="width:  20;  depth:  8;  density:  100;  amplitude:  0.02;  amplitudeVariance:  0.01;  speedVariance:  1;   color:  #0658cc; opacity: 0.5;"></a-ocean>
+
+            <a-entity id="#tree1.001" gltf-model="#tree1.001" rotation="0 180 0" scale="1 1 1" position="9.535101890563965 0.2676752507686615 -11.347841262817383" visible="true" shadow="cast: true" ></a-entity>
+            <a-entity id="#tree1.002" gltf-model="#tree1.001" rotation="0 0 0" scale="1.3 1.3 1.3" position="10.164834022521973 0.26359114050865173 -8.16844367980957" visible="true" shadow="cast: true" ></a-entity>
+            <a-entity id="#tree1.003" gltf-model="#tree1.001" rotation="0 0 0"  scale="1.3 1.3 1.3" position="-9.82878 0.06068 -12.52574"  visible="true" shadow="cast: true" ></a-entity>
+            <a-entity id="#tree1.004" gltf-model="#tree1.001" rotation="0 60 0" scale="1 1 1" position="-10.18805 0.16068 -3.02889" visible="true" shadow="cast: true" ></a-entity>
+            <a-entity id="#rock1" gltf-model="#rock1" scale="1 1 1" position="8.0 0.30000001192092896 -5.0" visible="true" shadow="cast: true" ></a-entity>
+            <a-entity id="#rock2" gltf-model="#rock1" scale="1 1 1" position="-10.01913 0.41959 -9.78636" rotation="13.100679985666273 52.356310361259496 170.09054289371673" visible="true" shadow="cast: true" ></a-entity>
+            <a-entity id="#rock3" gltf-model="#rock1" scale="0.7 0.7 0.7" position="-5.06843 0.64477 -2.21026" rotation="35.442596248997596 -92.92516000329256 -74.88787565477912" visible="true" shadow="cast: true" ></a-entity>
+            <a-entity id="#grass.001" animation-mixer="timeScale:  0.8" gltf-model="#grass.001"  scale="2 2 2" position="-7.90047 -0.0472 -4.47596" visible="true" shadow="cast: false"  ></a-entity>
+            <a-entity id="#grass.002" animation-mixer gltf-model="#grass.001" scale="1.5 1.5 1.5" position="8.89129 0.15663 -6.5577" visible="true" shadow="cast: false" ></a-entity>
+            <a-entity id="#grass.003" animation-mixer="timeScale:  0.5" gltf-model="#grass.001" scale="2 1 2" position="9.79372 0.17999 -2.30126" visible="true" shadow="cast: false" ></a-entity>
+            <a-entity id="#grass.004" animation-mixer gltf-model="#grass.001" scale="2 2 2" position="5.28477 0.07888 -4.38908" rotation="0 63.95985162824892 0" visible="true" shadow="cast: false" ></a-entity>
+            <a-entity id="#grass.005" animation-mixer="timeScale:  0.9" gltf-model="#grass.001" scale="" position="-4.51758 0.12971 -2.04353" visible="true" shadow="cast: false" ></a-entity>
+            <a-entity id="#grass.006" animation-mixer gltf-model="#grass.001" scale="2 2 2" position="7.6757 0.13262 -8.51523" rotation="0 -99.62303662837189 0" visible="true" shadow="cast: false" ></a-entity>
+            <a-entity id="#grass.007" animation-mixer gltf-model="#grass.001"  scale="" position="8.85 0.03898 -1.76794" visible="true" shadow="cast: false" ></a-entity>
+            <a-entity id="#peixinho.001" animation-mixer="timeScale:  0.5" gltf-model="#peixinho.001"  scale="1 1 1" position="1.2 -0.15 0" visible="true" shadow="cast: false"  ></a-entity>
+
+
+
+            <a-entity id="#grassshadow1" geometry="primitive: cylinder; openEnded: true; radius: 0.5" scale="1 1 1" visible="true" position="9.29624 0.67869 -2.07338" rotation="0 0 0"
+            material="src: #foliage; side: double; transparent: true; depthWrite:  false;shader: standard;"  shadow depth-material
+            ></a-entity>
+
+            <a-entity id="#grassshadow2" geometry="primitive: cylinder; openEnded: true; radius: 0.5" scale="1 1 1" visible="true" position="10.30018 0.67869 -2.42379" rotation="0 -70.91097559877608 0"
+            material="src: #foliage; side: double; transparent: true; depthWrite:  false;shader: standard;"  shadow depth-material
+            ></a-entity>
+
+            <a-entity id="#grassshadow3" geometry="primitive: cylinder; openEnded: true; radius: 0.5" scale="1 1 1" visible="true" position="5.21983 0.4827 -5.16791" rotation="0 0 0"
+            material="src: #foliage; side: double; transparent: true; shader: standard;"  shadow depth-material
+            ></a-entity>
+
+            <a-entity id="#grassshadow4" geometry="primitive: cylinder; openEnded: true; radius: 0.5" scale="1 1 1" visible="true" position="5.64244 0.50407 -4.73523" rotation="0 -70.91097559877608 0"
+            material="src: #foliage; side: double; transparent: true; shader: standard;"  shadow depth-material
+            ></a-entity>
+
+            <a-entity id="#grassshadow5" geometry="primitive: cylinder; openEnded: true; radius: 0.5" scale="1 1 1" visible="true" position="-8.02681 0.4827 -5.16791" rotation="0 0 0"
+            material="src: #foliage; side: double; transparent: true; shader: standard;"  shadow depth-material
+            ></a-entity>
+
+            <a-entity id="#grassshadow6" geometry="primitive: cylinder; openEnded: true; radius: 0.5" scale="1 1 1" visible="true" position="-7.78021 0.50407 -4.51163" rotation="0 -70.91097559877608 0"
+            material="src: #foliage; side: double; transparent: true;  shader: standard;"  shadow depth-material
+            ></a-entity>
+
+            <a-entity id="#grassshadow7" geometry="primitive: cylinder; openEnded: true; radius: 0.5" scale="1 1 1" visible="true" position="9.32637 0.4827 -6.55903" rotation="0 0 0"
+            material="src: #foliage; side: double; transparent: true;  depthWrite:  false; shader: standard;"  shadow depth-material
+            ></a-entity>
+
+            <a-entity id="#grassshadow8" geometry="primitive: cylinder; openEnded: true; radius: 0.5" scale="1 1 1" visible="true" position="9.32637 0.4827 -6.55903" rotation="0 -70.91097559877608 0"
+            material="src: #foliage; side: double; transparent: true;  depthWrite:  false;shader: standard;"  shadow depth-material
+            ></a-entity>
+
+          <a-entity id="#grassshadow9" geometry="primitive: cylinder; openEnded: true; radius: 0.5" scale="1 1 1" visible="true" position="8.07422 0.4827 -8.41847" rotation="0 -70.91097559877608 0"
+            material="src: #foliage; side: double; transparent: true;  shader: standard;"  shadow depth-material
+            ></a-entity>
+
+            <a-entity id="#grassshadow10" geometry="primitive: cylinder; openEnded: true; radius: 0.5" scale="1 1 1" visible="true" position="8.58232 0.4827 -8.64699" rotation="0 -70.91097559877608 0"
+            material="src: #foliage; side: double; transparent: true;  shader: standard;"  shadow depth-material
+            ></a-entity>
+
+            <a-entity  id="#grassshadow11" geometry="primitive: cylinder; openEnded: true; radius: 0.24; height: 0.57" scale="1 1 1" visible="true" position="-4.27878 0.37422 -2.08939" rotation="0 0 0"
+            material="src: #foliage; side: double; transparent: true; shader: standard;"  shadow depth-material
+            ></a-entity>
+
+
+
+			<a-entity id="#base_desk" gltf-model="#base_desk" scale="1 1 1" position="0 0 0" visible="true" shadow="cast: true" ></a-entity>
+			<a-entity id="#desk" gltf-model="#desk" scale="1 1 1" position="0.399 1.293 -16.69" rotation="0 -90 0" visible="true" shadow="cast: true" ></a-entity>
+      <a-entity id="carpet" geometry="primitive: box; width: 4.19; height: 2.71; depth:0.01" scale="1 1 1" visible="true" position="0.579 1.29 -16.3" visible="" rotation="-90 90 180"
+      material="src: #carpet;; shader: standard;roughness:1;"  shadow="cast:  true;  receive:  true" depth-material></a-entity>
+      <a-entity id="#sofa1" gltf-model="#sofa" scale="0.2 0.2 0.2" position="-1.7391 1.2379 -17.1362" visible="" rotation="0 -20.74762 0" visible="true" shadow="cast: true" ></a-entity>
+      <a-entity id="#sofa2" gltf-model="#sofa" scale="0.2 0.2 0.2" position="-1.92791 1.22525 -16.43165" visible="" rotation="0 2.819525309838781 0" visible="true" shadow="cast: true" ></a-entity>
+      <a-entity id="#sofa3" gltf-model="#sofa" scale="0.2 0.2 0.2" position="-1.76786 1.22891 -15.80151" visible="" rotation="0 71.27537675647928 0" visible="true" shadow="cast: true" ></a-entity>
+      <a-entity id="#plant1" gltf-model="#plant1" scale="5 5 5" position="-1.10428 1.02106 -13.54152" visible="" rotation="0 71.27537675647928 0" visible="true" shadow="cast: true" ></a-entity>
+      <a-entity id="#plant2" gltf-model="#plant2" scale="2 2 2" position="-0.608 1.276 -18.43" visible="" rotation="0 0 0" visible="true" shadow="cast: true" ></a-entity>
+			<a-entity id="#floor" gltf-model="#floor" scale="1 1 1" position="0 0 0" visible="true" shadow="cast: true" ></a-entity>
+			<a-entity id="#garden" gltf-model="#garden" scale="1 1 1" position="0.7013341188430786 -0.06333290040493011 -7.019270896911621" visible="true" shadow="cast: true" ></a-entity>
+			<a-entity id="#guarda_dir" gltf-model="#guarda_dir" scale="1 1 1" position="3.824418783187866 1.2177233695983887 -1.8699088096618652" visible="true" shadow="cast: true" ></a-entity>
+			<a-entity id="#guarda_esq" gltf-model="#guarda_esq" scale="1 1 1" position="-1.62558114528656 1.2177233695983887 -1.8699088096618652" visible="true" shadow="cast: true" ></a-entity>
+			<a-entity id="#nav-mesh" gltf-model="#nav-mesh" scale="1 1 1" position="0.5000443458557129 1.0074697732925415 -13.624713897705078" visible="false" shadow="cast: false"  nav-mesh="1.0"></a-entity>
+			<a-entity id="#rampa" gltf-model="#rampa" scale="1 1 1" position="1.0993764400482178 0.49942606687545776 -2.083395004272461" visible="true" shadow="cast: true" ></a-entity>
+			<a-entity id="#roof" gltf-model="#roof" scale="1 1 1" position="0 0 0" visible="true" shadow="cast: true" ></a-entity>
+			<a-entity id="#walls" gltf-model="#walls" scale="1 1 1" position="0 0 0" visible="true" shadow="cast: true" ></a-entity>
+			<a-entity id="#walls.001" gltf-model="#walls.001" scale="1 1 1" position="-4.883333683013916 2.5300002098083496 -7.5333356857299805" visible="true" shadow="cast: true" ></a-entity>
+			<a-entity id="#walls.002" gltf-model="#walls.002" scale="1 1 1" position="5.500000476837158 2.5300002098083496 -7.133333206176758" visible="true" shadow="cast: true" ></a-entity>
+
+            <!-- Camera -->
+            <a-entity id="player"
+                position="0 -0.2 0"
+                movement-controls="constrainToNavMesh: true;speed: 0.20000000298023224;">
+                <a-entity id="camera"
+                    camera="near: 0.001"
+                    position="0 1.5 0"
+                    look-controls="pointerLockEnabled: true">
+                        <a-entity id="cursor" cursor="fuse: false;" animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 50; from: 	0.1 0.1 0.1; to: 1 1 1"
+                            position="0 0 -0.1"
+                            geometry="primitive: circle; radius: 0.001;"
+                            material="color: #CCC; shader: flat;"
+                            raycaster = "far: 5.0; interval: 100.0; objects: .clickable,.links">
+                        </a-entity>
+                </a-entity>
+                    <a-entity id="leftHand" oculus-touch-controls="hand: left" vive-controls="hand: left"></a-entity>
+					<a-entity id="rightHand" laser-controls oculus-touch-controls="hand: right" vive-controls="hand: right" raycaster = "far: 10.0; interval: 1500.0; objects: .clickable,.links"></a-entity>
+            </a-entity>
+
+            <!-- Lights-->
+            <a-entity light="type: point; intensity: 0.3; distance: 10; decay: 2;"  position="3.8 2.4 -11.8"></a-entity>
+            <a-entity light="type: point; intensity: 0.3; distance: 10; decay: 2;"  position="4.3 2.4 -17.3"></a-entity>
+            <a-entity light="type: point; intensity: 0.3; distance: 10; decay: 2;"  position="4.3 2.4 -22.3"></a-entity>
+            <a-entity light="type: point; intensity: 0.3; distance: 10; decay: 2;"  position="-3.5 2.4 -22.3"></a-entity>
+            <a-entity light="type: point; intensity: 0.3; distance: 10; decay: 2;"  position="-3.5 2.4 -17.9"></a-entity>
+            <a-entity light="type: point; intensity: 0.3; distance: 10; decay: 2;"  position="-3.5 2.4 -12.3"></a-entity>
+
+
+ <a-entity light="type: ambient; intensity:0.2;"></a-entity>
+ <a-entity id="sun" light="type: directional; color: #FFF; intensity: 2; castShadow: true;
+ shadowCameraFar:  100;  shadowBias:  -0.001;  shadowMapHeight:  4096;  shadowMapWidth:  4096;  shadowCameraLeft:  -30;  shadowCameraRight:  10;  shadowCameraBottom:  -12.92;  shadowCameraTop:  25;  shadowCameraNear:  -5;"
+     position="-3.6005 2.95132 2.58116">
+      </a-entity>
+
+            <!-- Sky
+            <a-sky color="#ECECEC"></a-sky> -->
+
+        </a-scene>
+    </body>
+</html>
+<!--  -->

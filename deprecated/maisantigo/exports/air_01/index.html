@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+        <head>
+        <title>VR Application</title>
+        <link rel="icon" type="image/png" href="favicon.ico"/>
+        <meta name="description" content="3D Application">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="js/aframe.1.1.min.js"></script>
+        <script src="js/aframe-extras.6.1.1.min.js"></script>
+        <script type="text/javascript" src="js/webxr.js"></script>
+        <script type="text/javascript" src="js/joystick.js"></script>
+        <script type="text/javascript" src="js/camera-cube-env.js"></script>
+        <script type="text/javascript" src="js/aframe-physics-system.min.js"></script>
+        <script type="text/javascript" src="js/aframe-environment-component.min.js"></script>
+        <script type="text/javascript" src="js/aframe-extras.controls.min.js"></script>
+        <script type="text/javascript" src="js/aframe-extras.loaders.min.js"></script>
+        <script type="text/javascript" src="js/aframe-extras.misc.min.js"></script>
+        <script type="text/javascript" src="js/aframe-extras.pathfinding.min.js"></script>
+        <script type="text/javascript" src="js/aframe-extras.primitives.min.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+    <body onload="init();">
+        <a-scene stats joystick shadow="type: pcfsoft; autoUpdate: true;" renderer="antialias: true; colorManagement: true; physicallyCorrectLights: true;">
+            <!-- Assets -->
+            <a-assets>
+				<a-asset-item id="AFRAME_ENVIRONMENT" src="./assets/AFRAME_ENVIRONMENT.gltf"></a-asset-item>
+				<a-asset-item id="Desk" src="./assets/Desk.gltf"></a-asset-item>
+				<a-asset-item id="floor" src="./assets/floor.gltf"></a-asset-item>
+				<a-asset-item id="grass" src="./assets/grass.gltf"></a-asset-item>
+				<a-asset-item id="grass.001" src="./assets/grass.001.gltf"></a-asset-item>
+				<a-asset-item id="hideshow" src="./assets/hideshow.gltf"></a-asset-item>
+				<a-asset-item id="link" src="./assets/link.gltf"></a-asset-item>
+				<a-asset-item id="nav-mesh" src="./assets/nav-mesh.gltf"></a-asset-item>
+				<a-asset-item id="porta" src="./assets/porta.gltf"></a-asset-item>
+				<a-asset-item id="showhide" src="./assets/showhide.gltf"></a-asset-item>
+				<a-asset-item id="Suzanne" src="./assets/Suzanne.gltf"></a-asset-item>
+				<img id="image_1" src="./media/image1.png"></img>
+				<img id="image_2" src="./media/image2.png"></img>
+				<a-asset-item id="Untitled" src="./assets/Untitled.gltf"></a-asset-item>
+                <img id="sky"                 src="./resources/sky.jpg">
+                <img id="icon-play"           src="./resources/play.png">
+                <img id="icon-pause"          src="./resources/pause.png">
+                <img id="icon-play-skip-back" src="./resources/play-skip-back.png">
+                <img id="icon-mute"           src="./resources/mute.png">
+                <img id="icon-volume-low"     src="./resources/volume-low.png">
+                <img id="icon-volume-high"    src="./resources/volume-high.png">
+            </a-assets>
+
+            <!-- Entities -->
+
+			<a-entity id="#AFRAME_ENVIRONMENT"  scale="1 1 1" position="-1.0579465627670288 0.0 -16.412858963012695" visible="true" shadow="cast: true"  environment="active:true;preset:default;ground: noise;groundTexture: squares; lighting: none; dressingScale: 1.17; dressingColor: #75851a; dressingAmount: 500; fog: 0.8; dressing: trees; "></a-entity>
+			<a-entity id="#Desk" gltf-model="#Desk" scale="1 1 1" position="0.3125826120376587 4.393890380859375 -42.047630310058594" visible="true" shadow="cast: true" ></a-entity>
+			<a-entity id="#floor" gltf-model="#floor" scale="1 1 1" position="0.5672250986099243 3.867753744125366 -30.49571990966797" visible="true" shadow="cast: true" ></a-entity>
+			<a-entity id="#grass" gltf-model="#grass" scale="1 1 1" position="-1.6522188186645508 0.39835554361343384 -17.22899055480957" visible="true" shadow="cast: true" ></a-entity>
+			<a-entity id="#grass.001" gltf-model="#grass.001" scale="1 1 1" position="-1.6024141311645508 0.37331998348236084 -20.245147705078125" visible="true" shadow="cast: true" ></a-entity>
+			<a-entity id="#hideshow" gltf-model="#hideshow" scale="1 1 1" position="0.2974487543106079 5.42022705078125 -19.323280334472656" visible="true" shadow="cast: true"  light="type: point; intensity: 25; distance: 5; decay: 1"></a-entity>
+			<a-entity id="#link" gltf-model="#link" scale="1 1 1" position="3.8737072944641113 4.96036434173584 -14.329402923583984" visible="true" shadow="cast: true"  link-handler="target: https://www.google.it/" class="clickable" ></a-entity>
+			<a-entity id="#nav-mesh" gltf-model="#nav-mesh" scale="1 1 1" position="0.5175257921218872 3.9165351390838623 -31.924341201782227" visible="false" shadow="cast: false"  nav-mesh="1.0"></a-entity>
+			<a-entity id="#porta" gltf-model="#porta" scale="1 1 1" position="2.9755451679229736 5.956661701202393 -19.675037384033203" visible="true" shadow="cast: true" ></a-entity>
+			<a-entity id="#showhide" gltf-model="#showhide" scale="1 1 1" position="0.22399485111236572 4.43747091293335 -19.20667266845703" visible="true" shadow="cast: true"  toggle-handler="target: #hideshow;" class="clickable" ></a-entity>
+			<a-entity id="#Suzanne" gltf-model="#Suzanne" scale="1 1 1" position="-9.146049499511719 5.515119552612305 -23.87250328063965" visible="true" shadow="cast: true"  animation= "property: rotation; to: 0 360 0; loop: true; dur: 10000" ></a-entity>
+			<a-image images-handler id="#i_1" src="#image_2" class="clickable" width="1" height="1" scale="1.5755059719085693 1.5755059719085693 1.5755059719085693" position="-5.600215435028076 6.40842342376709 -19.11899757385254" rotation="0 0.0 0" visible="true" shadow="cast: false"></a-image>
+			<a-entity id="#Untitled" gltf-model="#Untitled" scale="1 1 1" position="1.0 -7.0 -25.200000762939453" visible="true" shadow="cast: true" ></a-entity>
+
+            <!-- Camera -->
+            <a-entity id="player"
+                position="0 0.1 0"
+                movement-controls="constrainToNavMesh: true;speed: 0.5;">
+                <a-entity id="camera"
+                    camera="near: 0.001"
+                    position="0 2.0 0"
+                    look-controls="pointerLockEnabled: true">
+                        <a-entity id="cursor" cursor="fuse: false;" animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 50; from: 	0.1 0.1 0.1; to: 1 1 1"
+                            position="0 0 -0.1"
+                            geometry="primitive: circle; radius: 0.001;"
+                            material="color: #CCC; shader: flat;"
+                            raycaster = "far: 10.0; interval: 1500.0; objects: .clickable,.links">
+                        </a-entity>
+                </a-entity>
+                    <a-entity id="leftHand" oculus-touch-controls="hand: left" vive-controls="hand: left"></a-entity>
+					<a-entity id="rightHand" laser-controls oculus-touch-controls="hand: right" vive-controls="hand: right" raycaster = "far: 10.0; interval: 1500.0; objects: .clickable,.links"></a-entity>
+            </a-entity>
+
+            <!-- Lights -->
+            <!-- <a-entity light="intensity: 2.0; castShadow: true; shadowBias: -0.001; shadowCameraFar: 501.02; shadowCameraBottom: 12; shadowCameraFov: 101.79; shadowCameraNear: 0; shadowCameraTop: -5; shadowCameraRight: 10; shadowCameraLeft: -10; shadowRadius: 2" position="1.36586 7.17965 1"></a-entity>
+			<a-entity light="type: ambient; intensity: 0.1"></a-entity> -->
+
+ <a-entity light="type: ambient; intensity:2;"></a-entity>
+
+ <a-entity id="sun" light="type: directional; color: #FFF; intensity: 1; castShadow: true; shadowCameraFar: 500;
+     shadowCameraVisible: false;
+     shadowBias: -0.001;
+     shadowMapHeight:2048; shadowMapWidth:2048;
+     shadowCameraLeft: -50; shadowCameraRight: 50;
+     shadowCameraBottom: -50; shadowCameraTop: 50;" position="-5 3 1.5">
+ </a-entity>
+
+            <!-- Sky -->
+            <a-sky color="#ECECEC"></a-sky>
+        </a-scene>
+    </body>
+</html>
+<!--  -->

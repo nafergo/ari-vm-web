@@ -1,0 +1,207 @@
+{
+    "asset" : {
+        "generator" : "Khronos glTF Blender I/O v1.6.9",
+        "version" : "2.0"
+    },
+    "scene" : 0,
+    "scenes" : [
+        {
+            "extras" : {
+                "skinify" : {
+                    "connect_mesh" : 0,
+                    "connect_parents" : 0,
+                    "generate_all" : 0,
+                    "thickness" : 0.800000011920929,
+                    "finger_thickness" : 0.25,
+                    "apply_mod" : 1,
+                    "parent_armature" : 1,
+                    "sub_level" : 1
+                },
+                "blosm" : {
+                    "defaultLevels" : [
+                        {
+                            "levels" : 4,
+                            "weight" : 10
+                        },
+                        {
+                            "levels" : 5,
+                            "weight" : 40
+                        },
+                        {
+                            "levels" : 6,
+                            "weight" : 10
+                        }
+                    ]
+                },
+                "blenderkitUI" : {
+                    "assetbar_on" : 0,
+                    "turn_off" : 0
+                },
+                "uuid" : "a4bd558c-f66f-45f2-b32f-1ffa536b8531",
+                "b_export" : 1,
+                "export_path" : "/media/nafergo/KINGSTON/vinny-ari/exports/",
+                "s_project_name" : "ar-vm_06",
+                "b_settings" : 1,
+                "b_renderer" : 1,
+                "b_aa" : 1,
+                "b_colorManagement" : 1,
+                "b_physicallyCorrectLights" : 0,
+                "b_player" : 1,
+                "b_raycast" : 1,
+                "f_player_height" : 1.5,
+                "f_player_speed" : 0.20000000298023224,
+                "b_cast_shadows" : 1,
+                "b_use_default_lights" : 1,
+                "b_cubemap" : 1,
+                "b_camera_cube" : 1,
+                "s_output" : "exporting...",
+                "sun_pos_properties" : {
+                    "day_of_year" : 232
+                },
+                "uiListCollec" : [
+                    {
+                        "idx" : 0,
+                        "val" : -0.800000011920929,
+                        "color" : [
+                            0,
+                            0,
+                            0,
+                            1
+                        ]
+                    },
+                    {
+                        "idx" : 1,
+                        "val" : 0.20000001788139343,
+                        "color" : [
+                            1,
+                            1,
+                            1,
+                            1
+                        ]
+                    }
+                ],
+                "b_interactive" : 1
+            },
+            "name" : "Scene",
+            "nodes" : [
+                0
+            ]
+        }
+    ],
+    "nodes" : [
+        {
+            "extras" : {},
+            "mesh" : 0,
+            "name" : "porta_dir"
+        }
+    ],
+    "materials" : [
+        {
+            "alphaMode" : "BLEND",
+            "doubleSided" : true,
+            "name" : "vidro",
+            "pbrMetallicRoughness" : {
+                "baseColorFactor" : [
+                    0.0331047922372818,
+                    0.033104777336120605,
+                    0.0331047847867012,
+                    0.37727272510528564
+                ],
+                "metallicFactor" : 0,
+                "roughnessFactor" : 0
+            }
+        }
+    ],
+    "meshes" : [
+        {
+            "name" : "Plane.004",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "POSITION" : 0,
+                        "NORMAL" : 1,
+                        "TANGENT" : 2,
+                        "TEXCOORD_0" : 3
+                    },
+                    "indices" : 4,
+                    "material" : 0
+                }
+            ]
+        }
+    ],
+    "accessors" : [
+        {
+            "bufferView" : 0,
+            "componentType" : 5126,
+            "count" : 24,
+            "max" : [
+                1.0230194330215454,
+                1.2745846509933472,
+                0.0111236572265625
+            ],
+            "min" : [
+                -1.0230194330215454,
+                -1.2745846509933472,
+                -0.0111236572265625
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 1,
+            "componentType" : 5126,
+            "count" : 24,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 2,
+            "componentType" : 5126,
+            "count" : 24,
+            "type" : "VEC4"
+        },
+        {
+            "bufferView" : 3,
+            "componentType" : 5126,
+            "count" : 24,
+            "type" : "VEC2"
+        },
+        {
+            "bufferView" : 4,
+            "componentType" : 5123,
+            "count" : 36,
+            "type" : "SCALAR"
+        }
+    ],
+    "bufferViews" : [
+        {
+            "buffer" : 0,
+            "byteLength" : 288,
+            "byteOffset" : 0
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 288,
+            "byteOffset" : 288
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 384,
+            "byteOffset" : 576
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 192,
+            "byteOffset" : 960
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 72,
+            "byteOffset" : 1152
+        }
+    ],
+    "buffers" : [
+        {
+            "byteLength" : 1224,
+            "uri" : "data:application/octet-stream;base64,TfKCv5cloz8AQDa8TfKCv5cloz8AQDa8TfKCv5cloz8AQDa8TfKCP5cloz8AQDa8TfKCP5cloz8AQDa8TfKCP5cloz8AQDa8TfKCv5clo78AQDa8TfKCv5clo78AQDa8TfKCv5clo78AQDa8TfKCv5cloz8AQDY8TfKCv5cloz8AQDY8TfKCv5cloz8AQDY8TfKCP5cloz8AQDY8TfKCP5cloz8AQDY8TfKCP5cloz8AQDY8TfKCP5clo78AQDa8TfKCP5clo78AQDa8TfKCP5clo78AQDa8TfKCP5clo78AQDY8TfKCP5clo78AQDY8TfKCP5clo78AQDY8TfKCv5clo78AQDY8TfKCv5clo78AQDY8TfKCv5clo78AQDY8AACAvwAAAIAAAACAAAAAgAAAAAAAAIC/AAAAAAAAgD8AAAAAAAAAgAAAAAAAAIC/AAAAAAAAgD8AAAAAAACAPwAAAAAAAAAAAACAvwAAAIAAAACAAAAAAAAAgL8AAACAAAAAgAAAAAAAAIC/AACAvwAAAIAAAACAAAAAgAAAAAAAAIA/AAAAAAAAgD8AAAAAAAAAgAAAAAAAAIA/AAAAAAAAgD8AAAAAAACAPwAAAAAAAAAAAAAAAAAAgL8AAACAAAAAgAAAAAAAAIC/AACAPwAAAAAAAAAAAAAAAAAAgL8AAACAAAAAgAAAAAAAAIA/AACAPwAAAAAAAAAAAACAvwAAAIAAAACAAAAAAAAAgL8AAACAAAAAgAAAAAAAAIA/AAAAAAAAgD8AAACAAACAvwAAAAAAAIA/AAAAgAAAgL8AAIA/AAAAABrvIDUAAIC/GTAnPpuQfD8AAACAAACAvwAAgD8AAAAAF/vWNAAAgL8AAAAAAACAP8yMrLQAAIA/AAAAAP//fz8AAACAAACAvwAAgL8AAAAAf60htQAAgL+TGl0+DPZ5PwAAAIAAAIC/AAAAAP//fz8AAACAAACAvwAAAAAAAIA/AAAAgAAAgD8AAIA/AAAAAG9OITUAAIC/AAAAAAAAgD8AAACAAACAPwAAgD8AAAAAwLnXNAAAgL8AAAAA//9/P4yXq7QAAIA/AACAvwAAAAAS+Va1AACAv8Owvj4JlW0/AAAAgAAAgL8AAAAA//9/PzE/9bAAAIA/AACAvwAAAAABmla1AACAvwAAAAAAAIA/AAAAgAAAgD8AAAAAAACAPwAAAIAAAIA/AAAAAAAAgD8AAACAAACAvwAAgL8AAAAAb04htQAAgL8AAAAAAACAPwAAAIAAAIA/ZMi7wM8J0sBkyLvAzwnSwGTIu8DPCdLAeLaTv80J0sB4tpO/zQnSwHi2k7/NCdLAG1bAwM8J0sAbVsDAzwnSwBtWwMDPCdLAipy8wPTd0sCKnLzA9N3SwIqcvMD03dLAd7aTv/Hd0sB3tpO/8d3SwHe2k7/x3dLAe5grwcsJ0sB7mCvBywnSwHuYK8HLCdLAe5grwfHd0sB7mCvB8d3SwHuYK8Hx3dLA9oG/wPTd0sD2gb/A9N3SwPaBv8D03dLAAwAQAAgAAwAIAAEACgAXABMACgATAAwAEQAFAA4AEQAOABQABgAVAAkABgAJAAAABAACAAsABAALAA0ABwAPABIABwASABYA"
+        }
+    ]
+}
